@@ -1,183 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calix Mojica</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff; /* white background */
-            color: #000000; /* default black text */
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calix Mojica</title>
+<style>
+    /* Global Styles */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f7; /* soft, bright grey background */
+        color: #000;
+        text-align: center;
+    }
 
-        /* Headshot Styles */
-        img.headshot {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-top: 40px;
-            border: 4px solid #0073e6;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+    /* Headshot Styles */
+    img.headshot {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-top: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        transition: transform 0.3s;
+    }
+    img.headshot:hover {
+        transform: scale(1.05);
+    }
 
-        /* Name */
+    /* Name */
+    h1 {
+        font-size: 2.8em;
+        margin: 20px 0 10px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    /* Intro Description */
+    .intro {
+        font-size: 1.1em;
+        font-weight: 400;
+        color: #000;
+        margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+    }
+
+    /* Social Buttons */
+    .social-buttons {
+        margin-bottom: 40px;
+    }
+
+    .social-buttons a {
+        display: inline-block;
+        margin: 10px 15px;
+        padding: 12px 25px;
+        text-decoration: none;
+        font-weight: 700;
+        color: #000;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.35);
+        border: 1px solid rgba(255,255,255,0.4);
+        backdrop-filter: blur(30px) saturate(200%) contrast(1.05);
+        -webkit-backdrop-filter: blur(30px) saturate(200%) contrast(1.05);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .social-buttons a:hover {
+        transform: translateY(-3px) scale(1.03);
+        background: rgba(255,255,255,0.5);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Biography and Properties Boxes */
+    .bio, .properties-container {
+        background: rgba(255,255,255,0.25);
+        border-radius: 28px;
+        padding: 35px 30px;
+        max-width: 800px;
+        margin: 0 auto 50px auto;
+        text-align: center;
+        color: #000;
+        backdrop-filter: blur(35px) saturate(200%) contrast(1.05);
+        -webkit-backdrop-filter: blur(35px) saturate(200%) contrast(1.05);
+        border: 1px solid rgba(255,255,255,0.4);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .bio:hover, .properties-container:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+    }
+
+    /* Paragraphs inside boxes left-aligned */
+    .bio p, .properties-container p {
+        text-align: left;
+        max-width: 100%;
+        margin: 0 auto 15px auto;
+    }
+
+    /* Headings outside boxes */
+    h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+        margin-top: 40px;
+        color: #000;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    /* Property List */
+    ul.properties {
+        list-style: none;
+        padding: 0;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    ul.properties li {
+        padding: 4px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.15);
+    }
+
+    /* Work-in-progress placeholder */
+    .placeholder {
+        font-style: italic;
+        color: #000;
+        margin: 20px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
         h1 {
-            font-size: 2.8em;
-            margin: 20px 0 10px 0;
-            font-weight: 700;
-            color: #000;
+            font-size: 2em;
         }
 
-        /* Intro Description */
         .intro {
-            font-size: 1.1em;
-            font-weight: 400;
-            color: #000;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
-
-        /* Social Buttons */
-        .social-buttons {
-            margin-bottom: 40px;
+            font-size: 0.95em;
         }
 
         .social-buttons a {
-            display: inline-block;
-            margin: 10px 15px;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: 700;
-            color: #000; /* black text on buttons */
-            background-color: rgba(255, 255, 255, 0.6); /* frosted glass background */
-            border-radius: 16px;
-            backdrop-filter: blur(15px) saturate(180%) brightness(1.1);
-            -webkit-backdrop-filter: blur(15px) saturate(180%) brightness(1.1);
-            border: 1px solid rgba(0,0,0,0.2);
-            transition: transform 0.2s, background-color 0.3s;
+            padding: 10px 20px;
+            margin: 8px 10px;
         }
-
-        .social-buttons a:hover {
-            transform: translateY(-2px);
-            background-color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* Biography and Properties Boxes */
-        .bio, .properties-container {
-            background-color: rgba(255, 255, 255, 0.15); /* frosted glass */
-            color: #000; /* black text */
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            padding: 30px 25px;
-            border-radius: 24px;
-            text-align: center; /* center headings and lists */
-            line-height: 1.6;
-            backdrop-filter: blur(20px) saturate(180%) brightness(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border: 1px solid rgba(0,0,0,0.15);
-        }
-
-        /* Paragraphs inside boxes left-aligned */
-        .bio p, .properties-container p {
-            text-align: left;
-            max-width: 100%;
-            margin: 0 auto 15px auto;
-        }
-
-        /* Headings outside boxes */
-        h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            margin-top: 40px;
-            color: #000;
-        }
-
-        /* Disclaimer */
-        .disclaimer {
-            font-size: 0.9em;
-            color: #555; /* slightly darker grey for subtlety */
-            margin-bottom: 20px;
-        }
-
-        /* Property List */
-        ul.properties {
-            list-style: none;
-            padding: 0;
-            line-height: 1.5;
-            text-align: center; /* center list items */
-        }
-
-        ul.properties li {
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.15);
-        }
-
-        /* Work-in-progress placeholder */
-        .placeholder {
-            font-style: italic;
-            color: #555;
-            margin: 20px 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .intro {
-                font-size: 0.95em;
-            }
-
-            .social-buttons a {
-                padding: 10px 20px;
-                margin: 8px 10px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
-    <!-- Headshot and Name -->
-    <img src="headshot.jpg" alt="Calix Mojica Headshot" class="headshot">
-    <h1>Calix Mojica</h1>
-    <p class="intro">This website is still a work in progress.</p>
+<!-- Headshot and Name -->
+<img src="headshot.jpg" alt="Calix Mojica Headshot" class="headshot">
+<h1>Calix Mojica</h1>
+<p class="intro">This website is still a work in progress.</p>
 
-    <!-- Social Buttons -->
-    <div class="social-buttons">
-        <a href="https://www.instagram.com/CalixMojica" target="_blank">Instagram</a>
-        <a href="https://www.tiktok.com/@CalixMojica" target="_blank">TikTok</a>
-        <a href="https://www.youtube.com/@CalixMojica" target="_blank">YouTube</a>
-        <a href="#" target="_blank">House Listings</a>
-    </div>
+<!-- Social Buttons -->
+<div class="social-buttons">
+    <a href="https://www.instagram.com/CalixMojica" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@CalixMojica" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/@CalixMojica" target="_blank">YouTube</a>
+    <a href="#" target="_blank">House Listings</a>
+</div>
 
-    <!-- Biography Box -->
-    <div class="bio">
-        <p>Before transitioning into real estate sales, I established a proven track record as a residential letting and leasing agent across Auckland. Over a sustained period, I consistently achieved results well above industry standards, managing a diverse portfolio of properties throughout the region.</p>
-        <p>Even at this high level of performance, I maintained a principled approach, carefully matching tenants to properties to ensure stable, reliable tenancies, and protect the long-term value of every home. This same dedication, market insight, and results-driven mindset now guides my real estate practice, helping clients, whether buying or selling, achieve outcomes that are fair, confident, and successful.</p>
-    </div>
+<!-- Biography Box -->
+<div class="bio">
+    <p>Before transitioning into real estate sales, I established a proven track record as a residential letting and leasing agent across Auckland. Over a sustained period, I consistently achieved results well above industry standards, managing a diverse portfolio of properties throughout the region.</p>
+    <p>Even at this high level of performance, I maintained a principled approach, carefully matching tenants to properties to ensure stable, reliable tenancies, and protect the long-term value of every home. This same dedication, market insight, and results-driven mindset now guides my real estate practice, helping clients, whether buying or selling, achieve outcomes that are fair, confident, and successful.</p>
+</div>
 
-    <!-- Previous Properties -->
-    <h2>Previous Rented Out Properties</h2>
-    <p class="disclaimer">These properties were rented out while I was still working in the property management department. These were not previous sales.</p>
+<!-- Previous Properties -->
+<h2>Previous Rented Out Properties</h2>
+<p class="disclaimer">These properties were rented out while I was still working in the property management department. These were not previous sales.</p>
 
-    <!-- Properties Box -->
-    <div class="properties-container">
-        <p class="placeholder">[Insert properties rented out]</p>
-        <ul class="properties">
-            <!-- Property list will go here in the future -->
-        </ul>
-    </div>
+<!-- Properties Box -->
+<div class="properties-container">
+    <p class="placeholder">[Insert properties rented out]</p>
+    <ul class="properties">
+        <!-- Property list will go here in the future -->
+    </ul>
+</div>
 
 </body>
 </html>
