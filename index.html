@@ -1,45 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Calix Mojica</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calix Mojica</title>
     <style>
+        /* Global Styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
             text-align: center;
-            padding: 50px;
-            background-color: #f5f5f5;
         }
+
+        /* Headshot Styles */
+        img.headshot {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 40px;
+            border: 4px solid #0073e6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Name */
         h1 {
-            margin-bottom: 10px;
+            font-size: 2.8em;
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+            color: #000;
         }
-        p {
+
+        /* Intro Description */
+        .intro {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #000;
             margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
         }
-        a {
-            display: block;
-            margin: 10px auto;
-            padding: 15px;
-            width: 250px;
+
+        /* Social Buttons */
+        .social-buttons {
+            margin-bottom: 40px;
+        }
+
+        .social-buttons a {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 12px 25px;
             text-decoration: none;
-            background: black;
-            color: white;
-            border-radius: 5px;
+            font-weight: 700;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(15px) saturate(180%) brightness(1.1);
+            -webkit-backdrop-filter: blur(15px) saturate(180%) brightness(1.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: transform 0.2s, background-color 0.3s;
         }
-        a:hover {
-            background: #333;
+
+        .social-buttons a:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Biography and Properties Boxes */
+        .bio, .properties-container {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            padding: 30px 25px;
+            border-radius: 24px;
+            text-align: center; /* center headings and lists */
+            line-height: 1.6;
+            backdrop-filter: blur(20px) saturate(180%) brightness(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Paragraphs inside boxes left-aligned */
+        .bio p, .properties-container p {
+            text-align: left;
+            max-width: 100%;
+            margin: 0 auto 15px auto;
+        }
+
+        /* Headings outside boxes */
+        h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            margin-top: 40px;
+            color: #000;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        /* Property List */
+        ul.properties {
+            list-style: none;
+            padding: 0;
+            line-height: 1.5;
+            text-align: center; /* center the list items */
+        }
+
+        ul.properties li {
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .intro {
+                font-size: 0.95em;
+            }
+
+            .social-buttons a {
+                padding: 10px 20px;
+                margin: 8px 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-<h1>Calix Mojica</h1>
-<p>Currently setting up my real estate presence</p>
+    <!-- Headshot and Name -->
+    <img src="headshot.jpg" alt="Calix Mojica Headshot" class="headshot">
+    <h1>Calix Mojica</h1>
+    <p class="intro">I am currently building my real estate presence across Auckland, combining proven expertise with a bold, results-driven approach to help clients confidently achieve their property goals.</p>
 
-<a href="https://instagram.com/calixmojica">Instagram</a>
-<a href="https://tiktok.com/@calixmojica">TikTok</a>
-<a href="https://youtube.com/@calixmojica">YouTube</a>
-<a href="https://youtu.be/dQw4w9WgXcQ">For Sale</a>
+    <!-- Social Buttons -->
+    <div class="social-buttons">
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+        <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+        <a href="#" target="_blank">House Listings</a>
+    </div>
+
+    <!-- Biography Box -->
+    <div class="bio">
+        <p>Before transitioning into real estate sales, I established a proven track record as a residential letting and leasing agent across Auckland. Over a sustained period, I consistently achieved results well above industry standards, managing a diverse portfolio of properties throughout the region.</p>
+        <p>Even at this high level of performance, I maintained a principled approach, carefully matching tenants to properties to ensure stable, reliable tenancies and protect the long-term value of every home. This same dedication, market insight and results-driven mindset now guides my real estate practice, helping clients, whether buying or selling, achieve outcomes that are fair, confident and successful.</p>
+    </div>
+
+    <!-- Previous Properties -->
+    <h2>Previous Rented Out Properties</h2>
+    <p class="disclaimer">These properties were rented out while I was still working at a different company.</p>
+
+    <!-- Properties Box -->
+    <div class="properties-container">
+        <ul class="properties">
+            <!-- Add your property list here -->
+        </ul>
+    </div>
 
 </body>
 </html>
