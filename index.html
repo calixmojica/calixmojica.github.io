@@ -95,26 +95,24 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: relative;
   overflow: hidden;
 }
-.properties-container h2 {
-  font-size: 2em;
-  margin-top: 0;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.tab-button {
-  cursor: pointer;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 12px;
-  transition: 0.2s;
-}
-.tab-button.active { opacity: 1; color: #000; }
-.tab-button.inactive { opacity: 0.4; color: #000; }
 
-/* Disclaimer text */
-.properties-container .disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
+/* Tab Header */
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  font-weight: 700;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.tab {
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+.tab.active {
+  opacity: 1;
+}
 
 /* Property items */
 .property-item { margin-bottom: 30px; }
@@ -127,10 +125,27 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   background: rgba(255,255,255,0.03);
   backdrop-filter: blur(8px) saturate(180%);
   box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Removed the "Image coming soon" span for centering issues */
+.property-image span { display: none; }
+
+.property-image::before, .property-image::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+}
+.property-image::before { background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 70%); }
+.property-image::after { background: radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 70%); }
 .property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
+.disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 /* Modal */
 .modal-overlay {
@@ -167,6 +182,15 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   cursor: pointer;
   z-index: 10;
 }
+.modal::before, .modal::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+}
+.modal::before { background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 70%); }
+.modal::after { background: radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 70%); }
 </style>
 </head>
 
@@ -184,18 +208,15 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 </div>
 
 <div class="properties-container">
-  <h2>
-    <span class="tab-button active" id="tabRented" onclick="showTab('rented')">RENTED</span> | 
-    <span class="tab-button inactive" id="tabSold" onclick="showTab('sold')">SOLD</span>
-  </h2>
+  <div class="properties-header">
+    <span id="tab-rented" class="tab active" onclick="switchTab('rented')">RENTED</span>
+    <span id="tab-sold" class="tab" onclick="switchTab('sold')">SOLD</span>
+  </div>
 
-  <!-- RENTED CONTENT -->
-  <div id="rentedContent">
+  <div id="rented-content">
     <p class="disclaimer">Below are properties I rented out across Auckland. These are not previous sales</p>
 
-    <!-- FULL RENTED PROPERTY LIST -->
-    <!-- Paste all your rented properties here exactly as in your previous list -->
-    <!-- FULL RENTED PROPERTY LIST -->
+    <!-- ALL 77 RENTED PROPERTIES -->
     <div class="property-item"><div class="property-image"></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
@@ -277,11 +298,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
     <div class="property-item"><div class="property-image"></div><div class="property-address">178 Clevedon Road, Papakura</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">1/2 Hazeldene Place, Opaheke</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
-    <!-- Continue all rented properties up to 4 Hoete Way, Tuakau as in your full list -->
   </div>
 
-  <!-- SOLD CONTENT -->
-  <div id="soldContent" style="display:none;">
+  <div id="sold-content" style="display:none;">
     <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
     <div class="property-item"><div class="property-image"></div><div class="property-address">Untitled</div></div>
   </div>
@@ -309,29 +328,29 @@ document.getElementById('aboutModal').addEventListener('click', (e)=>{
 });
 
 // Tab switching
-function showTab(tab){
-  const rentedTab = document.getElementById('tabRented');
-  const soldTab = document.getElementById('tabSold');
-  const rentedContent = document.getElementById('rentedContent');
-  const soldContent = document.getElementById('soldContent');
+function switchTab(tab){
+  const rentedTab = document.getElementById('tab-rented');
+  const soldTab = document.getElementById('tab-sold');
+  const rentedContent = document.getElementById('rented-content');
+  const soldContent = document.getElementById('sold-content');
 
   if(tab==='rented'){
-    rentedTab.classList.add('active'); rentedTab.classList.remove('inactive');
-    soldTab.classList.add('inactive'); soldTab.classList.remove('active');
+    rentedTab.classList.add('active');
+    soldTab.classList.remove('active');
     rentedContent.style.display='block';
     soldContent.style.display='none';
   } else {
-    rentedTab.classList.add('inactive'); rentedTab.classList.remove('active');
-    soldTab.classList.add('active'); soldTab.classList.remove('inactive');
-    rentedContent.style.display='none';
+    soldTab.classList.add('active');
+    rentedTab.classList.remove('active');
     soldContent.style.display='block';
+    rentedContent.style.display='none';
   }
 }
 
-// Tilt-responsive shimmer always on
+// Tilt shimmer always on
 window.addEventListener('deviceorientation', e=>{
-  const x = e.gamma; 
-  const y = e.beta;  
+  const x = e.gamma;
+  const y = e.beta;
   const elements = document.querySelectorAll('.social-buttons a, .property-image, .modal, img.headshot');
   elements.forEach(el=>{
     el.style.boxShadow = `inset ${-x/2}px ${-y/2}px 15px rgba(255,255,255,0.15), 0 15px 35px rgba(0,0,0,0.12)`;
