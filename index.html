@@ -16,24 +16,17 @@ body {
     overflow-x: hidden;
 }
 
-/* Headshot */
 img.headshot {
     width: 180px;
     height: 180px;
     margin-top: 40px;
     border-radius: 50%;
     object-fit: cover;
-
     background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 0px solid rgba(255,255,255,0.25);
-
-    box-shadow:
-        inset 0 2px 4px rgba(255,255,255,0.85),
-        inset 0 -2px 6px rgba(255,255,255,0.25),
-        0 25px 60px rgba(0,0,0,0.2);
-
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 0px; /* removes white outline */
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2); /* outer shadow only */
     transition: transform 0.3s ease;
 }
 
@@ -52,7 +45,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Social Buttons */
+/* Social buttons with iOS26 glass look */
 .social-buttons {
     display: flex;
     flex-direction: column;
@@ -68,141 +61,43 @@ h1 {
     font-weight: 700;
     color: #000;
     border-radius: 24px;
-
     background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.25);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.7),
-        inset 0 -1px 0 rgba(255,255,255,0.25),
-        0 20px 40px rgba(0,0,0,0.15);
-
-    transition: transform 0.25s ease;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
-.social-buttons a:active {
-    transform: scale(0.97);
+.social-buttons a span {
+    position: relative;
+    z-index: 1;
 }
-
-/* Properties Container */
-.properties-container {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(35px);
-    -webkit-backdrop-filter: blur(35px);
-
-    border-radius: 28px;
-    border: 1px solid rgba(255,255,255,0.3);
-
-    box-shadow:
-        inset 0 2px 2px rgba(255,255,255,0.9),
-        inset 0 -2px 4px rgba(255,255,255,0.25),
-        0 30px 60px rgba(0,0,0,0.15);
-
-    padding: 35px 30px;
-    max-width: 900px;
-    margin: 0 auto 50px auto;
-    text-align: left;
-}
-
-.properties-container h2 {
-    font-size: 2em;
-    margin-top: 0;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.properties-container .disclaimer {
-    font-size: 0.8em;
-    color: #555;
-    font-style: italic;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.property-item {
-    margin-bottom: 30px;
-}
-
-.property-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 16px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.25);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.7),
-        inset 0 -1px 0 rgba(255,255,255,0.2),
-        0 15px 35px rgba(0,0,0,0.1);
-
-    transition: transform 0.3s ease;
-}
-
-.property-image:hover {
+.social-buttons a:hover {
     transform: scale(1.02);
 }
-
-.property-image span {
-    font-style: italic;
-    font-weight: 600;
-    color: #555;
+.social-buttons a:active {
+    transform: scale(0.97);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.15),
+                0 10px 20px rgba(0,0,0,0.2);
 }
-
-.property-address {
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Modal */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-
-    border-radius: 28px;
-    border: 1px solid rgba(255,255,255,0.3);
-
-    box-shadow:
-        inset 0 2px 2px rgba(255,255,255,0.95),
-        inset 0 -2px 6px rgba(255,255,255,0.3),
-        0 40px 80px rgba(0,0,0,0.25);
-
-    padding: 35px;
-    max-width: 700px;
-    text-align: left;
-    position: relative;
-}
-
-.modal button {
+/* Edge light effect */
+.social-buttons a::before,
+.social-buttons a::after {
+    content: '';
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.2em;
-    font-weight: 700;
-    background: none;
-    border: none;
-    cursor: pointer;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
 }
+.social-buttons a::before {
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 60%);
+}
+.social-buttons a::after {
+    background: radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 60%);
+}
+
 </style>
 </head>
 
@@ -213,18 +108,17 @@ h1 {
 <p class="intro">This website is still a work in progress</p>
 
 <div class="social-buttons">
-<a href="#" onclick="openModal()"><span>About Me</span></a>
-<a href="#"><span>Book a Viewing</span></a>
-<a href="https://www.instagram.com/CalixMojica" target="_blank"><span>Instagram</span></a>
-<a href="https://www.youtube.com/@CalixMojica" target="_blank"><span>YouTube</span></a>
+    <a href="#" onclick="openModal()"><span>About Me</span></a>
+    <a href="#"><span>Book a Viewing</span></a>
+    <a href="https://www.instagram.com/CalixMojica" target="_blank"><span>Instagram</span></a>
+    <a href="https://www.youtube.com/@CalixMojica" target="_blank"><span>YouTube</span></a>
 </div>
 
 <div class="properties-container">
-<h2>Rented Properties</h2>
-<p class="disclaimer">Below are properties I rented out across Auckland. These are not previous sales</p>
-
-<!-- PROPERTIES -->
-<div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
+    <h2>Rented Properties</h2>
+    <p class="disclaimer">Below are properties I have rented out across Auckland. These are not previous sales.</p>
+    
+    <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">4 Gypsy Moth Street, Hobsonville</div></div>
@@ -306,15 +200,15 @@ h1 {
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">1/2 Hazeldene Place, Opaheke</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
 
-</div> <!-- end of properties-container -->
+</div> <!-- End of properties-container -->
 
-<!-- Modal -->
+<!-- About Me Modal -->
 <div class="modal-overlay" id="aboutModal">
-<div class="modal">
-<p>Before moving into real estate sales, I built a strong track record as a residential letting / leasing agent across Auckland. I hold a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating, consistently achieving results above industry standards while managing a diverse portfolio</p>
-<p>Even at this high level of performance, I took a principled approach to tenant selection to ensure quality tenancies and protect long term property value. This same integrity, market insight, and results focused mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling</p>
-<button onclick="closeModal()">×</button>
-</div>
+    <div class="modal">
+        <p>Before moving into real estate sales, I built a strong track record as a residential letting / leasing agent across Auckland. I hold a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating, consistently achieving results above industry standards while managing a diverse portfolio.</p>
+        <p>Even at this high level of performance, I took a principled approach to tenant selection to ensure quality tenancies and protect long term property value. This same integrity, market insight, and results focused mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling.</p>
+        <button onclick="closeModal()">×</button>
+    </div>
 </div>
 
 <script>
@@ -322,6 +216,7 @@ function openModal() {
     document.getElementById("aboutModal").style.display = "flex";
     document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
     document.getElementById("aboutModal").style.display = "none";
     document.body.style.overflow = 'auto';
@@ -334,18 +229,30 @@ document.getElementById('aboutModal').addEventListener('click', (e) => {
     }
 });
 
-// Scroll effect for iOS 26 liquid glass look
+// Liquid glass effect on scroll
 window.addEventListener('scroll', () => {
-    const elements = document.querySelectorAll('.social-buttons a, .property-image, .modal, img.headshot');
-    elements.forEach(el => {
+    const glassElements = document.querySelectorAll('.social-buttons a, .property-image, .modal, img.headshot');
+    glassElements.forEach(el => {
         const rect = el.getBoundingClientRect();
         const distance = Math.min(Math.abs(rect.top + rect.height/2 - window.innerHeight/2)/window.innerHeight, 1);
-        const blurVal = 30 + distance*10;
+        const blurVal = 25 + distance*5; // subtle blur change
         const scaleVal = 1 + distance*0.015;
-        el.style.backdropFilter = `blur(${blurVal}px) saturate(220%)`;
+        el.style.backdropFilter = `blur(${blurVal}px) saturate(180%)`;
         el.style.transform = `scale(${scaleVal})`;
     });
 });
+
+// Optional: Device orientation tilt for edge glaze effect
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (event) => {
+        const x = event.gamma || 0; // left/right tilt
+        const y = event.beta || 0;  // front/back tilt
+        const elements = document.querySelectorAll('.modal, .property-image, .social-buttons a, img.headshot');
+        elements.forEach(el => {
+            el.style.transform = `rotateX(${y/15}deg) rotateY(${x/15}deg)`;
+        });
+    });
+}
 </script>
 
 </body>
