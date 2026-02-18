@@ -95,23 +95,28 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: relative;
   overflow: hidden;
 }
+.properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
+.properties-container .disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 /* Tab Header */
 .properties-header {
   display: flex;
   justify-content: space-between;
-  max-width: 400px;
-  margin: 0 auto 20px auto;
+  padding: 0 30px;
+  margin-bottom: 20px;
   font-weight: 700;
-  font-size: 1.3em;
+  font-size: 1.4em;
   cursor: pointer;
 }
 .tab {
+  flex: 1;
+  text-align: center;
   opacity: 0.4;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 .tab.active {
   opacity: 1;
+  color: #000;
 }
 
 /* Property items */
@@ -130,10 +135,6 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-/* Removed the "Image coming soon" span for centering issues */
-.property-image span { display: none; }
-
 .property-image::before, .property-image::after {
   content:'';
   position:absolute;
@@ -141,11 +142,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   border-radius:inherit;
   pointer-events:none;
 }
-.property-image::before { background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 70%); }
-.property-image::after { background: radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 70%); }
+.property-image::before { background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent 50%); }
+.property-image::after { background: linear-gradient(to top, rgba(255,255,255,0.15), transparent 50%); }
 .property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
-.disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 /* Modal */
 .modal-overlay {
@@ -191,6 +191,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .modal::before { background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 70%); }
 .modal::after { background: radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 70%); }
+
 </style>
 </head>
 
@@ -209,14 +210,16 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 
 <div class="properties-container">
   <div class="properties-header">
-    <span id="tab-rented" class="tab active" onclick="switchTab('rented')">RENTED</span>
-    <span id="tab-sold" class="tab" onclick="switchTab('sold')">SOLD</span>
+    <div class="tab active" id="rentedTab" onclick="switchTab('rented')">RENTED</div>
+    <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
   </div>
 
-  <div id="rented-content">
+  <!-- Rented Properties -->
+  <div id="rentedContent">
     <p class="disclaimer">Below are properties I rented out across Auckland. These are not previous sales</p>
 
-    <!-- ALL 77 RENTED PROPERTIES -->
+    <!-- ADD ALL RENTED PROPERTY ITEMS HERE -->
+    <!-- Example: -->
     <div class="property-item"><div class="property-image"></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
     <div class="property-item"><div class="property-image"></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
@@ -300,9 +303,13 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
     <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
   </div>
 
-  <div id="sold-content" style="display:none;">
+  <!-- Sold Properties -->
+  <div id="soldContent" style="display:none;">
     <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
-    <div class="property-item"><div class="property-image"></div><div class="property-address">Untitled</div></div>
+    <div class="property-item">
+      <div class="property-image"></div>
+      <div class="property-address">Untitled</div>
+    </div>
   </div>
 </div>
 
@@ -323,31 +330,26 @@ function closeModal(){
   document.getElementById('aboutModal').style.display='none';
   document.body.style.overflow='auto';
 }
+
+function switchTab(tab){
+  if(tab==='rented'){
+    document.getElementById('rentedContent').style.display='block';
+    document.getElementById('soldContent').style.display='none';
+    document.getElementById('rentedTab').classList.add('active');
+    document.getElementById('soldTab').classList.remove('active');
+  } else {
+    document.getElementById('rentedContent').style.display='none';
+    document.getElementById('soldContent').style.display='block';
+    document.getElementById('rentedTab').classList.remove('active');
+    document.getElementById('soldTab').classList.add('active');
+  }
+}
+
 document.getElementById('aboutModal').addEventListener('click', (e)=>{
   if(e.target===document.getElementById('aboutModal')) closeModal();
 });
 
-// Tab switching
-function switchTab(tab){
-  const rentedTab = document.getElementById('tab-rented');
-  const soldTab = document.getElementById('tab-sold');
-  const rentedContent = document.getElementById('rented-content');
-  const soldContent = document.getElementById('sold-content');
-
-  if(tab==='rented'){
-    rentedTab.classList.add('active');
-    soldTab.classList.remove('active');
-    rentedContent.style.display='block';
-    soldContent.style.display='none';
-  } else {
-    soldTab.classList.add('active');
-    rentedTab.classList.remove('active');
-    soldContent.style.display='block';
-    rentedContent.style.display='none';
-  }
-}
-
-// Tilt shimmer always on
+// Tilt-responsive glass shimmer
 window.addEventListener('deviceorientation', e=>{
   const x = e.gamma;
   const y = e.beta;
