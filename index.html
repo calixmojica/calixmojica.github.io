@@ -10,7 +10,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8fa; /* brighter modern grey */
+    background-color: #f8f8fa;
     color: #000;
     text-align: center;
 }
@@ -69,27 +69,31 @@ h1 {
     box-shadow: inset 0 2px 6px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.2);
 }
 
-h2 {
-    font-size: 2em;
-    margin-top: 40px;
-}
-
-.disclaimer {
-    font-size: 0.85em; /* slightly smaller */
-    color: #555;
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
 .properties-container {
     background: rgba(255,255,255,0.2);
     border-radius: 28px;
     padding: 35px 30px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto 50px auto;
     backdrop-filter: blur(45px) saturate(200%);
     border: 1px solid rgba(255,255,255,0.4);
     box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+.properties-container h2 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.properties-container .disclaimer {
+    font-size: 0.85em;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 .property-item {
@@ -107,8 +111,8 @@ h2 {
     border: 1px solid rgba(255,255,255,0.35);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 15px 35px rgba(0,0,0,0.15);
     display: flex;
-    align-items: center;  /* vertical centre */
-    justify-content: center; /* horizontal centre */
+    align-items: center;
+    justify-content: center;
 }
 
 .property-image span {
@@ -121,13 +125,14 @@ h2 {
 .property-address {
     font-weight: bold;
     margin-top: 10px;
+    text-align: center;
 }
 
 .modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.35); /* not blurry */
+    background: rgba(0,0,0,0.35);
     align-items: center;
     justify-content: center;
     z-index: 1000;
@@ -141,24 +146,19 @@ h2 {
     text-align: left;
     box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 25px 50px rgba(0,0,0,0.25);
     backdrop-filter: blur(45px) saturate(200%);
+    position: relative;
 }
 
 .modal button {
-    margin-top: 20px;
-    padding: 10px 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2em;
     font-weight: 700;
-    border-radius: 12px;
+    color: black;
+    background: none;
     border: none;
     cursor: pointer;
-    background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.18));
-    backdrop-filter: blur(45px) saturate(200%);
-    border: 1px solid rgba(255,255,255,0.5);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 15px 35px rgba(0,0,0,0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.modal button:active {
-    transform: scale(0.97);
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -176,12 +176,11 @@ h2 {
     <a href="https://www.youtube.com/@CalixMojica" target="_blank">YouTube</a>
 </div>
 
-<h2>Rented Properties</h2>
-<p class="disclaimer">Below are properties I assisted with across Auckland and surrounding areas. These are not previous sales.</p>
-
 <div class="properties-container">
+    <h2>Rented Properties</h2>
+    <p class="disclaimer">Below are properties I assisted with across Auckland and surrounding areas. These are not previous sales.</p>
 
-<!-- ALL PROPERTIES LISTED -->
+<!-- ALL PROPERTY ITEMS -->
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
 <div class="property-item"><div class="property-image"><span>Image coming soon</span></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
@@ -269,7 +268,7 @@ h2 {
 <div class="modal">
 <p>Before moving into real estate sales, I built a strong track record as a residential letting and leasing agent across Auckland. I hold a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating, consistently achieving results above industry standards while managing a diverse portfolio.</p>
 <p>Even at this high level of performance, I took a principled approach to tenant selection to ensure quality tenancies and protect long term property value. This same integrity, market insight, and results focused mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling.</p>
-<button onclick="closeModal()">Close</button>
+<button onclick="closeModal()">×</button>
 </div>
 </div>
 
