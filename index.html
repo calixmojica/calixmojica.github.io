@@ -341,7 +341,7 @@ class GlassElement extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        :host { display: block; cursor: pointer; }
+        :host { display: block; cursor: pointer; border-radius: ${this.radius}px; overflow: hidden; }
         .glass-box {
           width: ${this.width}px; height: ${this.height}px;
           border-radius: ${this.radius}px;
