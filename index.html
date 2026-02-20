@@ -32,6 +32,7 @@ body {
   text-align: center;
   overflow-x: hidden;
 }
+
 img.headshot {
   width: 180px;
   height: 180px;
@@ -45,16 +46,9 @@ img.headshot {
   position: relative;
 }
 img.headshot:hover { transform: scale(1.03); }
+
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
-
-.social-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 50px;
-}
 
 .properties-container {
   background: rgba(255,255,255,0.03);
@@ -70,6 +64,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
 .properties-container .disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
+
 .properties-header {
   display: flex;
   justify-content: space-between;
@@ -81,6 +76,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .tab { flex: 1; text-align: center; opacity: 0.4; transition: opacity 0.2s ease, color 0.2s ease; }
 .tab.active { opacity: 1; color: #000; }
+
 .property-item { margin-bottom: 30px; }
 .property-image {
   width: 100%;
@@ -110,14 +106,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   overflow-y: auto;
 }
 .modal {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.9);
   padding: 35px;
   border-radius: 28px;
   max-width: 700px;
   text-align: left;
   color: #000;
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.12);
-  backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px) saturate(180%);
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -132,6 +128,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   border: none;
   cursor: pointer;
   z-index: 10;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
 }
 </style>
 </head>
@@ -163,90 +167,87 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 
   <div id="rentedContent">
-  <p class="disclaimer">Below are some properties I rented out across Auckland. These are not previous sales</p>
-
-  <!-- Rented Properties List -->
-  <div class="property-item"><div class="property-image"></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4 Gypsy Moth Street, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">55A Joshua Carder Drive, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">59A Joshua Carder Drive, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">61A Joshua Carder Drive, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">16 Gecko Road, Hobsonville</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">35A Kemp Road, Massey</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">7 Gamble Way, Massey</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">11/237 Swanson Road, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">92 Bruce McLaren Road, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">20 San Prospero Crescent, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">115E Sturges Road, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">6 Newington Road, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">296 Great North Road, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">1/9 Adriatic Avenue, Henderson</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">13 Sheehan Road, Te Atatū South</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">46B Tiroroa Road, Te Atatū South</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">30 Kokiri Street, Te Atatū South</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2 Crystal Avenue, Glendene</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">13 Seakens Way, Glen Eden</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">3201 Great North Road, New Lynn</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">56 Lynwood Road, New Lynn</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">6/112 Lynwood Road, New Lynn</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4/126 Astley Avenue, New Lynn</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">11A Cradock Street, Avondale</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">5H Geddes Terrace, Avondale</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">20 Mead Street, Avondale</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">238A Rosebank Road, Avondale</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">109/124 Taylors Road, Mount Albert</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">36 Aitken Terrace, Kingsland</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">9 Milton Road, Mount Eden</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">309A/428 Dominion Road, Mount Eden</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">1/9A Watling Street, Mount Eden</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">17A Hedley Road, Mount Roskill</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4D Railway Street, Newmarket</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">3 Haronui Road, Greenlane</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/75 Ranfurly Road, Epsom</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">456 Onehunga Mall, Onehunga</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">172 Ladies Mile, Ellerslie</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">1/45 Marua Road, Ellerslie</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/316 Ellerslie Panmure Highway, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">5/316 Ellerslie Panmure Highway, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/124 Mount Wellington Highway, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4/28 Ferndale Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">10/68 Ferndale Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">9C James Walter Place, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">259 Penrose Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/182 Penrose Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">3/9 Mountain Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">6/9 Mountain Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">48A Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">48B Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">48C Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">58A Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">58B Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">58D Ireland Road, Mount Wellington</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">7 Te Koa Road, Panmure</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">27 Kings Road, Panmure</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">49C Marriott Road, Pakuranga</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">12 Meadway, Sunnyhills</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">22 Pine Terrace, Howick</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">44 Amberwood Drive, Northpark</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">25 Gibbston Crescent, Flat Bush</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/3 Kiwi Esplanade, Māngere Bridge</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">1/11 Atkinson Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">2/11 Atkinson Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">3/11 Atkinson Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">3/74 Walmsley Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">8/74 Walmsley Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">82 Walmsley Road, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4/56 Marjorie Jayne Crescent, Ōtāhuhu</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">17 Nicholas Gibbons Drive, Clendon Park</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">15 Surrey Street, Manurewa</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">1246 Paerata Road, Pukekohe</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">16 Te Kaapia Road, Papakura</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">10 Kobe Street, Papakura</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">178 Clevedon Road, Papakura</div></div>
-  <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
-
+    <p class="disclaimer">Below are some properties I rented out across Auckland. These are not previous sales</p>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4 Gypsy Moth Street, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">55A Joshua Carder Drive, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">59A Joshua Carder Drive, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">61A Joshua Carder Drive, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">16 Gecko Road, Hobsonville</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">35A Kemp Road, Massey</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">7 Gamble Way, Massey</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">11/237 Swanson Road, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">92 Bruce McLaren Road, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">20 San Prospero Crescent, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">115E Sturges Road, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">6 Newington Road, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">296 Great North Road, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">1/9 Adriatic Avenue, Henderson</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">13 Sheehan Road, Te Atatū South</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">46B Tiroroa Road, Te Atatū South</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">30 Kokiri Street, Te Atatū South</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2 Crystal Avenue, Glendene</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">13 Seakens Way, Glen Eden</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">3201 Great North Road, New Lynn</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">56 Lynwood Road, New Lynn</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">6/112 Lynwood Road, New Lynn</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4/126 Astley Avenue, New Lynn</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">11A Cradock Street, Avondale</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">5H Geddes Terrace, Avondale</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">20 Mead Street, Avondale</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">238A Rosebank Road, Avondale</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">109/124 Taylors Road, Mount Albert</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">36 Aitken Terrace, Kingsland</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">9 Milton Road, Mount Eden</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">309A/428 Dominion Road, Mount Eden</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">1/9A Watling Street, Mount Eden</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">17A Hedley Road, Mount Roskill</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4D Railway Street, Newmarket</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">3 Haronui Road, Greenlane</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/75 Ranfurly Road, Epsom</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">456 Onehunga Mall, Onehunga</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">172 Ladies Mile, Ellerslie</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">1/45 Marua Road, Ellerslie</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/316 Ellerslie Panmure Highway, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">5/316 Ellerslie Panmure Highway, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/124 Mount Wellington Highway, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4/28 Ferndale Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">10/68 Ferndale Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">9C James Walter Place, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">259 Penrose Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/182 Penrose Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">3/9 Mountain Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">6/9 Mountain Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">48A Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">48B Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">48C Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">58A Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">58B Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">58D Ireland Road, Mount Wellington</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">7 Te Koa Road, Panmure</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">27 Kings Road, Panmure</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">49C Marriott Road, Pakuranga</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">12 Meadway, Sunnyhills</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">22 Pine Terrace, Howick</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">44 Amberwood Drive, Northpark</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">25 Gibbston Crescent, Flat Bush</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/3 Kiwi Esplanade, Māngere Bridge</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">1/11 Atkinson Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">2/11 Atkinson Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">3/11 Atkinson Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">3/74 Walmsley Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">8/74 Walmsley Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">82 Walmsley Road, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4/56 Marjorie Jayne Crescent, Ōtāhuhu</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">17 Nicholas Gibbons Drive, Clendon Park</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">15 Surrey Street, Manurewa</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">1246 Paerata Road, Pukekohe</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">16 Te Kaapia Road, Papakura</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">10 Kobe Street, Papakura</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">178 Clevedon Road, Papakura</div></div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
   </div>
 
   <div id="soldContent" style="display:none;">
@@ -310,6 +311,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 class GlassElement extends HTMLElement {
   constructor() {
     super();
+    this.clicked = false;
     this.attachShadow({mode:'open'});
     this._svgSupport = this.detectSVGFilterSupport();
   }
@@ -341,30 +343,33 @@ class GlassElement extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        :host { display: inline-block; cursor: pointer; } /* Host keeps shadows visible */
-        .glass-wrapper {
-          border-radius: ${this.radius}px;
-          overflow: hidden;
+        :host {
           display: inline-block;
+          cursor: pointer;
+          border-radius: ${this.radius}px;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
         .glass-box {
-          width: ${this.width}px; height: ${this.height}px;
-          display: flex; justify-content:center; align-items:center;
-          color: #000; font-weight:700;
+          width: ${this.width}px;
+          height: ${this.height}px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #000;
+          font-weight: 700;
+          border-radius: ${this.radius}px;
           background: ${this.backgroundColor};
           ${this._svgSupport ? `backdrop-filter: blur(${this.blur}px) url('${window.DisplacementUtils.getDisplacementFilter({height:this.height,width:this.width,radius:this.radius,depth:this.depth,strength:this.strength,chromaticAberration:this.chromaticAberration})}');` : `backdrop-filter: blur(${this.blur}px);`}
-          box-shadow: 1px 1px 5px rgba(255,255,255,0.4) inset, -1px -1px 5px rgba(255,255,255,0.3) inset, 0 0 16px rgba(0,0,0,0.15);
+          box-shadow: inset 1px 1px 5px rgba(255,255,255,0.4), inset -1px -1px 5px rgba(255,255,255,0.3);
           transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
         .glass-box:active { transform: scale(0.98); }
       </style>
-      <div class="glass-wrapper">
-        <div class="glass-box"><slot></slot></div>
-      </div>
+      <div class="glass-box"><slot></slot></div>
     `;
   }
 }
-
 customElements.define('glass-element', GlassElement);
 </script>
 
@@ -388,7 +393,6 @@ function switchTab(tab){
 
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
 
-// Optional: simple tilt shimmer
 window.addEventListener('deviceorientation', e=>{
   const x = e.gamma, y = e.beta;
   document.querySelectorAll('glass-element,img.headshot,.property-image').forEach(el=>{
