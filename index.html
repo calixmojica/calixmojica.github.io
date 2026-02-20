@@ -32,7 +32,6 @@ body {
   text-align: center;
   overflow-x: hidden;
 }
-
 img.headshot {
   width: 180px;
   height: 180px;
@@ -46,7 +45,6 @@ img.headshot {
   position: relative;
 }
 img.headshot:hover { transform: scale(1.03); }
-
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
 
@@ -106,15 +104,17 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   overflow-y: auto;
 }
 .modal {
-  background: rgba(255,255,255,0.9);
-  padding: 35px;
-  border-radius: 28px;
   max-width: 700px;
-  text-align: left;
-  color: #000;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  backdrop-filter: blur(10px) saturate(180%);
+  padding: 35px;
   position: relative;
+  color: #000;
+  text-align: left;
+  border-radius: 28px;
+  /* Liquid glass look */
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal button {
@@ -123,19 +123,11 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   right: 15px;
   font-size: 1.2em;
   font-weight: 700;
-  color: black;
+  color: #000;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 10;
-}
-
-.social-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 40px;
 }
 </style>
 </head>
@@ -145,17 +137,17 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 <h1>Calix Mojica</h1>
 <p class="intro">This website is currently under development</p>
 
-<div class="social-buttons">
-  <glass-element onclick="openModal()" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)">
+<div class="social-buttons" style="display:flex; flex-direction:column; gap:20px; align-items:center; margin-bottom:40px;">
+  <glass-element onclick="openModal()" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)" chromatic-aberration="2">
       About Me
   </glass-element>
-  <glass-element width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)">
+  <glass-element width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)" chromatic-aberration="2">
       Enquire Now
   </glass-element>
-  <glass-element onclick="window.open('https://www.instagram.com/CalixMojica','_blank')" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)">
+  <glass-element onclick="window.open('https://www.instagram.com/CalixMojica','_blank')" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)" chromatic-aberration="2">
       Instagram
   </glass-element>
-  <glass-element onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)">
+  <glass-element onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')" width="260" height="60" radius="24" depth="8" blur="10" strength="40" background-color="rgba(255,255,255,0.25)" chromatic-aberration="2">
       YouTube
   </glass-element>
 </div>
@@ -250,10 +242,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
     <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
   </div>
 
-  <div id="soldContent" style="display:none;">
-    <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
-    <div class="property-item"><div class="property-image"></div><div class="property-address">Untitled</div></div>
-  </div>
+<div id="soldContent" style="display:none;">
+  <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
+  <div class="property-item"><div class="property-image"></div><div class="property-address">Untitled</div></div>
+</div>
 </div>
 
 <div class="modal-overlay" id="aboutModal">
@@ -266,6 +258,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 
 <!-- Glass effect scripts -->
 <script>
+/* ===== displacement-utils.js ===== */
 (function(){
   function getDisplacementMap({ height, width, radius, depth }) {
       const svg = `<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
@@ -308,6 +301,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 </script>
 
 <script>
+/* ===== glass-element.js ===== */
 class GlassElement extends HTMLElement {
   constructor() {
     super();
@@ -341,27 +335,28 @@ class GlassElement extends HTMLElement {
   attributeChangedCallback() { if(this.shadowRoot) this.render(); }
 
   render() {
+    const filterUrl = this._svgSupport
+      ? window.DisplacementUtils.getDisplacementFilter({
+          height: this.height,
+          width: this.width,
+          radius: this.radius,
+          depth: this.depth,
+          strength: this.strength,
+          chromaticAberration: this.chromaticAberration
+        })
+      : '';
+
     this.shadowRoot.innerHTML = `
       <style>
-        :host {
-          display: inline-block;
-          cursor: pointer;
-          border-radius: ${this.radius}px;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
+        :host { display: inline-block; cursor: pointer; border-radius: ${this.radius}px; }
         .glass-box {
-          width: ${this.width}px;
-          height: ${this.height}px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: #000;
-          font-weight: 700;
+          width: ${this.width}px; height: ${this.height}px;
           border-radius: ${this.radius}px;
+          display: flex; justify-content:center; align-items:center;
+          color: #000; font-weight:700;
           background: ${this.backgroundColor};
-          ${this._svgSupport ? `backdrop-filter: blur(${this.blur}px) url('${window.DisplacementUtils.getDisplacementFilter({height:this.height,width:this.width,radius:this.radius,depth:this.depth,strength:this.strength,chromaticAberration:this.chromaticAberration})}');` : `backdrop-filter: blur(${this.blur}px);`}
-          box-shadow: inset 1px 1px 5px rgba(255,255,255,0.4), inset -1px -1px 5px rgba(255,255,255,0.3);
+          ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
+          box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
           transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
         .glass-box:active { transform: scale(0.98); }
@@ -370,6 +365,7 @@ class GlassElement extends HTMLElement {
     `;
   }
 }
+
 customElements.define('glass-element', GlassElement);
 </script>
 
@@ -392,13 +388,6 @@ function switchTab(tab){
 }
 
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
-
-window.addEventListener('deviceorientation', e=>{
-  const x = e.gamma, y = e.beta;
-  document.querySelectorAll('glass-element,img.headshot,.property-image').forEach(el=>{
-    el.style.boxShadow = `inset ${-x/2}px ${-y/2}px 15px rgba(255,255,255,0.15), 0 15px 35px rgba(0,0,0,0.12)`;
-  });
-});
 </script>
 
 </body>
