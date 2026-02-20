@@ -47,6 +47,15 @@ img.headshot {
 img.headshot:hover { transform: scale(1.03); }
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 50px;
+}
+
 .properties-container {
   background: rgba(255,255,255,0.03);
   border-radius: 28px;
@@ -89,25 +98,26 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
+
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.35);
   align-items: center;
   justify-content: center;
   z-index: 1000;
   overflow-y: auto;
 }
 .modal {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.15);
   padding: 35px;
   border-radius: 28px;
   max-width: 700px;
   text-align: left;
   color: #000;
-  box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
-  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.12);
+  backdrop-filter: blur(12px) saturate(180%);
   position: relative;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -155,6 +165,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   <div id="rentedContent">
   <p class="disclaimer">Below are some properties I rented out across Auckland. These are not previous sales</p>
 
+  <!-- Rented Properties List -->
   <div class="property-item"><div class="property-image"></div><div class="property-address">410/19 Rawene Road, Birkenhead</div></div>
   <div class="property-item"><div class="property-image"></div><div class="property-address">12 Kota Lane, Hobsonville</div></div>
   <div class="property-item"><div class="property-image"></div><div class="property-address">13 Kota Lane, Hobsonville</div></div>
@@ -235,7 +246,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   <div class="property-item"><div class="property-image"></div><div class="property-address">10 Kobe Street, Papakura</div></div>
   <div class="property-item"><div class="property-image"></div><div class="property-address">178 Clevedon Road, Papakura</div></div>
   <div class="property-item"><div class="property-image"></div><div class="property-address">4 Hoete Way, Tuakau</div></div>
-</div>
+
+  </div>
 
   <div id="soldContent" style="display:none;">
     <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
@@ -250,9 +262,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
     <button onclick="closeModal()">×</button>
   </div>
 </div>
+
 <!-- Glass effect scripts -->
 <script>
-/* ===== displacement-utils.js ===== */
 (function(){
   function getDisplacementMap({ height, width, radius, depth }) {
       const svg = `<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
@@ -295,11 +307,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 </script>
 
 <script>
-/* ===== glass-element.js ===== */
 class GlassElement extends HTMLElement {
   constructor() {
     super();
-    this.clicked = false;
     this.attachShadow({mode:'open'});
     this._svgSupport = this.detectSVGFilterSupport();
   }
@@ -331,7 +341,7 @@ class GlassElement extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        :host { display: inline-block; cursor: pointer; }
+        :host { display: block; cursor: pointer; }
         .glass-box {
           width: ${this.width}px; height: ${this.height}px;
           border-radius: ${this.radius}px;
@@ -352,7 +362,6 @@ class GlassElement extends HTMLElement {
 customElements.define('glass-element', GlassElement);
 </script>
 
-<!-- Tabs + Modal JS -->
 <script>
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
