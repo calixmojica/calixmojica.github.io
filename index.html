@@ -86,13 +86,13 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   overflow: hidden;
   background: rgba(255,255,255,0.03);
   backdrop-filter: blur(8px) saturate(180%);
-  box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.12), 0 12px 25px rgba(0,0,0,0.1); /* slightly dimmer glow for night mode */
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
+.property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 12px rgba(255,255,255,0.15), 0 14px 28px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
 /* ================= MODAL ================= */
@@ -115,10 +115,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   color: #fafafb;
   text-align: left;
   border-radius: 28px;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.35); /* slightly transparent for night mode */
   backdrop-filter: blur(14px) saturate(180%);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.2), 0 25px 50px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal button {
@@ -223,107 +223,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 <!-- NIGHT MODE TOGGLE BUTTON -->
 <div id="darkModeToggle">LGHT</div>
 
-<!-- Glass effect scripts -->
-<script>
-(function(){
-  function getDisplacementMap({ height, width, radius, depth }) {
-      const svg = `<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-              <linearGradient id="Y" x1="0" x2="0" y1="0" y2="100%">
-                  <stop offset="0%" stop-color="#0F0"/>
-                  <stop offset="100%" stop-color="#000"/>
-              </linearGradient>
-              <linearGradient id="X" x1="0" x2="100%" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#F00"/>
-                  <stop offset="100%" stop-color="#000"/>
-              </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="${width}" height="${height}" fill="#808080"/>
-          <g filter="blur(2px)">
-              <rect x="0" y="0" width="${width}" height="${height}" fill="#000080"/>
-              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#Y)"/>
-              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#X)"/>
-              <rect x="${depth}" y="${depth}" width="${width-2*depth}" height="${height-2*depth}" fill="#808080" rx="${radius}" ry="${radius}" filter="blur(${depth}px)"/>
-          </g>
-      </svg>`;
-      return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
-  }
-  function getDisplacementFilter({ height, width, radius, depth, strength=100, chromaticAberration=0 }) {
-      const displacementMapUrl = getDisplacementMap({ height, width, radius, depth });
-      const svg = `<svg height="${height}" width="${width}" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-              <filter id="displace">
-                  <feImage x="0" y="0" width="${width}" height="${height}" href="${displacementMapUrl}" result="displacementMap"/>
-                  <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength+chromaticAberration*2}" xChannelSelector="R" yChannelSelector="G"/>
-              </filter>
-          </defs>
-      </svg>`;
-      return "data:image/svg+xml;utf8," + encodeURIComponent(svg) + "#displace";
-  }
-  window.DisplacementUtils = { getDisplacementMap, getDisplacementFilter };
-})();
-</script>
-
-<script>
-class GlassElement extends HTMLElement {
-  constructor() {
-    super();
-    this.clicked = false;
-    this.attachShadow({mode:'open'});
-    this._svgSupport = this.detectSVGFilterSupport();
-  }
-  detectSVGFilterSupport() {
-    const test = document.createElement('div');
-    test.style.backdropFilter = 'blur(1px)';
-    if (!test.style.backdropFilter) return false;
-    const ua = navigator.userAgent.toLowerCase();
-    if (/chrome|chromium|crios|edg/.test(ua)) return true;
-    return false;
-  }
-  static get observedAttributes() { return ['width','height','radius','depth','blur','strength','background-color','chromatic-aberration']; }
-  connectedCallback() { this.render(); }
-  get width() { return parseInt(this.getAttribute('width')) || 200; }
-  get height() { return parseInt(this.getAttribute('height')) || 50; }
-  get radius() { return parseInt(this.getAttribute('radius')) || 16; }
-  get depth() { return parseInt(this.getAttribute('depth')) || 8; }
-  get blur() { return parseInt(this.getAttribute('blur')) || 4; }
-  get strength() { return parseInt(this.getAttribute('strength')) || 40; }
-  get chromaticAberration() { return parseInt(this.getAttribute('chromatic-aberration')) || 0; }
-  get backgroundColor() { return this.getAttribute('background-color') || 'rgba(255,255,255,0.25)'; }
-  attributeChangedCallback() { if(this.shadowRoot) this.render(); }
-  render() {
-    const filterUrl = this._svgSupport
-      ? window.DisplacementUtils.getDisplacementFilter({
-          height: this.height,
-          width: this.width,
-          radius: this.radius,
-          depth: this.depth,
-          strength: this.strength,
-          chromaticAberration: this.chromaticAberration
-        })
-      : '';
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host { display: inline-block; cursor: pointer; border-radius: ${this.radius}px; }
-        .glass-box {
-          width: ${this.width}px; height: ${this.height}px;
-          border-radius: ${this.radius}px;
-          display: flex; justify-content:center; align-items:center;
-          color: #fafafb; font-weight:700;
-          background: ${this.backgroundColor};
-          ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
-          box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
-          transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.2s ease, background 0.2s ease;
-        }
-        .glass-box:active { transform: scale(0.98); }
-      </style>
-      <div class="glass-box"><slot></slot></div>
-    `;
-  }
-}
-customElements.define('glass-element', GlassElement);
-</script>
-
+<!-- Scripts -->
 <script>
 /* ================= MODAL ================= */
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
@@ -346,7 +246,7 @@ function switchTab(tab){
 
 /* ================= DARK / NIGHT MODE ================= */
 const darkToggle = document.getElementById('darkModeToggle');
-let theme = localStorage.getItem('theme') || 'night'; // Night mode default
+let theme = localStorage.getItem('theme') || 'night'; // default night mode
 applyTheme(theme);
 
 darkToggle.addEventListener('click', ()=>{
@@ -359,8 +259,6 @@ function applyTheme(mode){
   if(mode === 'light'){
     document.body.style.backgroundColor = '#fafafb';
     document.body.style.color = '#000';
-    
-    // Property container and boxes
     document.querySelectorAll('.properties-container').forEach(el=>{
       el.style.background = 'rgba(0,0,0,0.03)';
       el.style.boxShadow = 'inset 0 0 15px rgba(0,0,0,0.12), 0 25px 50px rgba(0,0,0,0.12)';
@@ -369,56 +267,45 @@ function applyTheme(mode){
       el.style.background = 'rgba(0,0,0,0.03)';
       el.style.boxShadow = 'inset 0 0 15px rgba(0,0,0,0.12), 0 15px 35px rgba(0,0,0,0.1)';
     });
-
-    // Modal
     document.querySelectorAll('.modal').forEach(el=>{
       el.style.background = 'rgba(255,255,255,0.15)';
       el.style.color = '#000';
     });
-
-    // Tabs and disclaimers
-    document.querySelectorAll('.tab').forEach(el=>el.style.color = '#000');
+    document.querySelectorAll('.tab').forEach(el=>{
+      if(el.classList.contains('active')) el.style.color = '#000';
+      else el.style.color = '#555';
+    });
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color = '#555');
-
-    // Glass buttons
     document.querySelectorAll('glass-element').forEach(el=>{
       el.shadowRoot.querySelector('.glass-box').style.color = '#000';
       el.shadowRoot.querySelector('.glass-box').style.background = 'rgba(255,255,255,0.25)';
     });
-
-    darkToggle.textContent = 'NGHT'; // Plate number for light mode
+    darkToggle.textContent = 'NGHT';
     darkToggle.style.color = '#000';
-
   } else {
     document.body.style.backgroundColor = '#1a1a1a';
     document.body.style.color = '#fafafb';
-    
     document.querySelectorAll('.properties-container').forEach(el=>{
-      el.style.background = 'rgba(0,0,0,0.08)'; // darker
-      el.style.boxShadow = 'inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12)';
+      el.style.background = 'rgba(0,0,0,0.08)'; // slightly darker, less glow
+      el.style.boxShadow = 'inset 0 0 12px rgba(255,255,255,0.1), 0 25px 50px rgba(0,0,0,0.12)';
     });
     document.querySelectorAll('.property-image').forEach(el=>{
-      el.style.background = 'rgba(0,0,0,0.05)'; // darker
-      el.style.boxShadow = 'inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1)';
+      el.style.background = 'rgba(0,0,0,0.05)';
+      el.style.boxShadow = 'inset 0 0 10px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.1)';
     });
-
     document.querySelectorAll('.modal').forEach(el=>{
-      el.style.background = 'rgba(0,0,0,0.8)';
+      el.style.background = 'rgba(0,0,0,0.35)'; // transparent
       el.style.color = '#fafafb';
     });
-
     document.querySelectorAll('.tab').forEach(el=>{
-      if(el.classList.contains('active')) el.style.color = '#fafafb';
-      else el.style.color = '#aaa';
+      el.style.color = '#fafafb'; // both active/inactive same brightness
     });
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color = '#aaa');
-
     document.querySelectorAll('glass-element').forEach(el=>{
       el.shadowRoot.querySelector('.glass-box').style.color = '#fafafb';
-      el.shadowRoot.querySelector('.glass-box').style.background = 'rgba(255,255,255,0.03)';
+      el.shadowRoot.querySelector('.glass-box').style.background = 'rgba(255,255,255,0.03)'; // toned-down glow
     });
-
-    darkToggle.textContent = 'LGHT'; // Plate number for night mode
+    darkToggle.textContent = 'LGHT';
     darkToggle.style.color = '#fafafb';
   }
 }
@@ -427,6 +314,5 @@ document.getElementById('aboutModal').addEventListener('click',(e)=>{
   if(e.target===document.getElementById('aboutModal')) closeModal(); 
 });
 </script>
-
 </body>
 </html>
