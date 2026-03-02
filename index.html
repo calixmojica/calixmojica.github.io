@@ -23,25 +23,13 @@
 </script>
 
 <style>
-/* ===== CSS VARIABLES ===== */
-:root {
-  --bg-color: #1e1e1e; /* Default night mode */
-  --text-color: #fff;
-  --container-bg: rgba(30,30,30,0.8);
-  --container-shadow: inset 0 0 15px rgba(255,255,255,0.05), 0 25px 50px rgba(0,0,0,0.25);
-  --card-bg: rgba(30,30,30,0.5);
-  --card-shadow: inset 0 0 15px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.2);
-  --modal-bg: rgba(30,30,30,0.9);
-  --modal-shadow: inset 0 0 20px rgba(255,255,255,0.1), 0 25px 50px rgba(0,0,0,0.25);
-}
-
-/* ===== BASE STYLES ===== */
+/* ================= BODY STYLES ================= */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: #1a1a1a; /* Night mode default */
+  color: #fafafb;
   text-align: center;
   overflow-x: hidden;
 }
@@ -61,14 +49,15 @@ img.headshot:hover { transform: scale(1.03); }
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
 
+/* ================= PROPERTIES ================= */
 .properties-container {
-  background: var(--container-bg);
+  background: rgba(255,255,255,0.03);
   border-radius: 28px;
   padding: 35px 30px;
   max-width: 900px;
   margin: 0 auto 50px auto;
   backdrop-filter: blur(8px) saturate(180%);
-  box-shadow: var(--container-shadow);
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
   text-align: left;
   position: relative;
   overflow: hidden;
@@ -86,7 +75,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   cursor: pointer;
 }
 .tab { flex: 1; text-align: center; opacity: 0.4; transition: opacity 0.2s ease, color 0.2s ease; }
-.tab.active { opacity: 1; color: var(--text-color); }
+.tab.active { opacity: 1; color: #fafafb; }
 
 .property-item { margin-bottom: 30px; }
 .property-image {
@@ -95,17 +84,18 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   border-radius: 16px;
   position: relative;
   overflow: hidden;
-  background: var(--card-bg);
+  background: rgba(255,255,255,0.03);
   backdrop-filter: blur(8px) saturate(180%);
-  box-shadow: var(--card-shadow);
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.property-image:hover { transform: scale(1.02); }
+.property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
+/* ================= MODAL ================= */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -118,17 +108,17 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .modal {
   max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 90vh;       
+  overflow-y: auto;       
   padding: 35px;
   position: relative;
-  color: var(--text-color);
+  color: #fafafb;
   text-align: left;
   border-radius: 28px;
-  background: var(--modal-bg);
+  background: rgba(0,0,0,0.8);
   backdrop-filter: blur(14px) saturate(180%);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
-  box-shadow: var(--modal-shadow);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal button {
@@ -137,17 +127,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   right: 15px;
   font-size: 1.2em;
   font-weight: 700;
-  color: var(--text-color);
+  color: #fafafb;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 10;
 }
 
-/* Glass Buttons */
-.social-buttons glass-element { margin-bottom: 20px; }
-
-/* Dark Mode Toggle Button */
+/* ================= DARK MODE TOGGLE ================= */
 #darkModeToggle {
   position: fixed;
   bottom: 20px;
@@ -166,21 +153,40 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   transition: transform 0.2s ease, background 0.2s ease;
 }
 #darkModeToggle:hover { transform: scale(1.1); }
-/* Sun / Moon icon */
+
+/* ICONS */
 #darkModeToggle::before {
   content: '';
   display: block;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--text-color);
+  background: #fafafb;
   position: relative;
   transition: all 0.3s ease;
 }
+
+/* NIGHT MODE = sun with petals */
 #darkModeToggle.night::before {
-  background: none;
-  box-shadow: -5px -5px 0 var(--text-color), 5px 5px 0 var(--text-color);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #fafafb;
+  box-shadow:
+    0 -12px 0 #fafafb,
+    8.5px -8.5px 0 #fafafb,
+    12px 0 0 #fafafb,
+    8.5px 8.5px 0 #fafafb,
+    0 12px 0 #fafafb,
+    -8.5px 8.5px 0 #fafafb,
+    -12px 0 0 #fafafb,
+    -8.5px -8.5px 0 #fafafb;
+}
+
+/* LIGHT MODE = crescent moon */
+#darkModeToggle.light::before {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fafafb;
+  box-shadow: -4px 0 0 #1a1a1a;
 }
 </style>
 </head>
@@ -205,14 +211,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </glass-element>
 </div>
 
-<!-- DARK MODE TOGGLE -->
-<button id="darkModeToggle" title="Toggle Night Mode"></button>
-
 <div class="properties-container">
   <div class="properties-header">
     <div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
     <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
-    <div class="tab" id="rentedTab" onclick="switchTab('rented')">RENTED</div>
   </div>
 
   <div id="currentContent">
@@ -230,13 +232,6 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
       <div class="property-address">Untitled</div>
     </div>
   </div>
-
-  <div id="rentedContent" style="display:none;">
-    <p class="disclaimer">This map shows indicative areas I’ve rented properties in Auckland; actual numbers may vary. No exact addresses are displayed.</p>
-    <div class="property-item">
-      <div class="property-image"></div>
-    </div>
-  </div>
 </div>
 
 <div class="modal-overlay" id="aboutModal">
@@ -247,7 +242,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 </div>
 
-<!-- Glass & Tabs Scripts -->
+<!-- NIGHT MODE TOGGLE BUTTON -->
+<div id="darkModeToggle"></div>
+
+<!-- Glass effect scripts -->
 <script>
 (function(){
   function getDisplacementMap({ height, width, radius, depth }) {
@@ -333,7 +331,7 @@ class GlassElement extends HTMLElement {
           width: ${this.width}px; height: ${this.height}px;
           border-radius: ${this.radius}px;
           display: flex; justify-content:center; align-items:center;
-          color: var(--text-color); font-weight:700;
+          color: #fafafb; font-weight:700;
           background: ${this.backgroundColor};
           ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
           box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
@@ -349,67 +347,67 @@ customElements.define('glass-element', GlassElement);
 </script>
 
 <script>
+/* ================= MODAL ================= */
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
+/* ================= TABS ================= */
 function switchTab(tab){
-  document.getElementById('currentContent').style.display='none';
-  document.getElementById('soldContent').style.display='none';
-  document.getElementById('rentedContent').style.display='none';
-  document.getElementById('currentTab').classList.remove('active');
-  document.getElementById('soldTab').classList.remove('active');
-  document.getElementById('rentedTab').classList.remove('active');
-
   if(tab==='current'){
     document.getElementById('currentContent').style.display='block';
+    document.getElementById('soldContent').style.display='none';
     document.getElementById('currentTab').classList.add('active');
-  } else if(tab==='sold'){
+    document.getElementById('soldTab').classList.remove('active');
+  } else {
+    document.getElementById('currentContent').style.display='none';
     document.getElementById('soldContent').style.display='block';
+    document.getElementById('currentTab').classList.remove('active');
     document.getElementById('soldTab').classList.add('active');
-  } else if(tab==='rented'){
-    document.getElementById('rentedContent').style.display='block';
-    document.getElementById('rentedTab').classList.add('active');
   }
 }
 
-// Close modal when clicking outside
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
 
-// DARK MODE TOGGLE
+/* ================= DARK / NIGHT MODE ================= */
 const darkToggle = document.getElementById('darkModeToggle');
-let theme = localStorage.getItem('theme') || 'night';
-if(theme === 'night') darkToggle.classList.add('night');
-
-function applyTheme(mode){
-  if(mode === 'light'){
-    document.documentElement.style.setProperty('--bg-color','#fafafb');
-    document.documentElement.style.setProperty('--text-color','#000');
-    document.documentElement.style.setProperty('--container-bg','rgba(255,255,255,0.03)');
-    document.documentElement.style.setProperty('--container-shadow','inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12)');
-    document.documentElement.style.setProperty('--card-bg','rgba(255,255,255,0.03)');
-    document.documentElement.style.setProperty('--card-shadow','inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1)');
-    document.documentElement.style.setProperty('--modal-bg','rgba(255,255,255,0.15)');
-    document.documentElement.style.setProperty('--modal-shadow','inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.15)');
-    darkToggle.classList.remove('night');
-  } else {
-    document.documentElement.style.setProperty('--bg-color','#1e1e1e');
-    document.documentElement.style.setProperty('--text-color','#fff');
-    document.documentElement.style.setProperty('--container-bg','rgba(30,30,30,0.8)');
-    document.documentElement.style.setProperty('--container-shadow','inset 0 0 15px rgba(255,255,255,0.05), 0 25px 50px rgba(0,0,0,0.25)');
-    document.documentElement.style.setProperty('--card-bg','rgba(30,30,30,0.5)');
-    document.documentElement.style.setProperty('--card-shadow','inset 0 0 15px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.2)');
-    document.documentElement.style.setProperty('--modal-bg','rgba(30,30,30,0.9)');
-    document.documentElement.style.setProperty('--modal-shadow','inset 0 0 20px rgba(255,255,255,0.1), 0 25px 50px rgba(0,0,0,0.25)');
-    darkToggle.classList.add('night');
-  }
-}
+let theme = localStorage.getItem('theme') || 'night'; // Night mode by default
 applyTheme(theme);
 
 darkToggle.addEventListener('click', ()=>{
-  theme = theme==='night' ? 'light' : 'night';
-  localStorage.setItem('theme', theme);
+  theme = (theme==='night') ? 'light' : 'night';
   applyTheme(theme);
+  localStorage.setItem('theme', theme);
 });
+
+function applyTheme(mode){
+  if(mode === 'light'){
+    document.body.style.backgroundColor = '#fafafb';
+    document.body.style.color = '#000';
+    document.querySelectorAll('.properties-container').forEach(el=>{
+      el.style.background = 'rgba(0,0,0,0.03)';
+      el.style.boxShadow = 'inset 0 0 15px rgba(0,0,0,0.12), 0 25px 50px rgba(0,0,0,0.12)';
+    });
+    document.querySelectorAll('.modal').forEach(el=>{
+      el.style.background = 'rgba(255,255,255,0.15)';
+      el.style.color = '#000';
+    });
+    darkToggle.classList.remove('night');
+    darkToggle.classList.add('light'); // shows moon
+  } else {
+    document.body.style.backgroundColor = '#1a1a1a';
+    document.body.style.color = '#fafafb';
+    document.querySelectorAll('.properties-container').forEach(el=>{
+      el.style.background = 'rgba(255,255,255,0.03)';
+      el.style.boxShadow = 'inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12)';
+    });
+    document.querySelectorAll('.modal').forEach(el=>{
+      el.style.background = 'rgba(0,0,0,0.8)';
+      el.style.color = '#fafafb';
+    });
+    darkToggle.classList.remove('light');
+    darkToggle.classList.add('night'); // shows sun
+  }
+}
 </script>
 
 </body>
