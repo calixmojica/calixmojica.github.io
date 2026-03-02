@@ -23,11 +23,12 @@
 </script>
 
 <style>
+/* ================= BODY STYLES ================= */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a; /* Dark mode default */
+  background-color: #1a1a1a; /* Night mode default */
   color: #fafafb;
   text-align: center;
   overflow-x: hidden;
@@ -48,6 +49,7 @@ img.headshot:hover { transform: scale(1.03); }
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
 
+/* ================= PROPERTIES ================= */
 .properties-container {
   background: rgba(255,255,255,0.03);
   border-radius: 28px;
@@ -61,7 +63,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   overflow: hidden;
 }
 .properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
-.properties-container .disclaimer { font-size: 0.8em; color: #bbb; font-style: italic; margin-bottom: 25px; text-align: center; }
+.properties-container .disclaimer { font-size: 0.8em; color: #aaa; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 .properties-header {
   display: flex;
@@ -93,6 +95,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
+/* ================= MODAL ================= */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -105,8 +108,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 }
 .modal {
   max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 90vh;       
+  overflow-y: auto;       
   padding: 35px;
   position: relative;
   color: #fafafb;
@@ -131,24 +134,29 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   z-index: 10;
 }
 
-/* Dark/Light Mode Toggle Button */
-#darkToggle {
+/* ================= DARK MODE TOGGLE ================= */
+#darkModeToggle {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
   cursor: pointer;
-  user-select: none;
-  z-index: 1001;
-  transition: all 0.25s ease;
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: monospace;
+  color: #fafafb;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
 }
+#darkModeToggle:hover { transform: scale(1.1); }
 </style>
 </head>
 <body>
@@ -172,14 +180,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </glass-element>
 </div>
 
-<!-- Dark Mode Toggle -->
-<div id="darkToggle">LGHT</div>
-
 <div class="properties-container">
   <div class="properties-header">
     <div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
     <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
-    <div class="tab" id="rentedTab" onclick="switchTab('rented')">RENTED</div>
   </div>
 
   <div id="currentContent">
@@ -197,13 +201,6 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
       <div class="property-address">Untitled</div>
     </div>
   </div>
-
-  <div id="rentedContent" style="display:none;">
-    <p class="disclaimer">Map displays indicative areas where I’ve managed rentals in Auckland. The actual number of properties may be more or less than shown.</p>
-    <div class="property-item">
-      <div class="property-image" style="height:300px; background:#333;"></div>
-    </div>
-  </div>
 </div>
 
 <div class="modal-overlay" id="aboutModal">
@@ -214,41 +211,145 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 </div>
 
-<!-- Scripts -->
+<!-- NIGHT MODE TOGGLE BUTTON -->
+<div id="darkModeToggle">LGHT</div>
+
+<!-- Glass effect and tabs scripts -->
 <script>
-// Modal
+(function(){
+  function getDisplacementMap({ height, width, radius, depth }) {
+      const svg = `<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <linearGradient id="Y" x1="0" x2="0" y1="0" y2="100%">
+                  <stop offset="0%" stop-color="#0F0"/>
+                  <stop offset="100%" stop-color="#000"/>
+              </linearGradient>
+              <linearGradient id="X" x1="0" x2="100%" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#F00"/>
+                  <stop offset="100%" stop-color="#000"/>
+              </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="${width}" height="${height}" fill="#808080"/>
+          <g filter="blur(2px)">
+              <rect x="0" y="0" width="${width}" height="${height}" fill="#000080"/>
+              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#Y)"/>
+              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#X)"/>
+              <rect x="${depth}" y="${depth}" width="${width-2*depth}" height="${height-2*depth}" fill="#808080" rx="${radius}" ry="${radius}" filter="blur(${depth}px)"/>
+          </g>
+      </svg>`;
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+  function getDisplacementFilter({ height, width, radius, depth, strength=100, chromaticAberration=0 }) {
+      const displacementMapUrl = getDisplacementMap({ height, width, radius, depth });
+      const svg = `<svg height="${height}" width="${width}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <filter id="displace">
+                  <feImage x="0" y="0" width="${width}" height="${height}" href="${displacementMapUrl}" result="displacementMap"/>
+                  <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength+chromaticAberration*2}" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+          </defs>
+      </svg>`;
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg) + "#displace";
+  }
+  window.DisplacementUtils = { getDisplacementMap, getDisplacementFilter };
+})();
+</script>
+
+<script>
+class GlassElement extends HTMLElement {
+  constructor() {
+    super();
+    this.clicked = false;
+    this.attachShadow({mode:'open'});
+    this._svgSupport = this.detectSVGFilterSupport();
+  }
+  detectSVGFilterSupport() {
+    const test = document.createElement('div');
+    test.style.backdropFilter = 'blur(1px)';
+    if (!test.style.backdropFilter) return false;
+    const ua = navigator.userAgent.toLowerCase();
+    if (/chrome|chromium|crios|edg/.test(ua)) return true;
+    return false;
+  }
+  static get observedAttributes() { return ['width','height','radius','depth','blur','strength','background-color','chromatic-aberration']; }
+  connectedCallback() { this.render(); }
+  get width() { return parseInt(this.getAttribute('width')) || 200; }
+  get height() { return parseInt(this.getAttribute('height')) || 50; }
+  get radius() { return parseInt(this.getAttribute('radius')) || 16; }
+  get depth() { return parseInt(this.getAttribute('depth')) || 8; }
+  get blur() { return parseInt(this.getAttribute('blur')) || 4; }
+  get strength() { return parseInt(this.getAttribute('strength')) || 40; }
+  get chromaticAberration() { return parseInt(this.getAttribute('chromatic-aberration')) || 0; }
+  get backgroundColor() { return this.getAttribute('background-color') || 'rgba(255,255,255,0.25)'; }
+  attributeChangedCallback() { if(this.shadowRoot) this.render(); }
+  render() {
+    const filterUrl = this._svgSupport
+      ? window.DisplacementUtils.getDisplacementFilter({
+          height: this.height,
+          width: this.width,
+          radius: this.radius,
+          depth: this.depth,
+          strength: this.strength,
+          chromaticAberration: this.chromaticAberration
+        })
+      : '';
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display: inline-block; cursor: pointer; border-radius: ${this.radius}px; }
+        .glass-box {
+          width: ${this.width}px; height: ${this.height}px;
+          border-radius: ${this.radius}px;
+          display: flex; justify-content:center; align-items:center;
+          color: #fafafb; font-weight:700;
+          background: ${this.backgroundColor};
+          ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
+          box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .glass-box:active { transform: scale(0.98); }
+      </style>
+      <div class="glass-box"><slot></slot></div>
+    `;
+  }
+}
+customElements.define('glass-element', GlassElement);
+</script>
+
+<script>
+/* ================= MODAL ================= */
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
-// Tabs
+/* ================= TABS ================= */
 function switchTab(tab){
-  document.getElementById('currentContent').style.display = 'none';
-  document.getElementById('soldContent').style.display = 'none';
-  document.getElementById('rentedContent').style.display = 'none';
-  document.getElementById('currentTab').classList.remove('active');
-  document.getElementById('soldTab').classList.remove('active');
-  document.getElementById('rentedTab').classList.remove('active');
-
-  if(tab==='current'){ document.getElementById('currentContent').style.display='block'; document.getElementById('currentTab').classList.add('active'); }
-  if(tab==='sold'){ document.getElementById('soldContent').style.display='block'; document.getElementById('soldTab').classList.add('active'); }
-  if(tab==='rented'){ document.getElementById('rentedContent').style.display='block'; document.getElementById('rentedTab').classList.add('active'); }
+  if(tab==='current'){
+    document.getElementById('currentContent').style.display='block';
+    document.getElementById('soldContent').style.display='none';
+    document.getElementById('currentTab').classList.add('active');
+    document.getElementById('soldTab').classList.remove('active');
+  } else {
+    document.getElementById('currentContent').style.display='none';
+    document.getElementById('soldContent').style.display='block';
+    document.getElementById('currentTab').classList.remove('active');
+    document.getElementById('soldTab').classList.add('active');
+  }
 }
 
-// Close modal when clicking outside
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
 
-// Dark / Light Mode Toggle
-const darkToggle = document.getElementById('darkToggle');
-let darkMode = true; // Default to night mode
-applyTheme(darkMode ? 'dark':'light');
+/* ================= DARK / NIGHT MODE ================= */
+const darkToggle = document.getElementById('darkModeToggle');
+let theme = localStorage.getItem('theme') || 'night'; // Night mode default
+applyTheme(theme);
 
 darkToggle.addEventListener('click', ()=>{
-  darkMode = !darkMode;
-  applyTheme(darkMode ? 'dark':'light');
+  theme = (theme==='night') ? 'light' : 'night';
+  applyTheme(theme);
+  localStorage.setItem('theme', theme);
 });
 
 function applyTheme(mode){
-  if(mode==='light'){
+  if(mode === 'light'){
     document.body.style.backgroundColor = '#fafafb';
     document.body.style.color = '#000';
     document.querySelectorAll('.properties-container').forEach(el=>{
@@ -259,9 +360,7 @@ function applyTheme(mode){
       el.style.background = 'rgba(255,255,255,0.15)';
       el.style.color = '#000';
     });
-    darkToggle.textContent='NGHT';
-    darkToggle.style.color='#000';
-    darkToggle.style.background='rgba(255,255,255,0.3)';
+    darkToggle.textContent = 'NGHT'; // Plate number for light mode
   } else {
     document.body.style.backgroundColor = '#1a1a1a';
     document.body.style.color = '#fafafb';
@@ -273,9 +372,7 @@ function applyTheme(mode){
       el.style.background = 'rgba(0,0,0,0.8)';
       el.style.color = '#fafafb';
     });
-    darkToggle.textContent='LGHT';
-    darkToggle.style.color='#fafafb';
-    darkToggle.style.background='rgba(255,255,255,0.1)';
+    darkToggle.textContent = 'LGHT'; // Plate number for night mode
   }
 }
 </script>
