@@ -283,9 +283,9 @@ function applyTheme(mode){
       box.style.color='#000';
       box.style.background='rgba(255,255,255,0.25)';
     });
-    // BRIGHTER MODAL IN LIGHT MODE
+    // BRIGHTER & SLIGHTLY TRANSPARENT MODAL IN LIGHT MODE
     document.querySelectorAll('.modal').forEach(el=>{
-      el.style.background='rgba(255,255,255,0.9)';
+      el.style.background='rgba(255,255,255,0.85)'; // slight transparency
       el.style.color='#000';
       el.style.backdropFilter='blur(14px) saturate(180%)';
     });
