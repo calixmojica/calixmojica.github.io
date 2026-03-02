@@ -139,8 +139,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 50%;
@@ -150,44 +150,13 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.2s ease;
+  font-weight: 700;
+  font-family: monospace;
+  color: #fafafb;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
 }
 #darkModeToggle:hover { transform: scale(1.1); }
-
-/* ICONS */
-#darkModeToggle::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fafafb;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/* NIGHT MODE = sun with petals */
-#darkModeToggle.night::before {
-  background: #fafafb;
-  box-shadow:
-    0 -12px 0 #fafafb,
-    8.5px -8.5px 0 #fafafb,
-    12px 0 0 #fafafb,
-    8.5px 8.5px 0 #fafafb,
-    0 12px 0 #fafafb,
-    -8.5px 8.5px 0 #fafafb,
-    -12px 0 0 #fafafb,
-    -8.5px -8.5px 0 #fafafb;
-}
-
-/* LIGHT MODE = crescent moon */
-#darkModeToggle.light::before {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #fafafb;
-  box-shadow: -4px 0 0 #1a1a1a;
-}
 </style>
 </head>
 <body>
@@ -243,9 +212,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 </div>
 
 <!-- NIGHT MODE TOGGLE BUTTON -->
-<div id="darkModeToggle"></div>
+<div id="darkModeToggle">LGHT</div>
 
-<!-- Glass effect scripts -->
+<!-- Glass effect and tabs scripts -->
 <script>
 (function(){
   function getDisplacementMap({ height, width, radius, depth }) {
@@ -370,7 +339,7 @@ document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.targe
 
 /* ================= DARK / NIGHT MODE ================= */
 const darkToggle = document.getElementById('darkModeToggle');
-let theme = localStorage.getItem('theme') || 'night'; // Night mode by default
+let theme = localStorage.getItem('theme') || 'night'; // Night mode default
 applyTheme(theme);
 
 darkToggle.addEventListener('click', ()=>{
@@ -391,8 +360,7 @@ function applyTheme(mode){
       el.style.background = 'rgba(255,255,255,0.15)';
       el.style.color = '#000';
     });
-    darkToggle.classList.remove('night');
-    darkToggle.classList.add('light'); // shows moon
+    darkToggle.textContent = 'NGHT'; // Plate number for light mode
   } else {
     document.body.style.backgroundColor = '#1a1a1a';
     document.body.style.color = '#fafafb';
@@ -404,8 +372,7 @@ function applyTheme(mode){
       el.style.background = 'rgba(0,0,0,0.8)';
       el.style.color = '#fafafb';
     });
-    darkToggle.classList.remove('light');
-    darkToggle.classList.add('night'); // shows sun
+    darkToggle.textContent = 'LGHT'; // Plate number for night mode
   }
 }
 </script>
