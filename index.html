@@ -278,6 +278,12 @@ function applyTheme(mode){
     document.body.style.color='#000';
     document.querySelectorAll('.tab').forEach(el=>el.style.color='#000');
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#555');
+    // BUTTON TEXT BLACK IN LIGHT MODE
+    document.querySelectorAll('glass-element').forEach(el=>{
+      const box = el.shadowRoot.querySelector('.glass-box');
+      box.style.color='#000';
+      box.style.background='rgba(255,255,255,0.25)';
+    });
     darkToggle.textContent='NGHT';
     darkToggle.style.color='#000';
   } else {
@@ -289,8 +295,10 @@ function applyTheme(mode){
       el.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 25px 50px rgba(0,0,0,0.12)';
     });
     document.querySelectorAll('glass-element').forEach(el=>{
-      el.shadowRoot.querySelector('.glass-box').style.background='rgba(255,255,255,0.02)';
-      el.shadowRoot.querySelector('.glass-box').style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 15px 35px rgba(0,0,0,0.15)';
+      const box = el.shadowRoot.querySelector('.glass-box');
+      box.style.color='#fafafb';
+      box.style.background='rgba(255,255,255,0.02)';
+      box.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 15px 35px rgba(0,0,0,0.15)';
     });
     darkToggle.textContent='LGHT';
     darkToggle.style.color='#fafafb';
