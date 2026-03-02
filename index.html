@@ -209,8 +209,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 
 <div class="modal-overlay" id="aboutModal">
   <div class="modal">
-    <p>Before moving into real estate sales, I built a strong track record as a residential letting / leasing agent across Auckland. I hold a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating, consistently achieving results above industry standards while managing a diverse portfolio.</p>
-    <p>Even at this high level of performance, I took a principled approach to tenant selection to ensure quality tenancies and protect long term property value. This same integrity, market insight, and results focused mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling.</p>
+    <p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, consistently achieving results above industry standards while managing a diverse portfolio</p>
+    <p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling</p>
     <button onclick="closeModal()">×</button>
   </div>
 </div>
@@ -278,11 +278,16 @@ function applyTheme(mode){
     document.body.style.color='#000';
     document.querySelectorAll('.tab').forEach(el=>el.style.color='#000');
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#555');
-    // BUTTON TEXT BLACK IN LIGHT MODE
     document.querySelectorAll('glass-element').forEach(el=>{
       const box = el.shadowRoot.querySelector('.glass-box');
       box.style.color='#000';
       box.style.background='rgba(255,255,255,0.25)';
+    });
+    // BRIGHTER MODAL IN LIGHT MODE
+    document.querySelectorAll('.modal').forEach(el=>{
+      el.style.background='rgba(255,255,255,0.9)';
+      el.style.color='#000';
+      el.style.backdropFilter='blur(14px) saturate(180%)';
     });
     darkToggle.textContent='NGHT';
     darkToggle.style.color='#000';
@@ -293,6 +298,8 @@ function applyTheme(mode){
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#aaa');
     document.querySelectorAll('.modal').forEach(el=>{
       el.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 25px 50px rgba(0,0,0,0.12)';
+      el.style.background='rgba(0,0,0,0.25)';
+      el.style.color='#fafafb';
     });
     document.querySelectorAll('glass-element').forEach(el=>{
       const box = el.shadowRoot.querySelector('.glass-box');
