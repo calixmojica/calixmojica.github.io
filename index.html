@@ -171,6 +171,100 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 </div>
 
+<!-- Glass scripts -->
+<script>
+(function(){
+  function getDisplacementMap({ height, width, radius, depth }) {
+      const svg = `<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <linearGradient id="Y" x1="0" x2="0" y1="0" y2="100%">
+                  <stop offset="0%" stop-color="#0F0"/>
+                  <stop offset="100%" stop-color="#000"/>
+              </linearGradient>
+              <linearGradient id="X" x1="0" x2="100%" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#F00"/>
+                  <stop offset="100%" stop-color="#000"/>
+              </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="${width}" height="${height}" fill="#808080"/>
+          <g filter="blur(2px)">
+              <rect x="0" y="0" width="${width}" height="${height}" fill="#000080"/>
+              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#Y)"/>
+              <rect x="0" y="0" width="${width}" height="${height}" fill="url(#X)"/>
+              <rect x="${depth}" y="${depth}" width="${width-2*depth}" height="${height-2*depth}" fill="#808080" rx="${radius}" ry="${radius}" filter="blur(${depth}px)"/>
+          </g>
+      </svg>`;
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  function getDisplacementFilter({ height, width, radius, depth, strength=100, chromaticAberration=0 }) {
+      const displacementMapUrl = getDisplacementMap({ height, width, radius, depth });
+      const svg = `<svg height="${height}" width="${width}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <filter id="displace">
+                  <feImage x="0" y="0" width="${width}" height="${height}" href="${displacementMapUrl}" result="displacementMap"/>
+                  <feDisplacementMap in="SourceGraphic" in2="displacementMap" scale="${strength+chromaticAberration*2}" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+          </defs>
+      </svg>`;
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg) + "#displace";
+  }
+
+  window.DisplacementUtils = { getDisplacementMap, getDisplacementFilter };
+})();
+</script>
+
+<script>
+class GlassElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode:'open'});
+    this._svgSupport = this.detectSVGFilterSupport();
+  }
+  detectSVGFilterSupport() {
+    const test = document.createElement('div');
+    test.style.backdropFilter = 'blur(1px)';
+    if (!test.style.backdropFilter) return false;
+    const ua = navigator.userAgent.toLowerCase();
+    return /chrome|chromium|crios|edg/.test(ua);
+  }
+  static get observedAttributes() { return ['width','height','radius','depth','blur','strength','background-color','chromatic-aberration']; }
+  connectedCallback() { this.render(); }
+  get width() { return parseInt(this.getAttribute('width')) || 200; }
+  get height() { return parseInt(this.getAttribute('height')) || 50; }
+  get radius() { return parseInt(this.getAttribute('radius')) || 16; }
+  get depth() { return parseInt(this.getAttribute('depth')) || 8; }
+  get blur() { return parseInt(this.getAttribute('blur')) || 4; }
+  get strength() { return parseInt(this.getAttribute('strength')) || 40; }
+  get chromaticAberration() { return parseInt(this.getAttribute('chromatic-aberration')) || 0; }
+  get backgroundColor() { return this.getAttribute('background-color') || 'rgba(255,255,255,0.25)'; }
+  attributeChangedCallback() { if(this.shadowRoot) this.render(); }
+  render() {
+    const filterUrl = this._svgSupport
+      ? window.DisplacementUtils.getDisplacementFilter({ height:this.height,width:this.width,radius:this.radius,depth:this.depth,strength:this.strength,chromaticAberration:this.chromaticAberration })
+      : '';
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display: inline-block; cursor: pointer; border-radius: ${this.radius}px; }
+        .glass-box {
+          width: ${this.width}px; height: ${this.height}px;
+          border-radius: ${this.radius}px;
+          display: flex; justify-content:center; align-items:center;
+          color: #000; font-weight:700;
+          background: ${this.backgroundColor};
+          ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
+          box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .glass-box:active { transform: scale(0.98); }
+      </style>
+      <div class="glass-box"><slot></slot></div>
+    `;
+  }
+}
+customElements.define('glass-element', GlassElement);
+</script>
+
 <script>
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
