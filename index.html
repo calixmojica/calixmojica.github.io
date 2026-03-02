@@ -278,18 +278,6 @@ function applyTheme(mode){
     document.body.style.color='#000';
     document.querySelectorAll('.tab').forEach(el=>el.style.color='#000');
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#555');
-    // BUTTON TEXT DARK IN LIGHT MODE
-    document.querySelectorAll('glass-element').forEach(el=>{
-      const box = el.shadowRoot.querySelector('.glass-box');
-      box.style.color='#000';
-      box.style.background='rgba(255,255,255,0.25)';
-    });
-    // MODAL BRIGHT AND TRANSPARENT
-    document.querySelectorAll('.modal').forEach(el=>{
-      el.style.background='rgba(255,255,255,0.8)';
-      el.style.color='#000';
-      el.style.boxShadow='inset 0 0 12px rgba(0,0,0,0.08), 0 25px 50px rgba(0,0,0,0.12)';
-    });
     darkToggle.textContent='NGHT';
     darkToggle.style.color='#000';
   } else {
@@ -298,14 +286,11 @@ function applyTheme(mode){
     document.querySelectorAll('.tab').forEach(el=>el.style.color='#fafafb');
     document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#aaa');
     document.querySelectorAll('.modal').forEach(el=>{
-      el.style.background='rgba(0,0,0,0.25)';
-      el.style.color='#fafafb';
-      el.style.boxShadow='inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12)';
+      el.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 25px 50px rgba(0,0,0,0.12)';
     });
     document.querySelectorAll('glass-element').forEach(el=>{
-      const box = el.shadowRoot.querySelector('.glass-box');
-      box.style.color='#fafafb';
-      box.style.background='rgba(255,255,255,0.25)';
+      el.shadowRoot.querySelector('.glass-box').style.background='rgba(255,255,255,0.02)';
+      el.shadowRoot.querySelector('.glass-box').style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 15px 35px rgba(0,0,0,0.15)';
     });
     darkToggle.textContent='LGHT';
     darkToggle.style.color='#fafafb';
