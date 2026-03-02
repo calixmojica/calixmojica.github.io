@@ -23,8 +23,9 @@
 </script>
 
 <style>
+/* ===== CSS VARIABLES ===== */
 :root {
-  --bg-color: #1e1e1e;
+  --bg-color: #1e1e1e; /* Default night mode */
   --text-color: #fff;
   --container-bg: rgba(30,30,30,0.8);
   --container-shadow: inset 0 0 15px rgba(255,255,255,0.05), 0 25px 50px rgba(0,0,0,0.25);
@@ -34,6 +35,7 @@
   --modal-shadow: inset 0 0 20px rgba(255,255,255,0.1), 0 25px 50px rgba(0,0,0,0.25);
 }
 
+/* ===== BASE STYLES ===== */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
@@ -108,7 +110,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.35);
   align-items: center;
   justify-content: center;
   z-index: 1000;
@@ -142,19 +144,43 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   z-index: 10;
 }
 
-/* Dark mode toggle button */
+/* Glass Buttons */
+.social-buttons glass-element { margin-bottom: 20px; }
+
+/* Dark Mode Toggle Button */
 #darkModeToggle {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 12px 20px;
+  width: 50px;
+  height: 50px;
   background: rgba(255,255,255,0.1);
-  color: var(--text-color);
   border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 24px;
+  border-radius: 50%;
   cursor: pointer;
   backdrop-filter: blur(6px);
   z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+#darkModeToggle:hover { transform: scale(1.1); }
+/* Sun / Moon icon */
+#darkModeToggle::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text-color);
+  position: relative;
+  transition: all 0.3s ease;
+}
+#darkModeToggle.night::before {
+  background: none;
+  box-shadow: -5px -5px 0 var(--text-color), 5px 5px 0 var(--text-color);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
 </style>
 </head>
@@ -179,11 +205,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </glass-element>
 </div>
 
-<!-- Properties Section -->
+<!-- DARK MODE TOGGLE -->
+<button id="darkModeToggle" title="Toggle Night Mode"></button>
+
 <div class="properties-container">
   <div class="properties-header">
     <div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
     <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
+    <div class="tab" id="rentedTab" onclick="switchTab('rented')">RENTED</div>
   </div>
 
   <div id="currentContent">
@@ -201,6 +230,13 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
       <div class="property-address">Untitled</div>
     </div>
   </div>
+
+  <div id="rentedContent" style="display:none;">
+    <p class="disclaimer">This map shows indicative areas I’ve rented properties in Auckland; actual numbers may vary. No exact addresses are displayed.</p>
+    <div class="property-item">
+      <div class="property-image"></div>
+    </div>
+  </div>
 </div>
 
 <div class="modal-overlay" id="aboutModal">
@@ -211,10 +247,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 </div>
 
-<!-- Dark Mode Toggle -->
-<button id="darkModeToggle">Light Mode</button>
-
-<!-- Glass effect & functionality scripts -->
+<!-- Glass & Tabs Scripts -->
 <script>
 (function(){
   function getDisplacementMap({ height, width, radius, depth }) {
@@ -320,27 +353,35 @@ function openModal() { document.getElementById('aboutModal').style.display='flex
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
 function switchTab(tab){
+  document.getElementById('currentContent').style.display='none';
+  document.getElementById('soldContent').style.display='none';
+  document.getElementById('rentedContent').style.display='none';
+  document.getElementById('currentTab').classList.remove('active');
+  document.getElementById('soldTab').classList.remove('active');
+  document.getElementById('rentedTab').classList.remove('active');
+
   if(tab==='current'){
     document.getElementById('currentContent').style.display='block';
-    document.getElementById('soldContent').style.display='none';
     document.getElementById('currentTab').classList.add('active');
-    document.getElementById('soldTab').classList.remove('active');
-  } else {
-    document.getElementById('currentContent').style.display='none';
+  } else if(tab==='sold'){
     document.getElementById('soldContent').style.display='block';
-    document.getElementById('currentTab').classList.remove('active');
     document.getElementById('soldTab').classList.add('active');
+  } else if(tab==='rented'){
+    document.getElementById('rentedContent').style.display='block';
+    document.getElementById('rentedTab').classList.add('active');
   }
 }
 
+// Close modal when clicking outside
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
 
-// Dark mode toggle functionality
+// DARK MODE TOGGLE
 const darkToggle = document.getElementById('darkModeToggle');
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-  if(document.body.classList.contains('light-mode')) {
-    darkToggle.innerText = 'Dark Mode';
+let theme = localStorage.getItem('theme') || 'night';
+if(theme === 'night') darkToggle.classList.add('night');
+
+function applyTheme(mode){
+  if(mode === 'light'){
     document.documentElement.style.setProperty('--bg-color','#fafafb');
     document.documentElement.style.setProperty('--text-color','#000');
     document.documentElement.style.setProperty('--container-bg','rgba(255,255,255,0.03)');
@@ -349,8 +390,8 @@ darkToggle.addEventListener('click', () => {
     document.documentElement.style.setProperty('--card-shadow','inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1)');
     document.documentElement.style.setProperty('--modal-bg','rgba(255,255,255,0.15)');
     document.documentElement.style.setProperty('--modal-shadow','inset 0 0 20px rgba(255,255,255,0.25), 0 25px 50px rgba(0,0,0,0.15)');
+    darkToggle.classList.remove('night');
   } else {
-    darkToggle.innerText = 'Light Mode';
     document.documentElement.style.setProperty('--bg-color','#1e1e1e');
     document.documentElement.style.setProperty('--text-color','#fff');
     document.documentElement.style.setProperty('--container-bg','rgba(30,30,30,0.8)');
@@ -359,7 +400,15 @@ darkToggle.addEventListener('click', () => {
     document.documentElement.style.setProperty('--card-shadow','inset 0 0 15px rgba(255,255,255,0.1), 0 15px 35px rgba(0,0,0,0.2)');
     document.documentElement.style.setProperty('--modal-bg','rgba(30,30,30,0.9)');
     document.documentElement.style.setProperty('--modal-shadow','inset 0 0 20px rgba(255,255,255,0.1), 0 25px 50px rgba(0,0,0,0.25)');
+    darkToggle.classList.add('night');
   }
+}
+applyTheme(theme);
+
+darkToggle.addEventListener('click', ()=>{
+  theme = theme==='night' ? 'light' : 'night';
+  localStorage.setItem('theme', theme);
+  applyTheme(theme);
 });
 </script>
 
