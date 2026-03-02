@@ -313,7 +313,7 @@ class GlassElement extends HTMLElement {
           background: ${this.backgroundColor};
           ${filterUrl ? `backdrop-filter: blur(${this.blur}px) url('${filterUrl}'); -webkit-backdrop-filter: blur(${this.blur}px) url('${filterUrl}');` : `backdrop-filter: blur(${this.blur}px); -webkit-backdrop-filter: blur(${this.blur}px);`}
           box-shadow: inset 0 0 15px rgba(255,255,255,0.25), 0 15px 35px rgba(0,0,0,0.15);
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
+          transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.2s ease, background 0.2s ease;
         }
         .glass-box:active { transform: scale(0.98); }
       </style>
@@ -344,8 +344,6 @@ function switchTab(tab){
   }
 }
 
-document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===document.getElementById('aboutModal')) closeModal(); });
-
 /* ================= DARK / NIGHT MODE ================= */
 const darkToggle = document.getElementById('darkModeToggle');
 let theme = localStorage.getItem('theme') || 'night'; // Night mode default
@@ -361,37 +359,73 @@ function applyTheme(mode){
   if(mode === 'light'){
     document.body.style.backgroundColor = '#fafafb';
     document.body.style.color = '#000';
+    
+    // Property container and boxes
     document.querySelectorAll('.properties-container').forEach(el=>{
       el.style.background = 'rgba(0,0,0,0.03)';
       el.style.boxShadow = 'inset 0 0 15px rgba(0,0,0,0.12), 0 25px 50px rgba(0,0,0,0.12)';
     });
+    document.querySelectorAll('.property-image').forEach(el=>{
+      el.style.background = 'rgba(0,0,0,0.03)';
+      el.style.boxShadow = 'inset 0 0 15px rgba(0,0,0,0.12), 0 15px 35px rgba(0,0,0,0.1)';
+    });
+
+    // Modal
     document.querySelectorAll('.modal').forEach(el=>{
       el.style.background = 'rgba(255,255,255,0.15)';
       el.style.color = '#000';
     });
+
+    // Tabs and disclaimers
+    document.querySelectorAll('.tab').forEach(el=>el.style.color = '#000');
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color = '#555');
+
+    // Glass buttons
     document.querySelectorAll('glass-element').forEach(el=>{
       el.shadowRoot.querySelector('.glass-box').style.color = '#000';
+      el.shadowRoot.querySelector('.glass-box').style.background = 'rgba(255,255,255,0.25)';
     });
+
     darkToggle.textContent = 'NGHT'; // Plate number for light mode
     darkToggle.style.color = '#000';
+
   } else {
     document.body.style.backgroundColor = '#1a1a1a';
     document.body.style.color = '#fafafb';
+    
     document.querySelectorAll('.properties-container').forEach(el=>{
-      el.style.background = 'rgba(255,255,255,0.03)';
+      el.style.background = 'rgba(0,0,0,0.08)'; // darker
       el.style.boxShadow = 'inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12)';
     });
+    document.querySelectorAll('.property-image').forEach(el=>{
+      el.style.background = 'rgba(0,0,0,0.05)'; // darker
+      el.style.boxShadow = 'inset 0 0 15px rgba(255,255,255,0.12), 0 15px 35px rgba(0,0,0,0.1)';
+    });
+
     document.querySelectorAll('.modal').forEach(el=>{
       el.style.background = 'rgba(0,0,0,0.8)';
       el.style.color = '#fafafb';
     });
+
+    document.querySelectorAll('.tab').forEach(el=>{
+      if(el.classList.contains('active')) el.style.color = '#fafafb';
+      else el.style.color = '#aaa';
+    });
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color = '#aaa');
+
     document.querySelectorAll('glass-element').forEach(el=>{
       el.shadowRoot.querySelector('.glass-box').style.color = '#fafafb';
+      el.shadowRoot.querySelector('.glass-box').style.background = 'rgba(255,255,255,0.03)';
     });
+
     darkToggle.textContent = 'LGHT'; // Plate number for night mode
     darkToggle.style.color = '#fafafb';
   }
 }
+
+document.getElementById('aboutModal').addEventListener('click',(e)=>{ 
+  if(e.target===document.getElementById('aboutModal')) closeModal(); 
+});
 </script>
 
 </body>
