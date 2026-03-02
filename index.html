@@ -12,7 +12,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<!-- JSON-LD structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,6 +59,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: relative;
   overflow: hidden;
 }
+.properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
+.properties-container .disclaimer { font-size: 0.8em; color: #555; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 .properties-header {
   display: flex;
@@ -88,16 +89,8 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.property-image:hover { transform: scale(1.02); }
+.property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 18px rgba(255,255,255,0.2), 0 18px 38px rgba(0,0,0,0.12); }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
-
-.disclaimer {
-  font-size: 0.8em;
-  color: #555;
-  font-style: italic;
-  margin-bottom: 25px;
-  text-align: center;
-}
 
 .modal-overlay {
   display: none;
@@ -131,11 +124,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 10;
 }
 </style>
 </head>
-
 <body>
 
 <img src="headshot.jpg" alt="Calix Mojica" class="headshot">
@@ -164,39 +155,43 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   </div>
 
   <div id="currentContent">
-    <div class="property-item">
-      <div class="property-image"></div>
-      <div class="property-address">Coming Soon</div>
-    </div>
+    <p class="disclaimer">Below are my current listings</p>
   </div>
 
   <div id="soldContent" style="display:none;">
     <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
-    <div class="property-item">
-      <div class="property-image"></div>
-      <div class="property-address">Untitled</div>
-    </div>
+    <div class="property-item"><div class="property-image"></div><div class="property-address">Untitled</div></div>
   </div>
 </div>
 
-<!-- KEEPING YOUR ORIGINAL GLASS + MODAL SCRIPTS BELOW UNCHANGED -->
+<div class="modal-overlay" id="aboutModal">
+  <div class="modal">
+    <p>Before moving into real estate sales, I built a strong track record as a residential letting / leasing agent across Auckland...</p>
+    <button onclick="closeModal()">×</button>
+  </div>
+</div>
+
 <script>
 function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
 function switchTab(tab){
-  if(tab==='sold'){
-    document.getElementById('currentContent').style.display='none';
-    document.getElementById('soldContent').style.display='block';
-    document.getElementById('currentTab').classList.remove('active');
-    document.getElementById('soldTab').classList.add('active');
-  } else {
+  if(tab==='current'){
     document.getElementById('currentContent').style.display='block';
     document.getElementById('soldContent').style.display='none';
     document.getElementById('currentTab').classList.add('active');
     document.getElementById('soldTab').classList.remove('active');
+  } else {
+    document.getElementById('currentContent').style.display='none';
+    document.getElementById('soldContent').style.display='block';
+    document.getElementById('currentTab').classList.remove('active');
+    document.getElementById('soldTab').classList.add('active');
   }
 }
+
+document.getElementById('aboutModal').addEventListener('click',(e)=>{ 
+  if(e.target===document.getElementById('aboutModal')) closeModal(); 
+});
 </script>
 
 </body>
