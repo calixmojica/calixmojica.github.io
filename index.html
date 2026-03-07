@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Calix Mojica is one of Auckland’s emerging young real estate professionals, combining modern marketing strategies with a strong background in property management and a Bachelor of Property from the University of Auckland.">
+<meta name="description" content="Calix Mojica is one of Auckland’s emerging young real estate professionals, combining modern marketing strategies with a Bachelor of Property from the University of Auckland and a strong background in property management.">
 <title>Calix Mojica</title>
 
-<!-- Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<!-- JSON-LD structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,6 +30,7 @@ body {
   text-align: center;
   overflow-x: hidden;
 }
+
 img.headshot {
   width: 180px;
   height: 180px;
@@ -44,8 +43,11 @@ img.headshot {
   transition: transform 0.25s ease;
   position: relative;
 }
+
 img.headshot:hover { transform: scale(1.03); }
+
 h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
+
 .intro { font-size: 1.1em; margin-bottom: 30px; }
 
 /* PROPERTIES */
@@ -61,7 +63,9 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: relative;
   overflow: hidden;
 }
+
 .properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
+
 .properties-container .disclaimer { font-size: 0.8em; color: #aaa; font-style: italic; margin-bottom: 25px; text-align: center; }
 
 .properties-header {
@@ -73,10 +77,13 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   font-size: 1.4em;
   cursor: pointer;
 }
+
 .tab { flex: 1; text-align: center; opacity: 0.4; transition: opacity 0.2s ease, color 0.2s ease; }
+
 .tab.active { opacity: 1; color: #fafafb; }
 
 .property-item { margin-bottom: 30px; }
+
 .property-image {
   width: 100%;
   padding-top: 56.25%;
@@ -91,7 +98,12 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   justify-content: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.property-image:hover { transform: scale(1.02); box-shadow: inset 0 0 12px rgba(255,255,255,0.15), 0 14px 28px rgba(0,0,0,0.12); }
+
+.property-image:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.15), 0 14px 28px rgba(0,0,0,0.12);
+}
+
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
 /* MODAL */
@@ -105,6 +117,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   z-index: 1000;
   overflow-y: auto;
 }
+
 .modal {
   max-width: 700px;
   max-height: 90vh;
@@ -120,6 +133,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   box-shadow: inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .modal button {
   position: absolute;
   top: 15px;
@@ -131,6 +145,41 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   border: none;
   cursor: pointer;
   z-index: 10;
+}
+
+/* CAR PLATES */
+.car-section { margin-top: 30px; text-align: center; }
+
+.plates {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.plate {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: transform 0.15s ease;
+}
+
+.plate:hover { transform: scale(1.05); }
+
+.plate-nght { background: #000; color: #8a8a8a; }
+.plate-lght { background: #fff; color: #000; }
+.plate-mojica { background: #000; color: #fff; }
+
+.car-display img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 }
 
 /* NIGHT MODE TOGGLE */
@@ -155,6 +204,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   font-size: 0.9em;
   transition: all 0.2s ease;
 }
+
 #darkModeToggle:hover { transform: scale(1.1); }
 
 /* SOCIAL BUTTONS */
@@ -165,12 +215,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   align-items: center;
   margin-bottom: 40px;
 }
+
 .social-buttons glass-element {
   width: 260px;
   height: 60px;
 }
 </style>
 </head>
+
 <body>
 
 <img src="headshot.jpg" alt="Calix Mojica" class="headshot">
@@ -210,7 +262,20 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 <div class="modal-overlay" id="aboutModal">
   <div class="modal">
     <p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, achieving results above industry standards</p>
+
     <p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice, helping clients achieve confident and successful outcomes whether buying or selling</p>
+
+    <div class="car-section">
+      <div class="plates">
+        <div class="plate plate-nght" onclick="showCar('nght')">NGHT</div>
+        <div class="plate plate-lght" onclick="showCar('lght')">LGHT</div>
+        <div class="plate plate-mojica" onclick="showCar('mojica')">MOJICA</div>
+      </div>
+      <div class="car-display">
+        <img id="carImage" src="car-nght.jpg">
+      </div>
+    </div>
+
     <button onclick="closeModal()">×</button>
   </div>
 </div>
@@ -245,8 +310,9 @@ class GlassElement extends HTMLElement {
 }
 customElements.define('glass-element', GlassElement);
 
-function openModal() { document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
-function closeModal() { document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
+function openModal(){ document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
+
 function switchTab(tab){
   if(tab==='current'){
     currentContent.style.display='block';
@@ -260,16 +326,17 @@ function switchTab(tab){
     soldTab.classList.add('active');
   }
 }
+
 document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===aboutModal) closeModal(); });
 
-const darkToggle=document.getElementById('darkModeToggle');
-let theme=localStorage.getItem('theme')||'night';
+const darkToggle = document.getElementById('darkModeToggle');
+let theme = localStorage.getItem('theme') || 'night';
 applyTheme(theme);
 
-darkToggle.onclick=()=>{
-  theme=theme==='night'?'light':'night';
+darkToggle.onclick = () => {
+  theme = theme==='night' ? 'light' : 'night';
   applyTheme(theme);
-  localStorage.setItem('theme',theme);
+  localStorage.setItem('theme', theme);
 };
 
 function applyTheme(mode){
@@ -283,9 +350,8 @@ function applyTheme(mode){
       box.style.color='#000';
       box.style.background='rgba(255,255,255,0.25)';
     });
-    // BRIGHTER & SLIGHTLY TRANSPARENT MODAL IN LIGHT MODE
     document.querySelectorAll('.modal').forEach(el=>{
-      el.style.background='rgba(255,255,255,0.85)'; // slight transparency
+      el.style.background='rgba(255,255,255,0.85)';
       el.style.color='#000';
       el.style.backdropFilter='blur(14px) saturate(180%)';
     });
@@ -311,6 +377,15 @@ function applyTheme(mode){
     darkToggle.style.color='#fafafb';
   }
 }
+
+function showCar(car){
+  const img = document.getElementById("carImage");
+  if(!img) return;
+  if(car==="nght") img.src="car-nght.jpg";
+  if(car==="lght") img.src="car-lght.jpg";
+  if(car==="mojica") img.src="car-mojica.jpg";
+}
 </script>
+
 </body>
 </html>
