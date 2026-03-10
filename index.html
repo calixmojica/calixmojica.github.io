@@ -50,7 +50,6 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .intro { font-size: 1.1em; margin-bottom: 30px; }
 
 /* SOCIAL BUTTONS */
-
 .social-buttons {
   display: flex;
   flex-direction: column;
@@ -64,23 +63,19 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   height: 60px;
 }
 
-.social-icons {
-  display: flex;
-  gap: 18px;
+.social-icons{
+  display:flex;
+  gap:22px;
+  justify-content:center;
 }
 
-.social-icons glass-element {
-  width: 60px;
-  height: 60px;
-}
-
-.social-icons svg {
-  width: 26px;
-  height: 26px;
+.social-icon{
+  width:32px;
+  height:32px;
+  cursor:pointer;
 }
 
 /* PROPERTIES */
-
 .properties-container {
   background: rgba(255,255,255,0.03);
   border-radius: 28px;
@@ -126,7 +121,6 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 .property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
 /* MODAL */
-
 .modal-overlay {
   display: none;
   position: fixed;
@@ -151,6 +145,7 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   backdrop-filter: blur(14px) saturate(180%);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
   box-shadow: inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .modal button {
@@ -163,10 +158,10 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 10;
 }
 
 /* CAR SECTION */
-
 .car-section h2 {
   font-size: 1.8em;
   font-weight: 700;
@@ -198,7 +193,14 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   cursor: pointer;
   text-align: center;
   border: 2px solid rgba(0,0,0,0.2);
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,0.3),
+    inset 0 -3px 6px rgba(0,0,0,0.4),
+    0 6px 12px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease;
 }
+
+.plate:hover { transform: translateY(-2px) scale(1.05); }
 
 .plate-nght { background: #000; color: #7f7f7f; }
 .plate-lght { background: #fff; color: #000; }
@@ -216,14 +218,19 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   position: relative;
   border-radius: 28px;
   background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
   overflow: hidden;
 }
 
 .car-box img {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 28px;
 }
 
 .car-note {
@@ -236,23 +243,33 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
   padding: 20px;
   font-size: 0.95em;
   background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
 }
 
 /* NIGHT MODE TOGGLE */
-
 #darkModeToggle {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 50%;
   cursor: pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: monospace;
+  color: #fafafb;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
 }
+
+#darkModeToggle:hover { transform: scale(1.1); }
 </style>
 </head>
 
@@ -263,164 +280,167 @@ h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 <p class="intro">This website is currently under development</p>
 
 <div class="social-buttons">
-<glass-element onclick="openModal()">About Me</glass-element>
-<glass-element>Enquire Now</glass-element>
+  <glass-element onclick="openModal()">About Me</glass-element>
+  <glass-element>Enquire Now</glass-element>
 
-<div class="social-icons">
+  <div class="social-icons">
 
-<glass-element onclick="window.open('https://www.instagram.com/CalixMojica','_blank')">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-<path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.506 5.506 0 0 0 12 7.5z"/>
-</svg>
-</glass-element>
+    <svg class="social-icon" onclick="window.open('https://www.instagram.com/CalixMojica','_blank')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10z"/>
+    </svg>
 
-<glass-element onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-<path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12A31.093 31.093 0 0 0 0 12a31.093 31.093 0 0 0 .502 5.814zM9.75 15.568V8.432L15.818 12z"/>
-</svg>
-</glass-element>
+    <svg class="social-icon" onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12A31.093 31.093 0 0 0 0 12a31.093 31.093 0 0 0 .502 5.814zM9.75 15.568V8.432L15.818 12z"/>
+    </svg>
 
-</div>
+  </div>
 </div>
 
-<!-- Properties -->
+<!-- Properties Tabs -->
 <div class="properties-container">
-<div class="properties-header">
-<div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
-<div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
+  <div class="properties-header">
+    <div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
+    <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
+  </div>
+
+  <div id="currentContent">
+    <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
+    <div class="property-item">
+      <div class="property-image"></div>
+      <div class="property-address">Untitled</div>
+    </div>
+  </div>
+
+  <div id="soldContent" style="display:none;">
+    <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
+    <div class="property-item">
+      <div class="property-image"></div>
+      <div class="property-address">Untitled</div>
+    </div>
+  </div>
 </div>
 
-<div id="currentContent">
-<p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
-<div class="property-item">
-<div class="property-image"></div>
-<div class="property-address">Untitled</div>
-</div>
-</div>
-
-<div id="soldContent" style="display:none;">
-<p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
-<div class="property-item">
-<div class="property-image"></div>
-<div class="property-address">Untitled</div>
-</div>
-</div>
-</div>
-
-<!-- About Modal -->
+<!-- About Me Modal -->
 <div class="modal-overlay" id="aboutModal">
-<div class="modal">
+  <div class="modal">
+    <p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, achieving results above industry standards.</p>
 
-<p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, achieving results above industry standards.</p>
+    <p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice.</p>
 
-<p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice.</p>
+    <div class="car-section">
+      <h2>My Cars</h2>
+      <p class="car-description">Tap a plate to view the car</p>
 
-<div class="car-section">
+      <div class="plates">
+        <div class="plate plate-nght" onclick="showCar('nght')">NGHT</div>
+        <div class="plate plate-lght" onclick="showCar('lght')">LGHT</div>
+        <div class="plate plate-mojica" onclick="showCar('mojica')">MOJICA</div>
+      </div>
 
-<h2>My Cars</h2>
-<p class="car-description">Tap a plate to view the car</p>
+      <div class="car-display">
+        <div class="car-box">
+          <img id="carImage" src="car-nght.jpg">
+          <div class="car-note" id="mojicaNote">
+            This personalised plate is currently registered to LGHT while my new car is being prepared
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="plates">
-<div class="plate plate-nght" onclick="showCar('nght')">NGHT</div>
-<div class="plate plate-lght" onclick="showCar('lght')">LGHT</div>
-<div class="plate plate-mojica" onclick="showCar('mojica')">MOJICA</div>
-</div>
-
-<div class="car-display">
-<div class="car-box">
-<img id="carImage" src="car-nght.jpg">
-<div class="car-note" id="mojicaNote">
-This personalised plate is currently registered to LGHT while my new car is being prepared
-</div>
-</div>
-</div>
-
-</div>
-
-<button onclick="closeModal()">×</button>
-</div>
+    <button onclick="closeModal()">×</button>
+  </div>
 </div>
 
 <div id="darkModeToggle">LGHT</div>
 
 <script>
-
-class GlassElement extends HTMLElement{
-constructor(){
-super();
-this.attachShadow({mode:'open'});
-this.shadowRoot.innerHTML=`
-<style>
-:host{display:inline-block;cursor:pointer;border-radius:24px;width:100%;height:100%;}
-.glass-box{
-width:100%;height:100%;display:flex;justify-content:center;align-items:center;
-border-radius:24px;font-weight:700;font-family:inherit;
-background:rgba(255,255,255,0.25);
-color:#fafafb;
-backdrop-filter:blur(8px) saturate(180%);
-box-shadow:inset 0 0 10px rgba(255,255,255,0.18),0 15px 35px rgba(0,0,0,0.15);
-transition:all .15s ease;
+class GlassElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode:'open'});
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display:inline-block; cursor:pointer; border-radius:24px; width:100%; height:100%; }
+        .glass-box {
+          width:100%; height:100%; display:flex; justify-content:center; align-items:center;
+          border-radius:24px; font-weight:700; font-family:inherit;
+          background: rgba(255,255,255,0.25);
+          color: #fafafb;
+          backdrop-filter: blur(8px) saturate(180%);
+          box-shadow: inset 0 0 10px rgba(255,255,255,0.18), 0 15px 35px rgba(0,0,0,0.15);
+          transition: all 0.15s ease;
+        }
+        .glass-box:active { transform: scale(0.98); }
+      </style>
+      <div class="glass-box"><slot></slot></div>
+    `;
+  }
 }
-.glass-box:active{transform:scale(.98);}
-</style>
-<div class="glass-box"><slot></slot></div>`;
-}}
-customElements.define('glass-element',GlassElement);
+customElements.define('glass-element', GlassElement);
 
-function openModal(){document.getElementById('aboutModal').style.display='flex';document.body.style.overflow='hidden';}
-function closeModal(){document.getElementById('aboutModal').style.display='none';document.body.style.overflow='auto';}
+function openModal(){ document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
 function switchTab(tab){
-const currentContent=document.getElementById('currentContent');
-const soldContent=document.getElementById('soldContent');
-const currentTab=document.getElementById('currentTab');
-const soldTab=document.getElementById('soldTab');
-if(tab==='current'){
-currentContent.style.display='block';
-soldContent.style.display='none';
-currentTab.classList.add('active');
-soldTab.classList.remove('active');
-}else{
-currentContent.style.display='none';
-soldContent.style.display='block';
-currentTab.classList.remove('active');
-soldTab.classList.add('active');
-}}
-
-document.getElementById('aboutModal').addEventListener('click',(e)=>{if(e.target===aboutModal)closeModal();});
-
-function showCar(car){
-const img=document.getElementById("carImage");
-const note=document.getElementById("mojicaNote");
-note.style.display="none";
-if(car==="nght")img.src="car-nght.jpg";
-if(car==="lght")img.src="car-lght.jpg";
-if(car==="mojica"){img.src="car-lght.jpg";note.style.display="flex";}
+  const currentContent = document.getElementById('currentContent');
+  const soldContent = document.getElementById('soldContent');
+  const currentTab = document.getElementById('currentTab');
+  const soldTab = document.getElementById('soldTab');
+  if(tab==='current'){
+    currentContent.style.display='block';
+    soldContent.style.display='none';
+    currentTab.classList.add('active');
+    soldTab.classList.remove('active');
+  } else {
+    currentContent.style.display='none';
+    soldContent.style.display='block';
+    currentTab.classList.remove('active');
+    soldTab.classList.add('active');
+  }
 }
 
-const darkToggle=document.getElementById('darkModeToggle');
-let theme=localStorage.getItem('theme')||'night';
+document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===aboutModal) closeModal(); });
+
+function showCar(car){
+  const img = document.getElementById("carImage");
+  const note = document.getElementById("mojicaNote");
+  note.style.display = "none";
+  if(car==="nght") img.src="car-nght.jpg";
+  if(car==="lght") img.src="car-lght.jpg";
+  if(car==="mojica"){ img.src="car-lght.jpg"; note.style.display="flex"; }
+}
+
+const darkToggle = document.getElementById('darkModeToggle');
+let theme = localStorage.getItem('theme') || 'night';
 applyTheme(theme);
 
-darkToggle.onclick=()=>{
-theme=theme==='night'?'light':'night';
-applyTheme(theme);
-localStorage.setItem('theme',theme);
+darkToggle.onclick = () => {
+  theme = theme==='night' ? 'light' : 'night';
+  applyTheme(theme);
+  localStorage.setItem('theme', theme);
 };
 
 function applyTheme(mode){
-if(mode==='light'){
-document.body.style.backgroundColor='#fafafb';
-document.body.style.color='#000';
-darkToggle.textContent='NGHT';
-darkToggle.style.color='#000';
-}else{
-document.body.style.backgroundColor='#1a1a1a';
-document.body.style.color='#fafafb';
-darkToggle.textContent='LGHT';
-darkToggle.style.color='#fafafb';
-}}
-
+  if(mode==='light'){
+    document.body.style.backgroundColor='#fafafb';
+    document.body.style.color='#000';
+    document.querySelectorAll('.tab').forEach(el=>el.style.color='#000');
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#555');
+    document.querySelectorAll('.car-section h2').forEach(el=>el.style.color='#000');
+    document.querySelectorAll('.car-description').forEach(el=>el.style.color='#555');
+    darkToggle.textContent='NGHT';
+    darkToggle.style.color='#000';
+  } else {
+    document.body.style.backgroundColor='#1a1a1a';
+    document.body.style.color='#fafafb';
+    document.querySelectorAll('.tab').forEach(el=>el.style.color='#fafafb');
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#aaa');
+    document.querySelectorAll('.car-section h2').forEach(el=>el.style.color='#fafafb');
+    document.querySelectorAll('.car-description').forEach(el=>el.style.color='#aaa');
+    darkToggle.textContent='LGHT';
+    darkToggle.style.color='#fafafb';
+  }
+}
 </script>
 
 </body>
