@@ -13,197 +13,250 @@
 
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"Calix Mojica",
- "url":"https://www.calixmojica.com/"
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Calix Mojica",
+  "url": "https://www.calixmojica.com/"
 }
 </script>
 
 <style>
-
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
-margin:0;
-padding:0;
-background:#1a1a1a;
-color:#fafafb;
-text-align:center;
-overflow-x:hidden;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #fafafb;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-img.headshot{
-width:180px;
-height:180px;
-margin-top:40px;
-border-radius:50%;
-object-fit:cover;
-background:rgba(255,255,255,0.03);
-backdrop-filter:blur(8px) saturate(180%);
-box-shadow:inset 0 0 15px rgba(255,255,255,0.15),0 15px 35px rgba(0,0,0,0.12);
-transition:transform .25s ease;
+img.headshot {
+  width: 180px;
+  height: 180px;
+  margin-top: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.15), 0 15px 35px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease;
 }
 
-img.headshot:hover{transform:scale(1.03)}
+img.headshot:hover { transform: scale(1.03); }
 
-h1{font-size:2.8em;margin:20px 0 10px;font-weight:700}
+h1 { font-size: 2.8em; margin: 20px 0 10px; font-weight: 700; }
 
-.intro{font-size:1.1em;margin-bottom:30px}
+.intro { font-size: 1.1em; margin-bottom: 30px; }
 
-/* SOCIAL */
-
-.social-buttons{
-display:flex;
-flex-direction:column;
-gap:20px;
-align-items:center;
-margin-bottom:40px
+/* PROPERTIES */
+.properties-container {
+  background: rgba(255,255,255,0.03);
+  border-radius: 28px;
+  padding: 35px 30px;
+  max-width: 900px;
+  margin: 0 auto 50px auto;
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
+  text-align: left;
 }
 
-.social-buttons glass-element{
-width:260px;
-height:60px
+.properties-container h2 { font-size: 2em; margin-top: 0; margin-bottom: 10px; text-align: center; }
+
+.properties-container .disclaimer { font-size: 0.8em; color: #aaa; font-style: italic; margin-bottom: 25px; text-align: center; }
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.4em;
+  cursor: pointer;
 }
+
+.tab { flex: 1; text-align: center; opacity: 0.4; transition: opacity 0.2s ease; }
+
+.tab.active { opacity: 1; color: #fafafb; }
+
+.property-item { margin-bottom: 30px; }
+
+.property-image {
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.12), 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.property-address { font-weight: bold; text-align: center; margin-top: 10px; }
 
 /* MODAL */
-
-.modal-overlay{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.35);
-align-items:center;
-justify-content:center;
-z-index:1000
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.modal{
-max-width:700px;
-max-height:90vh;
-overflow-y:auto;
-padding:35px;
-position:relative;
-border-radius:28px;
-background:rgba(0,0,0,0.25);
-backdrop-filter:blur(14px) saturate(180%);
-box-shadow:inset 0 0 12px rgba(255,255,255,0.12),0 25px 50px rgba(0,0,0,0.12);
-text-align:left
+.modal {
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 35px;
+  position: relative;
+  color: #fafafb;
+  text-align: left;
+  border-radius: 28px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.modal button{
-position:absolute;
-top:15px;
-right:15px;
-font-size:1.2em;
-font-weight:700;
-color:#fafafb;
-background:none;
-border:none;
-cursor:pointer
+.modal button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #fafafb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
 }
 
 /* CAR SECTION */
-
-.car-section h2{
-font-size:1.8em;
-font-weight:700;
-text-align:center;
-margin-bottom:5px
+.car-section h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
-.car-description{
-text-align:center;
-font-size:.9em;
-color:#aaa;
-margin-bottom:20px
+.car-description {
+  text-align: center;
+  font-size: 0.9em;
+  color: #aaa;
+  margin-bottom: 20px;
 }
 
-.plates{
-display:flex;
-justify-content:center;
-gap:14px;
-flex-wrap:wrap;
-margin-bottom:20px
+.plates {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.plate{
-padding:12px 18px;
-border-radius:8px;
-font-weight:800;
-letter-spacing:4px;
-font-size:18px;
-cursor:pointer;
-border:2px solid rgba(0,0,0,.2);
-box-shadow:
-inset 0 2px 3px rgba(255,255,255,.3),
-inset 0 -3px 6px rgba(0,0,0,.4),
-0 6px 12px rgba(0,0,0,.35);
-transition:transform .15s ease
+.plate {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid rgba(0,0,0,0.2);
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,0.3),
+    inset 0 -3px 6px rgba(0,0,0,0.4),
+    0 6px 12px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease;
 }
 
-.plate:hover{transform:translateY(-2px) scale(1.05)}
+.plate:hover { transform: translateY(-2px) scale(1.05); }
 
-.plate-nght{background:#000;color:#7f7f7f}
-.plate-lght{background:#fff;color:#000}
-.plate-mojica{background:#000;color:#fff}
+.plate-nght { background: #000; color: #7f7f7f; }
+.plate-lght { background: #fff; color: #000; }
+.plate-mojica { background: #000; color: #fff; }
 
-.car-display{
-display:flex;
-justify-content:center
+.car-display {
+  display: flex;
+  justify-content: center;
 }
 
-.car-box{
-width:100%;
-max-width:520px;
-padding-top:56.25%;
-position:relative;
-border-radius:28px;
-background:rgba(255,255,255,.03);
-backdrop-filter:blur(8px) saturate(180%);
-box-shadow:inset 0 0 12px rgba(255,255,255,.12),0 25px 50px rgba(0,0,0,.12);
-overflow:hidden
+.car-box {
+  width: 100%;
+  max-width: 520px;
+  padding-top: 56.25%;
+  position: relative;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.12), 0 25px 50px rgba(0,0,0,0.12);
+  overflow: hidden;
 }
 
-.car-box img{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover
+.car-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 28px;
 }
 
-.car-note{
-position:absolute;
-inset:0;
-display:none;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-font-size:.95em;
-background:rgba(0,0,0,.55);
-backdrop-filter:blur(6px)
+.car-note {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95em;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
 }
 
-/* NIGHT MODE BUTTON */
+/* NIGHT MODE TOGGLE */
+#darkModeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: monospace;
+  color: #fafafb;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
 
-#darkModeToggle{
-position:fixed;
-bottom:20px;
-right:20px;
-width:60px;
-height:60px;
-background:rgba(255,255,255,.1);
-border-radius:50%;
-cursor:pointer;
-backdrop-filter:blur(6px);
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:700;
-font-family:monospace;
-z-index:10000
+#darkModeToggle:hover { transform: scale(1.1); }
+
+/* SOCIAL BUTTONS */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.social-buttons glass-element {
+  width: 260px;
+  height: 60px;
 }
 
 </style>
@@ -216,137 +269,178 @@ z-index:10000
 <p class="intro">This website is currently under development</p>
 
 <div class="social-buttons">
-<glass-element onclick="openModal()">About Me</glass-element>
-<glass-element>Enquire Now</glass-element>
-<glass-element onclick="window.open('https://www.instagram.com/CalixMojica','_blank')">Instagram</glass-element>
-<glass-element onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')">YouTube</glass-element>
+  <glass-element onclick="openModal()">About Me</glass-element>
+  <glass-element>Enquire Now</glass-element>
+  <glass-element onclick="window.open('https://www.instagram.com/CalixMojica','_blank')">Instagram</glass-element>
+  <glass-element onclick="window.open('https://www.youtube.com/@CalixMojica','_blank')">YouTube</glass-element>
 </div>
 
+<!-- Properties Tabs -->
+<div class="properties-container">
+  <div class="properties-header">
+    <div class="tab active" id="currentTab" onclick="switchTab('current')">CURRENT</div>
+    <div class="tab" id="soldTab" onclick="switchTab('sold')">SOLD</div>
+  </div>
+
+  <div id="currentContent">
+    <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
+    <div class="property-item">
+      <div class="property-image"></div>
+      <div class="property-address">Untitled</div>
+    </div>
+  </div>
+
+  <div id="soldContent" style="display:none;">
+    <p class="disclaimer">Currently undergoing one last paper to process my real estate license</p>
+    <div class="property-item">
+      <div class="property-image"></div>
+      <div class="property-address">Untitled</div>
+    </div>
+  </div>
+</div>
+
+<!-- About Me Modal -->
 <div class="modal-overlay" id="aboutModal">
-<div class="modal">
+  <div class="modal">
+    <p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, achieving results above industry standards.</p>
 
-<p>Before moving into real estate sales, I completed a Bachelor of Property from the University of Auckland and entered the industry immediately after graduating. I built a strong track record as a residential letting agent across Auckland, achieving results above industry standards.</p>
+    <p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice.</p>
 
-<p>Even at this high level of performance, I took a principled approach to protect long term property value. This same approach, market insight, and innovative mindset now guides my real estate practice.</p>
+    <div class="car-section">
+      <h2>My Cars</h2>
+      <p class="car-description">Tap a plate to view the vehicle it is currently registered to.</p>
 
-<div class="car-section">
+      <div class="plates">
+        <div class="plate plate-nght" onclick="showCar('nght')">NGHT</div>
+        <div class="plate plate-lght" onclick="showCar('lght')">LGHT</div>
+        <div class="plate plate-mojica" onclick="showCar('mojica')">MOJICA</div>
+      </div>
 
-<h2>My Cars</h2>
-<p class="car-description">Tap a plate to view the vehicle it is currently registered to.</p>
+      <div class="car-display">
+        <div class="car-box">
+          <img id="carImage" src="car-nght.jpg">
+          <div class="car-note" id="mojicaNote">
+            This personalised plate is currently registered to <strong>LGHT</strong> while a new vehicle is being prepared.
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="plates">
-<div class="plate plate-nght" onclick="showCar('nght')">NGHT</div>
-<div class="plate plate-lght" onclick="showCar('lght')">LGHT</div>
-<div class="plate plate-mojica" onclick="showCar('mojica')">MOJICA</div>
-</div>
-
-<div class="car-display">
-<div class="car-box">
-<img id="carImage" src="car-nght.jpg">
-<div class="car-note" id="mojicaNote">
-This personalised plate is currently registered to <strong>LGHT</strong> while a new vehicle is being prepared.
-</div>
-</div>
-</div>
-
-</div>
-
-<button onclick="closeModal()">×</button>
-
-</div>
+    <button onclick="closeModal()">×</button>
+  </div>
 </div>
 
 <div id="darkModeToggle">LGHT</div>
 
 <script>
+class GlassElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode:'open'});
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display:inline-block; cursor:pointer; border-radius:24px; width:100%; height:100%; }
+        .glass-box {
+          width:100%; height:100%; display:flex; justify-content:center; align-items:center;
+          border-radius:24px; font-weight:700; font-family:inherit;
+          background: rgba(255,255,255,0.25);
+          color: #fafafb;
+          backdrop-filter: blur(8px) saturate(180%);
+          box-shadow: inset 0 0 10px rgba(255,255,255,0.18), 0 15px 35px rgba(0,0,0,0.15);
+          transition: all 0.15s ease;
+        }
+        .glass-box:active { transform: scale(0.98); }
+      </style>
+      <div class="glass-box"><slot></slot></div>
+    `;
+  }
+}
+customElements.define('glass-element', GlassElement);
 
-class GlassElement extends HTMLElement{
-constructor(){
-super();
-this.attachShadow({mode:'open'});
-this.shadowRoot.innerHTML=`
-<style>
-:host{display:inline-block;width:100%;height:100%;cursor:pointer;border-radius:24px}
-.box{
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:24px;
-font-weight:700;
-background:rgba(255,255,255,.25);
-backdrop-filter:blur(8px) saturate(180%);
-box-shadow:inset 0 0 10px rgba(255,255,255,.18),0 15px 35px rgba(0,0,0,.15)
-}
-</style>
-<div class="box"><slot></slot></div>
-`
-}
-}
-customElements.define('glass-element',GlassElement)
+function openModal(){ document.getElementById('aboutModal').style.display='flex'; document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('aboutModal').style.display='none'; document.body.style.overflow='auto'; }
 
-function openModal(){
-aboutModal.style.display='flex'
-document.body.style.overflow='hidden'
+function switchTab(tab){
+  const currentContent = document.getElementById('currentContent');
+  const soldContent = document.getElementById('soldContent');
+  const currentTab = document.getElementById('currentTab');
+  const soldTab = document.getElementById('soldTab');
+  if(tab==='current'){
+    currentContent.style.display='block';
+    soldContent.style.display='none';
+    currentTab.classList.add('active');
+    soldTab.classList.remove('active');
+  } else {
+    currentContent.style.display='none';
+    soldContent.style.display='block';
+    currentTab.classList.remove('active');
+    soldTab.classList.add('active');
+  }
 }
 
-function closeModal(){
-aboutModal.style.display='none'
-document.body.style.overflow='auto'
-}
-
-aboutModal.addEventListener('click',e=>{
-if(e.target===aboutModal)closeModal()
-})
+document.getElementById('aboutModal').addEventListener('click',(e)=>{ if(e.target===aboutModal) closeModal(); });
 
 function showCar(car){
-
-const img=document.getElementById("carImage")
-const note=document.getElementById("mojicaNote")
-
-note.style.display="none"
-
-if(car==="nght") img.src="car-nght.jpg"
-if(car==="lght") img.src="car-lght.jpg"
-
-if(car==="mojica"){
-img.src="car-lght.jpg"
-note.style.display="flex"
+  const img = document.getElementById("carImage");
+  const note = document.getElementById("mojicaNote");
+  note.style.display = "none";
+  if(car==="nght") img.src="car-nght.jpg";
+  if(car==="lght") img.src="car-lght.jpg";
+  if(car==="mojica"){ img.src="car-lght.jpg"; note.style.display="flex"; }
 }
 
-}
+const darkToggle = document.getElementById('darkModeToggle');
+let theme = localStorage.getItem('theme') || 'night';
+applyTheme(theme);
 
-const toggle=document.getElementById("darkModeToggle")
-let theme=localStorage.getItem("theme")||"night"
-applyTheme(theme)
-
-toggle.onclick=()=>{
-theme=theme==="night"?"light":"night"
-applyTheme(theme)
-localStorage.setItem("theme",theme)
-}
+darkToggle.onclick = () => {
+  theme = theme==='night' ? 'light' : 'night';
+  applyTheme(theme);
+  localStorage.setItem('theme', theme);
+};
 
 function applyTheme(mode){
-
-if(mode==="light"){
-document.body.style.background="#fafafb"
-document.body.style.color="#000"
-document.querySelectorAll(".car-section h2").forEach(el=>el.style.color="#000")
-document.querySelectorAll(".car-description").forEach(el=>el.style.color="#555")
-toggle.textContent="NGHT"
+  if(mode==='light'){
+    document.body.style.backgroundColor='#fafafb';
+    document.body.style.color='#000';
+    document.querySelectorAll('.tab').forEach(el=>el.style.color='#000');
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#555');
+    document.querySelectorAll('.car-section h2').forEach(el=>el.style.color='#000');
+    document.querySelectorAll('.car-description').forEach(el=>el.style.color='#555');
+    document.querySelectorAll('glass-element').forEach(el=>{
+      const box = el.shadowRoot.querySelector('.glass-box');
+      box.style.color='#000';
+      box.style.background='rgba(255,255,255,0.25)';
+    });
+    document.querySelectorAll('.modal').forEach(el=>{
+      el.style.background='rgba(255,255,255,0.85)';
+      el.style.color='#000';
+      el.style.backdropFilter='blur(14px) saturate(180%)';
+    });
+    darkToggle.textContent='NGHT';
+    darkToggle.style.color='#000';
+  } else {
+    document.body.style.backgroundColor='#1a1a1a';
+    document.body.style.color='#fafafb';
+    document.querySelectorAll('.tab').forEach(el=>el.style.color='#fafafb');
+    document.querySelectorAll('.disclaimer').forEach(el=>el.style.color='#aaa');
+    document.querySelectorAll('.car-section h2').forEach(el=>el.style.color='#fafafb');
+    document.querySelectorAll('.car-description').forEach(el=>el.style.color='#aaa');
+    document.querySelectorAll('.modal').forEach(el=>{
+      el.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 25px 50px rgba(0,0,0,0.12)';
+      el.style.background='rgba(0,0,0,0.25)';
+      el.style.color='#fafafb';
+    });
+    document.querySelectorAll('glass-element').forEach(el=>{
+      const box = el.shadowRoot.querySelector('.glass-box');
+      box.style.color='#fafafb';
+      box.style.background='rgba(255,255,255,0.02)';
+      box.style.boxShadow='inset 0 0 8px rgba(255,255,255,0.08), 0 15px 35px rgba(0,0,0,0.15)';
+    });
+    darkToggle.textContent='LGHT';
+    darkToggle.style.color='#fafafb';
+  }
 }
-
-else{
-document.body.style.background="#1a1a1a"
-document.body.style.color="#fafafb"
-document.querySelectorAll(".car-section h2").forEach(el=>el.style.color="#fafafb")
-document.querySelectorAll(".car-description").forEach(el=>el.style.color="#aaa")
-toggle.textContent="LGHT"
-}
-
-}
-
 </script>
 
 </body>
