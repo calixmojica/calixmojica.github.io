@@ -5,28 +5,50 @@
   <title>Calix Mojica</title>
   <meta name="description" content="Calix Mojica is one of Auckland's emerging young real estate professionals, combining modern marketing strategies with a Bachelor of Property from the University of Auckland and a strong background in property management.">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="icon" href="favicon.ico">
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
     }
 
     h1 {
-      font-size: 3rem;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 500;
       color: #000000;
       letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .subtext {
+      margin-top: 12px;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 400;
+      color: #666666;
     }
   </style>
 </head>
 <body>
-  <h1>Currently enjoying life a bit too much. Full website coming soon.</h1>
+  <div class="container">
+    <h1>Currently enjoying life a bit too much.</h1>
+    <div class="subtext">Full website coming soon.</div>
+  </div>
 </body>
 </html>
