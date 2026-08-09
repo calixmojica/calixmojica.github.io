@@ -30,15 +30,19 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Calix Mojica">
+
     <meta
         property="og:description"
         content="Calix Mojica is a trusted property professional helping clients buy, sell, rent, and invest with confidence."
     >
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://calixmojica.com/">
     <meta property="og:image" content="https://calixmojica.com/headshot.jpg">
 
+
     <!-- Google Structured Data -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -54,34 +58,52 @@
     <style>
 
         :root {
+
             --background: #09090b;
+
             --card: #141416;
+
             --card-dark: #0d0d0f;
+
             --card-light: #1b1b1e;
+
             --border: rgba(255, 255, 255, 0.08);
+
             --border-light: rgba(255, 255, 255, 0.12);
+
             --text: #f5f5f7;
+
             --secondary: #a1a1a6;
+
             --muted: #77777d;
+
         }
 
 
         * {
+
             box-sizing: border-box;
+
             margin: 0;
+
             padding: 0;
+
         }
 
 
         html {
+
             scroll-behavior: smooth;
+
         }
 
 
         body {
+
             min-height: 100vh;
 
             background: var(--background);
+
             color: var(--text);
 
             font-family:
@@ -94,7 +116,9 @@
                 sans-serif;
 
             -webkit-font-smoothing: antialiased;
+
             text-rendering: optimizeLegibility;
+
         }
 
 
@@ -102,19 +126,27 @@
         input,
         textarea,
         select {
+
             font-family: inherit;
+
         }
 
 
         a {
+
             color: inherit;
+
             text-decoration: none;
+
         }
 
 
         .container {
+
             width: min(92%, 620px);
+
             margin: 0 auto;
+
         }
 
 
@@ -123,13 +155,18 @@
         ======================================== */
 
         header {
+
             text-align: center;
+
             padding: 55px 0 28px;
+
         }
 
 
         .headshot {
+
             width: 118px;
+
             height: 118px;
 
             display: block;
@@ -144,16 +181,20 @@
 
             box-shadow:
                 0 10px 40px rgba(0, 0, 0, 0.45);
+
         }
 
 
         h1 {
+
             font-size: clamp(32px, 8vw, 42px);
+
             line-height: 1.05;
 
             font-weight: 700;
 
             letter-spacing: -1.5px;
+
         }
 
 
@@ -162,24 +203,30 @@
         ======================================== */
 
         .socials {
+
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             gap: 25px;
 
             margin-top: 23px;
+
         }
 
 
         .social-link {
+
             width: 30px;
+
             height: 30px;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             color: white;
@@ -189,20 +236,27 @@
             transition:
                 transform 0.2s ease,
                 opacity 0.2s ease;
+
         }
 
 
         .social-link:hover {
+
             opacity: 1;
+
             transform: translateY(-2px);
+
         }
 
 
         .social-link svg {
+
             width: 25px;
+
             height: 25px;
 
             fill: currentColor;
+
         }
 
 
@@ -211,6 +265,7 @@
         ======================================== */
 
         .property-card {
+
             margin-top: 22px;
 
             padding: 8px;
@@ -223,6 +278,7 @@
 
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.28);
+
         }
 
 
@@ -231,6 +287,7 @@
         ======================================== */
 
         .tabs {
+
             display: grid;
 
             grid-template-columns: 1fr 1fr;
@@ -244,11 +301,14 @@
             background: var(--card-dark);
 
             border-radius: 16px;
+
         }
 
 
         .tab {
+
             border: none;
+
             outline: none;
 
             padding: 12px 10px;
@@ -260,6 +320,7 @@
             border-radius: 12px;
 
             font-size: 15px;
+
             font-weight: 600;
 
             cursor: pointer;
@@ -267,17 +328,23 @@
             transition:
                 background 0.2s ease,
                 color 0.2s ease;
+
         }
 
 
         .tab.active {
+
             background: #242427;
+
             color: white;
+
         }
 
 
         .tab:hover:not(.active) {
+
             color: #d5d5d7;
+
         }
 
 
@@ -286,34 +353,42 @@
         ======================================== */
 
         .tab-content {
+
             display: none;
+
             padding: 0 14px 18px;
+
         }
 
 
         .tab-content.active {
+
             display: block;
+
         }
 
 
         .section-title {
+
             margin-bottom: 8px;
 
             font-size: 20px;
+
             font-weight: 650;
 
             letter-spacing: -0.4px;
+
         }
 
 
         .empty-message {
-            margin-bottom: 10px;
 
             color: var(--secondary);
 
             font-size: 15px;
 
             line-height: 1.55;
+
         }
 
 
@@ -322,6 +397,7 @@
         ======================================== */
 
         .listings {
+
             display: flex;
 
             flex-direction: column;
@@ -329,10 +405,12 @@
             gap: 12px;
 
             margin-bottom: 22px;
+
         }
 
 
         .listing {
+
             display: block;
 
             padding: 15px;
@@ -346,71 +424,216 @@
             transition:
                 background 0.2s ease,
                 transform 0.2s ease;
+
         }
 
 
         .listing:hover {
+
             background: #202023;
 
             transform: translateY(-1px);
+
         }
 
 
         .listing-title {
+
             margin-bottom: 4px;
 
             font-size: 16px;
+
             font-weight: 600;
+
         }
 
 
         .listing-details {
+
             color: var(--secondary);
 
             font-size: 14px;
+
         }
 
 
         /* ========================================
-           PROPERTY APPRAISAL SECTION
+           ARROW OUTSIDE PROPERTY BOX
         ======================================== */
 
-        .appraisal-section {
-            margin-top: 42px;
-            margin-bottom: 10px;
+        .services-toggle-wrapper {
+
+            display: flex;
+
+            justify-content: center;
+
+            padding: 18px 0 0;
+
         }
 
 
+        .services-toggle {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #151517;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.25);
+
+            transition:
+                background 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease;
+
+        }
+
+
+        .services-toggle:hover {
+
+            background: #1d1d20;
+
+            border-color:
+                rgba(255, 255, 255, 0.16);
+
+        }
+
+
+        .services-toggle:active {
+
+            transform: scale(0.93);
+
+        }
+
+
+        .chevron {
+
+            width: 15px;
+
+            height: 15px;
+
+            border-right: 2px solid #c7c7ca;
+
+            border-bottom: 2px solid #c7c7ca;
+
+            transform:
+                rotate(45deg)
+                translate(-2px, -2px);
+
+            transition:
+                transform 0.45s cubic-bezier(.4, 0, .2, 1);
+
+        }
+
+
+        .services-toggle.open .chevron {
+
+            transform:
+                rotate(225deg)
+                translate(-2px, -2px);
+
+        }
+
+
+        /* ========================================
+           SERVICES REVEAL
+        ======================================== */
+
+        .services-reveal {
+
+            display: grid;
+
+            grid-template-rows: 0fr;
+
+            opacity: 0;
+
+            margin-top: 0;
+
+            transition:
+                grid-template-rows 0.55s cubic-bezier(.4, 0, .2, 1),
+                opacity 0.35s ease,
+                margin-top 0.55s cubic-bezier(.4, 0, .2, 1);
+
+        }
+
+
+        .services-reveal.open {
+
+            grid-template-rows: 1fr;
+
+            opacity: 1;
+
+            margin-top: 42px;
+
+        }
+
+
+        .services-inner {
+
+            min-height: 0;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ========================================
+           PROPERTY SERVICES
+        ======================================== */
+
         .appraisal-intro {
+
             padding: 0 8px 20px;
+
         }
 
 
         .eyebrow {
+
             margin-bottom: 9px;
 
             color: var(--muted);
 
             font-size: 11px;
+
             font-weight: 600;
 
             letter-spacing: 1.2px;
+
         }
 
 
         .appraisal-intro h2 {
-            margin-bottom: 9px;
+
+            margin-bottom: 8px;
 
             font-size: 25px;
+
             line-height: 1.15;
 
             font-weight: 650;
 
             letter-spacing: -0.7px;
+
         }
 
 
         .appraisal-intro p:not(.eyebrow) {
+
             max-width: 480px;
 
             color: var(--secondary);
@@ -418,15 +641,15 @@
             font-size: 14px;
 
             line-height: 1.55;
+
         }
 
 
         /* ========================================
-           APPRAISAL CARD
+           MINIMAL SERVICES CARD
         ======================================== */
 
         .appraisal-card {
-            overflow: hidden;
 
             background: #111113;
 
@@ -434,134 +657,64 @@
 
             border-radius: 22px;
 
+            overflow: hidden;
+
             box-shadow:
-                0 18px 50px rgba(0, 0, 0, 0.22);
+                0 18px 50px rgba(0, 0, 0, 0.20);
+
         }
 
 
-        .appraisal-header {
-            display: flex;
+        .service {
 
-            align-items: flex-start;
-            justify-content: space-between;
+            padding: 24px 22px;
 
-            padding: 24px 22px 22px;
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
 
-        .appraisal-label {
-            display: block;
+        .service + .service {
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.07);
+
+        }
+
+
+        .service h3 {
 
             margin-bottom: 7px;
 
-            color: var(--muted);
-
-            font-size: 10px;
-            font-weight: 600;
-
-            letter-spacing: 1.1px;
-        }
-
-
-        .appraisal-header h3 {
-            font-size: 19px;
+            font-size: 17px;
 
             font-weight: 600;
 
-            letter-spacing: -0.35px;
+            letter-spacing: -0.3px;
+
         }
 
 
-        .appraisal-icon {
-            width: 32px;
-            height: 32px;
+        .service p {
 
-            display: flex;
+            max-width: 460px;
 
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: #202023;
-
-            color: #d5d5d7;
-
-            font-size: 16px;
-        }
-
-
-        /* ========================================
-           APPRAISAL OPTIONS
-        ======================================== */
-
-        .appraisal-options {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        .appraisal-option {
-            display: grid;
-
-            grid-template-columns: 35px 1fr;
-
-            gap: 5px;
-
-            padding: 22px;
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-
-        .appraisal-option:last-child {
-            border-bottom: none;
-        }
-
-
-        .option-number {
-            padding-top: 3px;
-
-            color: #5f5f64;
-
-            font-size: 11px;
-
-            font-weight: 600;
-        }
-
-
-        .option-content h4 {
-            margin-bottom: 6px;
-
-            font-size: 16px;
-
-            font-weight: 600;
-
-            letter-spacing: -0.25px;
-        }
-
-
-        .option-content p {
-            max-width: 430px;
-
-            margin-bottom: 15px;
+            margin-bottom: 16px;
 
             color: var(--secondary);
 
             font-size: 13px;
 
             line-height: 1.5;
+
         }
 
 
         /* ========================================
-           NON-FUNCTIONAL APPRAISAL BUTTONS
+           SERVICE BUTTONS
         ======================================== */
 
         .appraisal-button {
-            padding: 10px 13px;
+
+            padding: 10px 14px;
 
             background: transparent;
 
@@ -580,13 +733,17 @@
             transition:
                 background 0.2s ease,
                 border-color 0.2s ease;
+
         }
 
 
         .appraisal-button:hover {
+
             background: rgba(255, 255, 255, 0.04);
 
-            border-color: rgba(255, 255, 255, 0.18);
+            border-color:
+                rgba(255, 255, 255, 0.18);
+
         }
 
 
@@ -595,6 +752,7 @@
         ======================================== */
 
         footer {
+
             padding: 35px 0 45px;
 
             color: #5f5f64;
@@ -602,6 +760,7 @@
             font-size: 12px;
 
             text-align: center;
+
         }
 
 
@@ -612,24 +771,33 @@
         @media (max-width: 480px) {
 
             header {
+
                 padding-top: 42px;
+
             }
 
 
             .headshot {
+
                 width: 105px;
+
                 height: 105px;
+
             }
 
 
             .property-card,
             .appraisal-card {
+
                 border-radius: 19px;
+
             }
 
 
-            .appraisal-option {
-                padding: 20px;
+            .service {
+
+                padding: 22px 20px;
+
             }
 
         }
@@ -822,8 +990,7 @@
                 <!--
                     WHEN YOU HAVE A PROPERTY:
 
-                    Delete the empty message below and
-                    add your listings here.
+                    Delete the message below and add listings.
 
                     Example:
 
@@ -876,8 +1043,7 @@
                 <!--
                     WHEN YOU HAVE A PROPERTY:
 
-                    Delete the empty message below and
-                    add your listings here.
+                    Delete the message below and add listings.
 
                     Example:
 
@@ -917,99 +1083,87 @@
 
 
         <!-- ========================================
-             PROPERTY APPRAISAL
+             ARROW OUTSIDE PROPERTY BOX
         ======================================== -->
 
-        <section class="appraisal-section">
+        <div class="services-toggle-wrapper">
 
+            <button
+                class="services-toggle"
+                id="servicesToggle"
+                type="button"
+                aria-label="Show property services"
+                aria-expanded="false"
+                aria-controls="propertyServices"
+                onclick="toggleServices()"
+            >
 
-            <div class="appraisal-intro">
+                <span class="chevron"></span>
 
-                <p class="eyebrow">
-                    PROPERTY SERVICES
-                </p>
+            </button>
 
-
-                <h2>
-                    Thinking about your property?
-                </h2>
-
-
-                <p>
-                    Whether you're considering selling or renting,
-                    get in touch to discuss your property's potential.
-                </p>
-
-            </div>
+        </div>
 
 
 
-            <div class="appraisal-card">
+        <!-- ========================================
+             HIDDEN PROPERTY SERVICES
+        ======================================== -->
+
+        <section
+            class="services-reveal"
+            id="propertyServices"
+            aria-hidden="true"
+        >
+
+            <div class="services-inner">
 
 
-                <!-- APPRAISAL HEADER -->
+                <div class="appraisal-intro">
 
-                <div class="appraisal-header">
-
-                    <div>
-
-                        <span class="appraisal-label">
-                            PROPERTY APPRAISAL
-                        </span>
+                    <p class="eyebrow">
+                        PROPERTY SERVICES
+                    </p>
 
 
-                        <h3>
-                            Let's talk about your property.
-                        </h3>
-
-                    </div>
+                    <h2>
+                        Thinking about your property?
+                    </h2>
 
 
-                    <div class="appraisal-icon">
-                        ↗
-                    </div>
+                    <p>
+                        Whether you are considering selling or renting,
+                        get in touch to discuss your property's potential.
+                    </p>
 
                 </div>
 
 
 
-                <!-- APPRAISAL OPTIONS -->
-
-                <div class="appraisal-options">
+                <div class="appraisal-card">
 
 
                     <!-- SELL -->
 
-                    <div class="appraisal-option">
+                    <div class="service">
 
-                        <div class="option-number">
-                            01
-                        </div>
-
-
-                        <div class="option-content">
-
-                            <h4>
-                                Looking to sell your property?
-                            </h4>
+                        <h3>
+                            Looking to sell your property?
+                        </h3>
 
 
-                            <p>
-                                Discuss your property's market potential,
-                                positioning, and next steps.
-                            </p>
+                        <p>
+                            Get a professional appraisal and discuss
+                            your options.
+                        </p>
 
 
-                            <!-- Non-functional for now -->
-
-                            <button
-                                class="appraisal-button"
-                                type="button"
-                            >
-                                Request a Property Appraisal
-                            </button>
-
-                        </div>
+                        <button
+                            class="appraisal-button"
+                            type="button"
+                        >
+                            Request an Appraisal
+                        </button>
 
                     </div>
 
@@ -1017,41 +1171,31 @@
 
                     <!-- RENT -->
 
-                    <div class="appraisal-option">
+                    <div class="service">
 
-                        <div class="option-number">
-                            02
-                        </div>
-
-
-                        <div class="option-content">
-
-                            <h4>
-                                Looking to rent your property?
-                            </h4>
+                        <h3>
+                            Looking to rent your property?
+                        </h3>
 
 
-                            <p>
-                                Discuss your rental property's potential,
-                                positioning, and leasing strategy.
-                            </p>
+                        <p>
+                            Discuss your property's rental potential
+                            and leasing options.
+                        </p>
 
 
-                            <!-- Non-functional for now -->
-
-                            <button
-                                class="appraisal-button"
-                                type="button"
-                            >
-                                Request a Rental Appraisal
-                            </button>
-
-                        </div>
+                        <button
+                            class="appraisal-button"
+                            type="button"
+                        >
+                            Request an Appraisal
+                        </button>
 
                     </div>
 
 
                 </div>
+
 
             </div>
 
@@ -1082,8 +1226,6 @@
 
         function showTab(tabName, clickedButton) {
 
-            // Hide all tabs
-
             document
                 .querySelectorAll('.tab-content')
                 .forEach(function(tab) {
@@ -1092,8 +1234,6 @@
 
                 });
 
-
-            // Remove active state
 
             document
                 .querySelectorAll('.tab')
@@ -1104,16 +1244,73 @@
                 });
 
 
-            // Show selected tab
-
             document
                 .getElementById(tabName)
                 .classList.add('active');
 
 
-            // Highlight selected tab
-
             clickedButton.classList.add('active');
+
+        }
+
+
+
+        function toggleServices() {
+
+            const services =
+                document.getElementById('propertyServices');
+
+            const toggle =
+                document.getElementById('servicesToggle');
+
+
+            const isOpen =
+                services.classList.contains('open');
+
+
+            if (isOpen) {
+
+                services.classList.remove('open');
+
+                toggle.classList.remove('open');
+
+                toggle.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+                toggle.setAttribute(
+                    'aria-label',
+                    'Show property services'
+                );
+
+                services.setAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+
+            } else {
+
+                services.classList.add('open');
+
+                toggle.classList.add('open');
+
+                toggle.setAttribute(
+                    'aria-expanded',
+                    'true'
+                );
+
+                toggle.setAttribute(
+                    'aria-label',
+                    'Hide property services'
+                );
+
+                services.setAttribute(
+                    'aria-hidden',
+                    'false'
+                );
+
+            }
 
         }
 
