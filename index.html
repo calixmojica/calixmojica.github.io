@@ -1,53 +1,708 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
-  <meta charset="UTF-8">
-  <title>Calix Mojica</title>
-  <meta name="description" content="Calix Mojica is a trusted property professional helping clients buy, sell, rent, and invest with confidence. Bachelor of Property graduate from the University of Auckland with extensive experience in property management and residential leasing.">
+    <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Mobile / Apple -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0b0d">
+    <meta name="apple-mobile-web-app-title" content="Calix Mojica">
+    <meta name="application-name" content="Calix Mojica">
 
-  <link rel="icon" href="favicon.ico">
+    <!-- SEO -->
+    <title>Calix Mojica</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
+    <meta
+        name="description"
+        content="Calix Mojica is a trusted property professional helping clients buy, sell, rent, and invest with confidence. Bachelor of Property graduate from the University of Auckland with extensive experience in property management and residential leasing."
+    >
+
+    <meta name="author" content="Calix Mojica">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calix Mojica">
+    <meta
+        property="og:description"
+        content="Calix Mojica is a trusted property professional helping clients buy, sell, rent, and invest with confidence."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calixmojica.com/">
+    <meta property="og:image" content="https://calixmojica.com/headshot.jpg">
+
+    <!-- Apple / iPhone -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Google structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Calix Mojica",
+        "url": "https://calixmojica.com/",
+        "jobTitle": "Property Professional",
+        "description": "Calix Mojica is a trusted property professional helping clients buy, sell, rent, and invest with confidence. Bachelor of Property graduate from the University of Auckland with extensive experience in property management and residential leasing."
     }
+    </script>
 
-    .container {
-      max-width: 800px;
-      width: 100%;
-    }
+    <style>
+        :root {
+            --background: #09090b;
+            --card: #141416;
+            --card-hover: #1a1a1d;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f5f5f7;
+            --secondary: #a1a1a6;
+            --muted: #77777d;
+            --accent: #ffffff;
+        }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 500;
-      color: #000000;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .subtext {
-      margin-top: 12px;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 400;
-      color: #666666;
-    }
-  </style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+
+            /* Apple-style system font stack */
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Helvetica Neue",
+                Arial,
+                sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(92%, 620px);
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding: 55px 0 28px;
+        }
+
+        .headshot {
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 22px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        h1 {
+            font-size: clamp(32px, 8vw, 42px);
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 23px;
+        }
+
+        .social-link {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            opacity: 0.88;
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .social-link:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 25px;
+            height: 25px;
+            fill: currentColor;
+        }
+
+        /* =========================
+           PROPERTY CARD
+        ========================= */
+
+        .property-card {
+            margin-top: 22px;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            border-radius: 22px;
+
+            padding: 8px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.28);
+        }
+
+        /* =========================
+           TABS
+        ========================= */
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: #0d0d0f;
+
+            padding: 4px;
+
+            border-radius: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            border: none;
+            outline: none;
+
+            background: transparent;
+            color: var(--muted);
+
+            padding: 12px 10px;
+
+            border-radius: 12px;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .tab.active {
+            background: #242427;
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            color: #d5d5d7;
+        }
+
+        /* =========================
+           TAB CONTENT
+        ========================= */
+
+        .tab-content {
+            display: none;
+            padding: 0 14px 18px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 650;
+            letter-spacing: -0.4px;
+            margin-bottom: 8px;
+        }
+
+        .empty-message {
+            color: var(--secondary);
+            font-size: 15px;
+            line-height: 1.55;
+
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           LISTINGS
+        ========================= */
+
+        .listings {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .listing {
+            display: block;
+
+            background: #1b1b1e;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .listing:hover {
+            background: var(--card-hover);
+            transform: translateY(-1px);
+        }
+
+        .listing-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .listing-details {
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        /* =========================
+           CTA BUTTONS
+        ========================= */
+
+        .cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+
+            background: white;
+            color: #0a0a0b;
+
+            padding: 13px 18px;
+
+            border-radius: 13px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        /* =========================
+           TRADE ME LINK
+        ========================= */
+
+        .trademe-link {
+            display: inline-block;
+
+            margin-top: 14px;
+
+            color: var(--secondary);
+
+            font-size: 13px;
+            font-weight: 500;
+
+            transition: color 0.2s ease;
+        }
+
+        .trademe-link:hover {
+            color: white;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 0 45px;
+
+            color: #5f5f64;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 480px) {
+            header {
+                padding-top: 42px;
+            }
+
+            .headshot {
+                width: 105px;
+                height: 105px;
+            }
+
+            .property-card {
+                border-radius: 19px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Full website in progress.</h1>
-  </div>
+
+    <main class="container">
+
+        <!-- =========================
+             PROFILE
+        ========================= -->
+
+        <header>
+
+            <!--
+                Replace "headshot.jpg" with your actual headshot filename.
+
+                Example:
+                <img src="images/calix.jpg" ...>
+            -->
+
+            <img
+                class="headshot"
+                src="headshot.jpg"
+                alt="Calix Mojica"
+            >
+
+            <h1>Calix Mojica</h1>
+
+            <!-- =========================
+                 SOCIAL MEDIA
+            ========================= -->
+
+            <div class="socials">
+
+                <!-- Instagram -->
+                <a
+                    class="social-link"
+                    href="https://instagram.com/YOUR_USERNAME"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect
+                            x="3"
+                            y="3"
+                            width="18"
+                            height="18"
+                            rx="5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.9"
+                        />
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="4.2"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.9"
+                        />
+                        <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="1.2"
+                        />
+                    </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a
+                    class="social-link"
+                    href="https://www.tiktok.com/@YOUR_USERNAME"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M15.2 3c.3 2.5 1.7 4.2 4.2 4.4v3.1c-1.7-.1-3.1-.6-4.2-1.5v6.5c0 3.7-2.4 5.7-5.6 5.7-3 0-5.6-2.1-5.6-5.2 0-3.4 2.8-5.4 6.1-5.1v3.2c-1.7-.3-3 .5-3 1.9 0 1.2 1 2.1 2.3 2.1 1.5 0 2.6-.9 2.6-2.9V3h3.2z"
+                        />
+                    </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a
+                    class="social-link"
+                    href="https://www.youtube.com/@YOUR_USERNAME"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M21.6 7.2a2.9 2.9 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.9 2.9 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.9 2.9 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.9 2.9 0 0 0 2-2c.4-1.8.4-4.8.4-4.8s0-3-.4-4.8z"
+                        />
+                        <path
+                            d="m10 15.5 5-3.5-5-3.5v7z"
+                            fill="#09090b"
+                        />
+                    </svg>
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             PROPERTY SECTION
+        ========================= -->
+
+        <section class="property-card">
+
+            <!-- TABS -->
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    onclick="showTab('sale', this)"
+                    type="button"
+                >
+                    For Sale
+                </button>
+
+                <button
+                    class="tab"
+                    onclick="showTab('rent', this)"
+                    type="button"
+                >
+                    For Rent
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 FOR SALE
+            ========================= -->
+
+            <div
+                id="sale"
+                class="tab-content active"
+            >
+
+                <h2 class="section-title">
+                    Properties for Sale
+                </h2>
+
+                <!--
+                    LISTINGS GO HERE
+
+                    When you have a listing, replace the empty-message
+                    with listing entries like this:
+
+                    <div class="listings">
+
+                        <a
+                            class="listing"
+                            href="PASTE-TRADEME-LINK-HERE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="listing-title">
+                                123 Example Street, Auckland
+                            </div>
+
+                            <div class="listing-details">
+                                3 bedrooms · 2 bathrooms · $850,000
+                            </div>
+                        </a>
+
+                    </div>
+                -->
+
+                <p class="empty-message" id="saleEmpty">
+                    There are currently no available properties up for sale.
+                </p>
+
+                <!--
+                    SELLER FORM
+
+                    When you create your seller form, replace
+                    YOUR-SELLER-FORM-LINK with the actual URL.
+                -->
+
+                <a
+                    class="cta-button"
+                    href="YOUR-SELLER-FORM-LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Sell Your House with Calix
+                </a>
+
+                <!-- Trade Me search -->
+                <a
+                    class="trademe-link"
+                    href="https://www.trademe.co.nz/a/property/residential/sale/search?search_string=Calix%20Mojica"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Calix Mojica listings on Trade Me →
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+                 FOR RENT
+            ========================= -->
+
+            <div
+                id="rent"
+                class="tab-content"
+            >
+
+                <h2 class="section-title">
+                    Properties for Rent
+                </h2>
+
+                <!--
+                    LISTINGS GO HERE
+
+                    Example:
+
+                    <div class="listings">
+
+                        <a
+                            class="listing"
+                            href="PASTE-TRADEME-LINK-HERE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="listing-title">
+                                45 Example Road, Auckland
+                            </div>
+
+                            <div class="listing-details">
+                                2 bedrooms · 1 bathroom · $650/week
+                            </div>
+                        </a>
+
+                    </div>
+                -->
+
+                <p class="empty-message" id="rentEmpty">
+                    There are currently no available properties up for rent.
+                </p>
+
+                <!--
+                    LANDLORD FORM
+
+                    When you create your landlord form, replace
+                    YOUR-LANDLORD-FORM-LINK with the actual URL.
+                -->
+
+                <a
+                    class="cta-button"
+                    href="YOUR-LANDLORD-FORM-LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Rent Your House with Calix
+                </a>
+
+                <!-- Trade Me search -->
+                <a
+                    class="trademe-link"
+                    href="https://www.trademe.co.nz/a/property/residential/rent/search?search_string=Calix%20Mojica"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Calix Mojica rentals on Trade Me →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+        © 2026 Calix Mojica
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function showTab(tabName, clickedButton) {
+
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+
+            // Remove active state from buttons
+            document.querySelectorAll('.tab').forEach(function(button) {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Highlight selected button
+            clickedButton.classList.add('active');
+        }
+
+    </script>
+
 </body>
 </html>
