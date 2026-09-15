@@ -30,25 +30,24 @@
       --text: #dce3ec;
       --muted: #8d9bad;
       --line: rgba(255,255,255,.10);
-      --glass: rgba(12, 29, 51, .70);
       --shadow: 0 30px 90px rgba(0,0,0,.34);
       --radius: 24px;
       --max: 1180px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html {
-      scroll-behaviour: smooth;
       scroll-behavior: smooth;
     }
 
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 78% 7%, rgba(216,181,106,.11), transparent 25rem),
-        radial-gradient(circle at 8% 30%, rgba(31,83,126,.18), transparent 30rem),
-        var(--navy-950);
+      background: var(--navy-950);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -56,10 +55,20 @@
       line-height: 1.5;
     }
 
-    body.modal-open { overflow: hidden; }
+    body.modal-open {
+      overflow: hidden;
+    }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font: inherit; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
     .container {
       width: min(calc(100% - 40px), var(--max));
@@ -111,21 +120,22 @@
       line-height: 1.75;
     }
 
-    /* NAV */
+    /* NAVIGATION */
+
     .nav-wrap {
       position: fixed;
       inset: 0 0 auto;
       z-index: 1000;
       padding: 17px 0;
-      background: linear-gradient(to bottom, rgba(4,11,21,.94), rgba(4,11,21,.66), transparent);
-      backdrop-filter: blur(0px);
+      background: rgba(4,11,21,.88);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
       transition: .25s ease;
     }
 
     .nav-wrap.scrolled {
-      background: rgba(4,11,21,.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(4,11,21,.92);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     nav {
@@ -225,13 +235,15 @@
       gap: 9px;
       min-height: 45px;
       padding: 0 18px;
-      border: 1px solid rgba(216,181,106,.55);
+      border: 1px solid rgba(255,255,255,.16);
       border-radius: 12px;
-      background: linear-gradient(135deg, #e0c078, #b8944c);
+      background: #d8b56a;
       color: #071426;
       font-size: 13px;
       font-weight: 750;
-      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.35);
       transition: .2s ease;
     }
 
@@ -253,6 +265,7 @@
     }
 
     /* HERO */
+
     .hero {
       position: relative;
       min-height: 760px;
@@ -263,37 +276,14 @@
     }
 
     .hero::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      right: -160px;
-      top: 60px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(216,181,106,.14), rgba(216,181,106,0) 68%);
-      pointer-events: none;
+      display: none;
     }
 
     .stars,
     .stars::before,
     .stars::after {
-      position: absolute;
-      inset: 0;
-      content: "";
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle at 12% 25%, rgba(255,255,255,.75) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 28% 13%, rgba(216,181,106,.7) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 48% 30%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 67% 17%, rgba(255,255,255,.7) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 86% 32%, rgba(216,181,106,.75) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 76% 65%, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
-        radial-gradient(circle at 20% 72%, rgba(255,255,255,.45) 0 1px, transparent 1.5px);
-      opacity: .45;
+      display: none;
     }
-
-    .stars::before { transform: translate(14px, 21px) scale(1.25); opacity: .2; }
-    .stars::after { transform: translate(-18px, 7px) scale(.8); opacity: .35; }
 
     .hero-grid {
       position: relative;
@@ -376,19 +366,28 @@
       text-transform: uppercase;
     }
 
-    .dream-card {
+    .dream-card,
+    .surface,
+    .modal-box {
       position: relative;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(14,34,57,.62);
+      background-image: none;
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+      box-shadow:
+        0 24px 70px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        inset 0 -1px 0 rgba(0,0,0,.16);
+    }
+
+    .dream-card {
       min-height: 470px;
       display: flex;
       align-items: flex-end;
       padding: 30px;
       overflow: hidden;
-      border: 1px solid rgba(216,181,106,.28);
       border-radius: 30px;
-      background:
-        linear-gradient(145deg, rgba(20,53,84,.9), rgba(4,12,22,.72)),
-        radial-gradient(circle at 65% 25%, rgba(216,181,106,.18), transparent 35%);
-      box-shadow: var(--shadow);
     }
 
     .dream-card::before {
@@ -403,6 +402,19 @@
       font-style: italic;
     }
 
+    .dream-card::after,
+    .surface::after,
+    .modal-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.025),
+        inset 0 1px 18px rgba(255,255,255,.025);
+    }
+
     .moon {
       position: absolute;
       width: 110px;
@@ -410,8 +422,8 @@
       right: 58px;
       top: 55px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #fff7d7, #d8b56a 65%, #927038);
-      box-shadow: 0 0 65px rgba(216,181,106,.24);
+      background: #d8b56a;
+      box-shadow: 0 0 45px rgba(216,181,106,.16);
     }
 
     .dream-card-content {
@@ -429,7 +441,7 @@
     }
 
     .dream-card-content h2 {
-      margin: 10px 0 10px;
+      margin: 10px 0;
       color: var(--white);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 44px;
@@ -443,7 +455,8 @@
       line-height: 1.65;
     }
 
-    /* INTRO */
+    /* INTRODUCTION */
+
     .intro {
       padding-top: 80px;
     }
@@ -462,7 +475,9 @@
       line-height: 1.1;
     }
 
-    .intro-quote span { color: var(--gold-light); }
+    .intro-quote span {
+      color: var(--gold-light);
+    }
 
     .intro-copy p {
       color: var(--muted);
@@ -470,14 +485,17 @@
       line-height: 1.8;
     }
 
-    .intro-copy p + p { margin-top: 15px; }
+    .intro-copy p + p {
+      margin-top: 15px;
+    }
 
     /* CARDS */
+
     .surface {
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(14,34,57,.82), rgba(7,18,31,.72));
       border-radius: var(--radius);
-      box-shadow: 0 20px 60px rgba(0,0,0,.16);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.16),
+        inset 0 1px 0 rgba(255,255,255,.08);
     }
 
     .why-grid {
@@ -497,10 +515,10 @@
       display: grid;
       place-items: center;
       margin-bottom: 25px;
-      border: 1px solid rgba(216,181,106,.28);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 12px;
       color: var(--gold-light);
-      background: rgba(216,181,106,.06);
+      background: rgba(255,255,255,.045);
       font-size: 16px;
     }
 
@@ -518,6 +536,7 @@
     }
 
     /* SERVICES */
+
     .services-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -535,7 +554,7 @@
 
     .service-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(216,181,106,.28);
+      border-color: rgba(255,255,255,.20);
     }
 
     .service-number {
@@ -570,6 +589,7 @@
     }
 
     /* PACKAGES */
+
     .packages {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -582,10 +602,9 @@
     }
 
     .package.featured {
-      border-color: rgba(216,181,106,.38);
-      background:
-        radial-gradient(circle at 90% 0%, rgba(216,181,106,.10), transparent 18rem),
-        linear-gradient(145deg, rgba(17,43,70,.9), rgba(7,18,31,.85));
+      border-color: rgba(255,255,255,.12);
+      background: rgba(14,34,57,.68);
+      background-image: none;
     }
 
     .package-top {
@@ -617,10 +636,10 @@
 
     .badge {
       padding: 6px 9px;
-      border: 1px solid rgba(216,181,106,.3);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 20px;
       color: var(--gold-light);
-      background: rgba(216,181,106,.07);
+      background: rgba(255,255,255,.045);
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -656,6 +675,7 @@
     }
 
     /* PROCESS */
+
     .process {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -691,7 +711,8 @@
       line-height: 1.6;
     }
 
-    /* TEAM */
+    /* DREAM TEAM */
+
     .team-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -707,11 +728,9 @@
 
     .team-photo {
       min-height: 235px;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(216,181,106,.16), transparent 28%),
-        linear-gradient(145deg, #163451, #071321);
       display: grid;
       place-items: end center;
+      background: #102844;
       color: rgba(255,255,255,.14);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 80px;
@@ -719,7 +738,9 @@
       padding-bottom: 5px;
     }
 
-    .team-info { padding: 28px 25px; }
+    .team-info {
+      padding: 28px 25px;
+    }
 
     .team-info .role {
       color: var(--gold-light);
@@ -743,6 +764,7 @@
     }
 
     /* STATS */
+
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -755,7 +777,9 @@
       text-align: center;
     }
 
-    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat + .stat {
+      border-left: 1px solid var(--line);
+    }
 
     .stat strong {
       display: block;
@@ -773,6 +797,7 @@
     }
 
     /* PROPERTIES */
+
     .property-toolbar {
       display: flex;
       align-items: end;
@@ -784,9 +809,11 @@
     .property-tabs {
       display: inline-flex;
       padding: 4px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 12px;
-      background: rgba(255,255,255,.025);
+      background: rgba(255,255,255,.045);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     .property-tab {
@@ -817,14 +844,16 @@
       transition: .25s ease;
     }
 
-    .property-card:hover { transform: translateY(-4px); }
+    .property-card:hover {
+      transform: translateY(-4px);
+    }
 
     .property-image {
       position: relative;
       height: 205px;
-      background:
-        linear-gradient(140deg, rgba(28,67,100,.9), rgba(6,17,29,.95));
       overflow: hidden;
+      background: #102844;
+      background-image: none;
     }
 
     .property-image::before {
@@ -837,14 +866,7 @@
     }
 
     .property-image::after {
-      content: "";
-      position: absolute;
-      width: 110px;
-      height: 110px;
-      right: 18px;
-      top: 18px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(216,181,106,.2), transparent 65%);
+      display: none;
     }
 
     .property-status {
@@ -855,7 +877,7 @@
       padding: 6px 8px;
       border-radius: 7px;
       background: rgba(4,11,21,.72);
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.12);
       color: var(--gold-light);
       font-size: 9px;
       font-weight: 700;
@@ -863,7 +885,9 @@
       text-transform: uppercase;
     }
 
-    .property-body { padding: 21px; }
+    .property-body {
+      padding: 21px;
+    }
 
     .property-body h3 {
       color: var(--white);
@@ -891,7 +915,9 @@
       text-align: center;
     }
 
-    .property-empty.show { display: block; }
+    .property-empty.show {
+      display: block;
+    }
 
     .property-empty h3 {
       color: var(--white);
@@ -905,7 +931,1089 @@
       font-size: 13px;
     }
 
-    /* TESTIMONIALS */
+    /* RESPONSIVE PART ONE */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links.open {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 68px;
+        display: grid;
+        padding: 9px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(7,20,38,.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .nav-links a {
+        padding: 13px;
+      }
+
+      .hero-grid,
+      .intro-grid,
+      .contact-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .dream-card {
+        min-height: 390px;
+      }
+
+      .why-grid,
+      .quote-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .properties-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .team-grid,
+      .packages {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 130px 0 70px;
+      }
+
+      .hero-copy h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-copy > p {
+        font-size: 15px;
+      }
+
+      .hero-meta {
+        gap: 17px;
+      }
+
+      .hero-stat strong {
+        font-size: 21px;
+      }
+
+      .dream-card {
+        min-height: 330px;
+        padding: 24px;
+      }
+
+      .moon {
+        width: 75px;
+        height: 75px;
+        right: 30px;
+        top: 35px;
+      }
+
+      .why-grid,
+      .services-grid,
+      .properties-grid,
+      .quote-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .stat:nth-child(4) {
+        border-top: 1px solid var(--line);
+      }
+
+      .property-toolbar {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .team-card {
+        grid-template-columns: 105px 1fr;
+      }
+
+      .team-photo {
+        min-height: 220px;
+        font-size: 60px;
+      }
+
+      .team-info {
+        padding: 22px 17px;
+      }
+
+      .package ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <div class="nav-wrap" id="navWrap">
+    <div class="container">
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="#home" data-scroll="home" aria-label="Dream Property home">
+          <span class="brand-mark brand-logo">
+            <img src="dream-property-logo.svg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <span class="brand-fallback" aria-hidden="true">D</span>
+          </span>
+
+          <span class="brand-wordmark">
+            Dream Property
+            <small>Property Management</small>
+          </span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home" data-scroll="home">Home</a>
+          <a href="#about" data-scroll="about">About</a>
+          <a href="#services" data-scroll="services">Services</a>
+          <a href="#team" data-scroll="team">Dream Team</a>
+          <a href="#properties" data-scroll="properties">Properties</a>
+          <a href="#contact" data-scroll="contact">Contact</a>
+        </div>
+
+        <a class="nav-cta" href="#contact" data-scroll="contact">Get Started</a>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="stars"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Auckland Property Management</div>
+
+        <h1>
+          Dream Bigger.<br>
+          <span>Beyond the Expected.</span>
+        </h1>
+
+        <p>
+          Professional property management built around stronger communication,
+          smarter systems and genuine care for your investment.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button-gold" href="#contact" data-scroll="contact">
+            Request a Free Appraisal
+          </a>
+
+          <a class="button-dark" href="#services" data-scroll="services">
+            Explore Our Services
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-stat">
+            <strong>10+</strong>
+            <span>Years' Experience</span>
+          </div>
+
+          <div class="hero-stat">
+            <strong>Auckland</strong>
+            <span>Wide Coverage</span>
+          </div>
+
+          <div class="hero-stat">
+            <strong>24/7</strong>
+            <span>Maintenance Coordination</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dream-card" aria-label="Dream Property brand statement">
+        <div class="moon"></div>
+
+        <div class="dream-card-content">
+          <div class="mini-label">A different kind of property partner</div>
+
+          <h2>Beyond the expected.</h2>
+
+          <p>
+            We look after the details, protect the asset and keep owners informed,
+            so property ownership can feel simpler, smarter and more rewarding.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRODUCTION -->
+  <section class="section intro" id="about">
+    <div class="container intro-grid">
+      <div class="intro-quote">
+        Property management should give you
+        <span>peace of mind,</span>
+        not another job.
+      </div>
+
+      <div class="intro-copy">
+        <div class="eyebrow">About Dream Property</div>
+
+        <p style="margin-top:16px;">
+          Dream Property is the repurposed identity of Auckland Property Rentals & Management,
+          bringing the same experience and commitment into a more distinctive, modern brand.
+        </p>
+
+        <p>
+          Locally owned and operated, our approach combines professional property management,
+          proactive care and clear communication to protect investments and support long-term
+          rental performance.
+        </p>
+
+        <p>
+          Whether you own one rental home or a growing portfolio, we take care of the moving
+          parts while keeping you informed and in control.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY DREAM -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Why Dream Property?</div>
+
+        <h2>More than management.</h2>
+
+        <p>
+          A premium service should feel personal, proactive, and straightforward.
+          These are the principles behind the Dream Property experience.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <article class="surface why-card">
+          <div class="icon">✦</div>
+          <h3>Protect the Asset</h3>
+          <p>
+            Routine oversight, inspections, maintenance, and compliance support
+            designed to preserve long-term property value.
+          </p>
+        </article>
+
+        <article class="surface why-card">
+          <div class="icon">↗</div>
+          <h3>Maximise the Return</h3>
+          <p>
+            Smart rental pricing, quality tenant placement and practical investment
+            guidance to support stronger performance.
+          </p>
+        </article>
+
+        <article class="surface why-card">
+          <div class="icon">◎</div>
+          <h3>Stay in the Know</h3>
+          <p>
+            Responsive communication and transparent reporting, so you always
+            understand what is happening with your property.
+          </p>
+        </article>
+
+        <article class="surface why-card">
+          <div class="icon">✓</div>
+          <h3>Compliance Covered</h3>
+          <p>
+            Support with Healthy Homes requirements, tenancy processes,
+            documentation and ongoing compliance obligations.
+          </p>
+        </article>
+
+        <article class="surface why-card">
+          <div class="icon">⌁</div>
+          <h3>Proactive Maintenance</h3>
+          <p>
+            Vetted contractors, preventative planning and coordinated repairs
+            to reduce disruption and avoid bigger problems.
+          </p>
+        </article>
+
+        <article class="surface why-card">
+          <div class="icon">24</div>
+          <h3>Here When It Matters</h3>
+          <p>
+            Fast communication and maintenance coordination give landlords and
+            tenants confidence when something needs attention.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Our Services</div>
+
+        <h2>Everything your property needs. Nothing it doesn't.</h2>
+
+        <p>
+          A focused suite of services covering the complete rental lifecycle.
+          Select a service to see the fuller picture without cluttering the main experience.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="surface service-card" data-modal="management">
+          <div class="service-number">01 / MANAGEMENT</div>
+          <h3>Property Management</h3>
+          <p>
+            Complete day-to-day management, from rent collection and tenant communication
+            to inspections, reporting and maintenance.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+
+        <article class="surface service-card" data-modal="letting">
+          <div class="service-number">02 / LETTING</div>
+          <h3>Tenant Find & Letting</h3>
+          <p>
+            Professional marketing, viewings and tenant screening designed to minimise
+            vacancy and secure quality tenants.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+
+        <article class="surface service-card" data-modal="compliance">
+          <div class="service-number">03 / COMPLIANCE</div>
+          <h3>Healthy Homes</h3>
+          <p>
+            Assessment, coordination and ongoing support to help rental properties
+            meet New Zealand's Healthy Homes requirements.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+
+        <article class="surface service-card" data-modal="inspections">
+          <div class="service-number">04 / OVERSIGHT</div>
+          <h3>Property Inspections</h3>
+          <p>
+            Regular checks, detailed reporting and early identification of maintenance
+            or tenancy issues.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+
+        <article class="surface service-card" data-modal="rent">
+          <div class="service-number">05 / INCOME</div>
+          <h3>Strict Rent Collection</h3>
+          <p>
+            Daily monitoring and structured arrears management designed to protect
+            cash flow and minimise outstanding rent.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+
+        <article class="surface service-card" data-modal="maintenance">
+          <div class="service-number">06 / CARE</div>
+          <h3>Maintenance & Repairs</h3>
+          <p>
+            Proactive maintenance coordination with trusted local contractors
+            and transparent tracking.
+          </p>
+          <div class="service-link">View details →</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section" id="packages">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Management Packages</div>
+
+        <h2>Choose the level of support that suits you.</h2>
+
+        <p>
+          Clear pricing, practical inclusions and a choice between essential management
+          and a more comprehensive hands-off experience.
+        </p>
+      </div>
+
+      <div class="packages">
+        <article class="surface package">
+          <div class="package-top">
+            <div>
+              <h3>Basic Management</h3>
+              <div class="price">4.99% <small>+ GST</small></div>
+            </div>
+          </div>
+
+          <ul>
+            <li>Rent collection</li>
+            <li>Arrears monitoring</li>
+            <li>Tenant communication</li>
+            <li>Financial reporting</li>
+            <li>Maintenance coordination</li>
+            <li>Water invoice processing</li>
+            <li>Tribunal representation</li>
+            <li>Insurance claim assistance</li>
+            <li>Lease administration</li>
+            <li>Routine management</li>
+            <li>Advertising charged separately</li>
+            <li>Letting fees charged separately</li>
+          </ul>
+        </article>
+
+        <article class="surface package featured">
+          <div class="package-top">
+            <div>
+              <h3>Premium Management</h3>
+              <div class="price">6.99% <small>+ GST</small></div>
+            </div>
+
+            <div class="badge">Recommended</div>
+          </div>
+
+          <ul>
+            <li>Everything in Basic</li>
+            <li>Advertising included</li>
+            <li>Tenant placement included</li>
+            <li>Property marketing included</li>
+            <li>Property viewings included</li>
+            <li>Credit checks</li>
+            <li>Reference verification</li>
+            <li>Tenancy documentation</li>
+            <li>Priority landlord support</li>
+            <li>Enhanced property reviews</li>
+            <li>Performance reporting</li>
+            <li>Preventative maintenance planning</li>
+            <li>Property improvement advice</li>
+            <li>Investment performance guidance</li>
+            <li>Dedicated account management</li>
+            <li>Strategic property advice</li>
+          </ul>
+
+          <div class="package-note">
+            GST will be added to all management fees. No additional advertising or letting fees.
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The Dream Process</div>
+        <h2>A better journey from day one.</h2>
+      </div>
+
+      <div class="process">
+        <article class="process-step">
+          <span>01</span>
+          <h3>Assess</h3>
+          <p>Understand the property, market position and owner's goals.</p>
+        </article>
+
+        <article class="process-step">
+          <span>02</span>
+          <h3>Prepare</h3>
+          <p>Prepare the property, pricing and marketing strategy.</p>
+        </article>
+
+        <article class="process-step">
+          <span>03</span>
+          <h3>Place</h3>
+          <p>Market the property and select a suitable tenant.</p>
+        </article>
+
+        <article class="process-step">
+          <span>04</span>
+          <h3>Settle</h3>
+          <p>Handle lease documentation, move-in and handover.</p>
+        </article>
+
+        <article class="process-step">
+          <span>05</span>
+          <h3>Manage</h3>
+          <p>Oversee rent, tenants, inspections, and maintenance.</p>
+        </article>
+
+        <article class="process-step">
+          <span>06</span>
+          <h3>Improve</h3>
+          <p>Review performance and identify opportunities to do better.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DREAM TEAM -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The Dream Team</div>
+
+        <h2>People behind the properties.</h2>
+
+        <p>
+          Experienced property professionals who combine industry knowledge
+          with a more modern, growth-minded approach.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <article class="surface team-card">
+          <div class="team-photo" aria-hidden="true">PJ</div>
+
+          <div class="team-info">
+            <div class="role">Director · Senior Property Manager</div>
+            <h3>Prashant Jeet</h3>
+
+            <p>
+              With 10 years of industry experience, including more than 7 years
+              as a Senior Property Manager, Prashant brings both professional
+              expertise and first-hand investor perspective to property management.
+            </p>
+          </div>
+        </article>
+
+        <article class="surface team-card">
+          <div class="team-photo" aria-hidden="true">AC</div>
+
+          <div class="team-info">
+            <div class="role">Business Administrator</div>
+            <h3>Aachal Chand</h3>
+
+            <p>
+              Bringing a background in education to property administration,
+              Aachal contributes strong organisation, attention to detail,
+              and clear communication across the day-to-day operation.
+            </p>
+          </div>
+        </article>
+
+        <article class="surface team-card">
+          <div class="team-photo" aria-hidden="true">CM</div>
+
+          <div class="team-info">
+            <div class="role">Business Partner · Business Development & Growth</div>
+            <h3>Calix Mojica</h3>
+
+            <p>
+              Focused on business development, brand growth, and expanding
+              Dream Property's presence, while supporting clients through the
+              property journey and helping build the next chapter of the business.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="stats">
+        <div class="stat">
+          <strong>10+</strong>
+          <span>Years of Experience</span>
+        </div>
+
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Client Focused</span>
+        </div>
+
+        <div class="stat">
+          <strong>5★</strong>
+          <span>Professional Service</span>
+        </div>
+
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Maintenance Coordination</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPERTIES -->
+  <section class="section" id="properties">
+    <div class="container">
+      <div class="property-toolbar">
+        <div class="section-heading" style="margin-bottom:0;">
+          <div class="eyebrow">Available Properties</div>
+
+          <h2>Find your next dream property.</h2>
+
+          <p>
+            Available rental and sale opportunities will appear here as properties are listed.
+          </p>
+        </div>
+
+        <div class="property-tabs" role="tablist" aria-label="Property type">
+          <button
+            class="property-tab active"
+            type="button"
+            data-property-tab="rent"
+          >
+            For Rent
+          </button>
+
+          <button
+            class="property-tab"
+            type="button"
+            data-property-tab="sale"
+          >
+            For Sale
+          </button>
+        </div>
+      </div>
+
+      <!-- Replace these demo cards with live listings when ready -->
+      <div class="properties-grid" id="rentProperties">
+        <article class="surface property-card">
+          <div class="property-image">
+            <div class="property-status">Available In 4 Days</div>
+          </div>
+
+          <div class="property-body">
+            <h3>1 Example Road, Auckland</h3>
+            <p>3 bedrooms · 2 bathrooms · Auckland</p>
+            <div class="property-price">$750 per week</div>
+          </div>
+        </article>
+
+        <article class="surface property-card">
+          <div class="property-image">
+            <div class="property-status">Available Now</div>
+          </div>
+
+          <div class="property-body">
+            <h3>2 Example Road, Auckland</h3>
+            <p>4 bedrooms · 2 bathrooms · Auckland</p>
+            <div class="property-price">$850 per week</div>
+          </div>
+        </article>
+
+        <article class="surface property-card">
+          <div class="property-image">
+            <div class="property-status">Available Now</div>
+          </div>
+
+          <div class="property-body">
+            <h3>3 Example Road, Auckland</h3>
+            <p>2 bedrooms · 1 bathroom · Auckland</p>
+            <div class="property-price">$500 per week</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="property-empty" id="saleProperties">
+        <h3>Properties for sale</h3>
+
+        <p>
+          Sales listings can be displayed here when Dream Property expands into
+          sales and broader property services.
+        </p>
+      </div>
+    </div>
+  </section>
+    <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Client Experience</div>
+
+        <h2>Trusted by landlords.</h2>
+
+        <p>
+          Real feedback from clients who value communication, professionalism and care.
+        </p>
+      </div>
+
+      <div class="quote-grid">
+        <article class="surface quote-card">
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            I am very happy with the service provided. Dream Property kept us updated
+            and communicated clearly throughout. I would highly recommend them.
+          </blockquote>
+
+          <cite>N. Patel</cite>
+        </article>
+
+        <article class="surface quote-card">
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            I am impressed with the amazing service I received from them.
+            Professional in all aspects and care for their clients.
+          </blockquote>
+
+          <cite>E. Thompson</cite>
+        </article>
+
+        <article class="surface quote-card">
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            Prashant communicated and kept us in the loop at each step.
+            I highly recommend them to anyone looking for property management.
+          </blockquote>
+
+          <cite>O. Hartman</cite>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="surface contact-shell">
+        <div class="contact-copy">
+          <div class="eyebrow">Let's Talk</div>
+
+          <h2>Ready to dream bigger?</h2>
+
+          <p>
+            Tell us about your property, portfolio, or plans. We will help you
+            understand your options and find the right level of support.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span>Visit</span>
+
+              <a
+                href="https://maps.app.goo.gl/GRHhPpEcNu1GoYTq6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Victoria Street West, Auckland CBD, Auckland 1010
+              </a>
+            </div>
+
+            <div class="contact-detail">
+              <span>Call</span>
+              <a href="tel:0800838383">0800 83 83 83</a>
+            </div>
+
+            <div class="contact-detail">
+              <span>Email</span>
+              <a href="mailto:info@dreamproperty.co.nz">
+                info@dreamproperty.co.nz
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Your phone number"
+              >
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="type">I need help with</label>
+              <input
+                id="type"
+                name="type"
+                type="text"
+                placeholder="Property management, appraisal..."
+              >
+            </div>
+
+            <div class="field full">
+              <label for="message">Message</label>
+
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us a little about your property or enquiry."
+                required
+              ></textarea>
+            </div>
+
+            <div class="field full">
+              <button class="button-gold" type="submit">
+                Send Enquiry
+              </button>
+
+              <div class="form-note" id="formNote">
+                Work in progress.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Dream Property</div>
+    </div>
+  </footer>
+
+  <!-- SERVICE MODALS -->
+
+  <div class="modal" id="modal-management" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">01 / Management</div>
+
+      <h2>Property Management</h2>
+
+      <p>
+        End-to-end management designed to protect the property, support the tenant
+        and keep the owner informed.
+      </p>
+
+      <h3>What's included</h3>
+
+      <ul>
+        <li>Rent collection and arrears monitoring</li>
+        <li>Tenant communication and lease administration</li>
+        <li>Routine property management and inspections</li>
+        <li>Financial reporting and water invoice processing</li>
+        <li>Maintenance coordination</li>
+        <li>Tribunal representation and insurance claim assistance</li>
+        <li>Healthy Homes compliance support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-letting" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">02 / Letting</div>
+
+      <h2>Tenant Find & Letting</h2>
+
+      <p>
+        We manage the letting journey from pricing and marketing through to
+        screening, documentation and move-in.
+      </p>
+
+      <h3>What's included</h3>
+
+      <ul>
+        <li>Rental appraisal and market positioning</li>
+        <li>Professional property marketing</li>
+        <li>Property viewings</li>
+        <li>Credit and background checks</li>
+        <li>Employment and reference verification</li>
+        <li>Tribunal history checks</li>
+        <li>Tenancy documentation and lease preparation</li>
+        <li>Move-in inspection reporting</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-compliance" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">03 / Compliance</div>
+
+      <h2>Healthy Homes Compliance</h2>
+
+      <p>
+        Support for landlords navigating New Zealand's Healthy Homes Standards,
+        from assessment through to coordinated upgrades.
+      </p>
+
+      <h3>Areas we support</h3>
+
+      <ul>
+        <li>Healthy Homes assessments</li>
+        <li>Heating and heat pump coordination</li>
+        <li>Insulation requirements</li>
+        <li>Ventilation requirements</li>
+        <li>Moisture ingress and drainage solutions</li>
+        <li>Compliance guidance and documentation</li>
+        <li>Ongoing support and advice</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-inspections" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">04 / Oversight</div>
+
+      <h2>Property Inspections</h2>
+
+      <p>
+        Regular oversight helps identify problems early, protect property condition
+        and maintain a strong owner-tenant relationship.
+      </p>
+
+      <h3>Our approach</h3>
+
+      <ul>
+        <li>Routine property inspections</li>
+        <li>Detailed reports with photos</li>
+        <li>Early identification of leaks, dampness, damage and wear</li>
+        <li>Healthy Homes and safety checks</li>
+        <li>Maintenance recommendations</li>
+        <li>Clear owner communication and follow-up</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-rent" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">05 / Income</div>
+
+      <h2>Strict Rent Collection</h2>
+
+      <p>
+        A proactive process focused on protecting rental income and addressing
+        arrears before they become bigger problems.
+      </p>
+
+      <h3>Our process</h3>
+
+      <ul>
+        <li>Daily rent monitoring</li>
+        <li>Immediate tenant follow-up</li>
+        <li>Arrears notifications and formal breach notices where required</li>
+        <li>MSD rent redirection assistance</li>
+        <li>Tenancy Tribunal applications where appropriate</li>
+        <li>Debt recovery referrals after tenancy</li>
+        <li>Regular landlord updates</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-maintenance" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+
+      <div class="eyebrow">06 / Care</div>
+
+      <h2>Maintenance & Repairs</h2>
+
+      <p>
+        Smart maintenance is about preventing problems, not simply reacting to them.
+      </p>
+
+      <h3>What we coordinate</h3>
+
+      <ul>
+        <li>Tenant maintenance requests</li>
+        <li>Vetted Auckland contractors</li>
+        <li>Plumbing and electrical services</li>
+        <li>Appliance repairs and general building work</li>
+        <li>Urgent repairs and scheduled maintenance</li>
+        <li>Repair history and follow-up tracking</li>
+        <li>Preventative maintenance planning</li>
+        <li>Property improvement recommendations</li>
+      </ul>
+    </div>
+  </div>
+
+  <style>
+    /* REMAINING COMPONENT STYLES */
+
     .quote-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -941,7 +2049,6 @@
       letter-spacing: .5px;
     }
 
-    /* CONTACT */
     .contact-shell {
       display: grid;
       grid-template-columns: .85fr 1.15fr;
@@ -950,9 +2057,8 @@
 
     .contact-copy {
       padding: 45px;
-      background:
-        radial-gradient(circle at 0 100%, rgba(216,181,106,.12), transparent 18rem),
-        #0b1c30;
+      background: #0b1c30;
+      background-image: none;
     }
 
     .contact-copy h2 {
@@ -996,7 +2102,9 @@
 
     .contact-form {
       padding: 45px;
-      background: rgba(255,255,255,.025);
+      background: rgba(255,255,255,.035);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
     }
 
     .form-grid {
@@ -1005,7 +2113,9 @@
       gap: 13px;
     }
 
-    .field.full { grid-column: 1 / -1; }
+    .field.full {
+      grid-column: 1 / -1;
+    }
 
     label {
       display: block;
@@ -1017,7 +2127,8 @@
       text-transform: uppercase;
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
       border: 1px solid rgba(255,255,255,.10);
       outline: 0;
@@ -1028,7 +2139,8 @@
       transition: .2s ease;
     }
 
-    input:focus, textarea:focus {
+    input:focus,
+    textarea:focus {
       border-color: rgba(216,181,106,.55);
       box-shadow: 0 0 0 3px rgba(216,181,106,.06);
     }
@@ -1046,6 +2158,7 @@
     }
 
     /* FOOTER */
+
     footer {
       padding: 35px 0 50px;
       color: #536174;
@@ -1055,17 +2168,15 @@
     .footer-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 20px;
       padding-top: 25px;
       border-top: 1px solid var(--line);
+      text-align: center;
     }
 
-    .footer-brand { color: #aab5c2; font-weight: 700; }
-    .footer-links { display: flex; gap: 17px; }
-    .footer-links a:hover { color: var(--white); }
+    /* MODALS */
 
-    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
@@ -1073,8 +2184,9 @@
       display: grid;
       place-items: center;
       padding: 20px;
-      background: rgba(1,7,13,.78);
-      backdrop-filter: blur(14px);
+      background: rgba(1,7,13,.72);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
       opacity: 0;
       visibility: hidden;
       transition: .25s ease;
@@ -1086,20 +2198,22 @@
     }
 
     .modal-box {
-      position: relative;
       width: min(720px, 100%);
       max-height: min(82vh, 760px);
       overflow: auto;
       padding: 35px;
-      border: 1px solid rgba(216,181,106,.25);
       border-radius: 24px;
-      background: #091a2d;
-      box-shadow: 0 40px 100px rgba(0,0,0,.5);
+      background: rgba(9,26,45,.78);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.12);
       transform: translateY(12px) scale(.98);
       transition: .25s ease;
     }
 
-    .modal.open .modal-box { transform: translateY(0) scale(1); }
+    .modal.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
 
     .modal-close {
       position: absolute;
@@ -1107,12 +2221,14 @@
       top: 18px;
       width: 37px;
       height: 37px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 50%;
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.06);
       color: #c9d1dc;
       cursor: pointer;
       font-size: 18px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     .modal-box h2 {
@@ -1145,793 +2261,55 @@
       font-size: 13px;
     }
 
-    .modal-box li::marker { color: var(--gold); }
+    .modal-box li::marker {
+      color: var(--gold);
+    }
 
     /* RESPONSIVE */
+
     @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-      .nav-links.open {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        top: 68px;
-        display: grid;
-        padding: 9px;
-        border: 1px solid var(--line);
-        border-radius: 15px;
-        background: rgba(7,20,38,.96);
-        backdrop-filter: blur(18px);
+      .contact-shell {
+        grid-template-columns: 1fr;
       }
-      .nav-links a { padding: 13px; }
 
-      .hero-grid,
-      .intro-grid,
-      .contact-shell { grid-template-columns: 1fr; }
-
-      .hero-grid { gap: 45px; }
-      .dream-card { min-height: 390px; }
-
-      .why-grid,
-      .quote-grid { grid-template-columns: 1fr 1fr; }
-
-      .process { grid-template-columns: repeat(3, 1fr); }
-
-      .properties-grid { grid-template-columns: 1fr 1fr; }
-
-      .team-grid,
-      .packages { grid-template-columns: 1fr; }
+      .quote-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 620px) {
-      .container { width: min(calc(100% - 28px), var(--max)); }
-      .section { padding: 75px 0; }
-      .hero { min-height: auto; padding: 130px 0 70px; }
-      .hero-copy h1 { letter-spacing: -3px; }
-      .hero-copy > p { font-size: 15px; }
-
-      .hero-meta { gap: 17px; }
-      .hero-stat strong { font-size: 21px; }
-
-      .dream-card { min-height: 330px; padding: 24px; }
-      .moon { width: 75px; height: 75px; right: 30px; top: 35px; }
-
-      .why-grid,
-      .services-grid,
-      .properties-grid,
-      .quote-grid,
-      .team-grid { grid-template-columns: 1fr; }
-
-      .process { grid-template-columns: 1fr 1fr; }
-
-      .stats { grid-template-columns: 1fr 1fr; }
-      .stat:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
-      .stat:nth-child(4) { border-top: 1px solid var(--line); }
-
-      .property-toolbar {
-        align-items: start;
-        flex-direction: column;
+      .quote-grid {
+        grid-template-columns: 1fr;
       }
-
-      .team-card { grid-template-columns: 105px 1fr; }
-      .team-photo { min-height: 220px; font-size: 60px; }
-      .team-info { padding: 22px 17px; }
 
       .contact-copy,
-      .contact-form { padding: 29px 23px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .field.full { grid-column: auto; }
+      .contact-form {
+        padding: 29px 23px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .modal-box {
+        padding: 29px 23px;
+      }
 
       .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition: none !important; }
-    }
   </style>
-</head>
-
-<body>
-
-  <!-- NAVIGATION -->
-  <div class="nav-wrap" id="navWrap">
-    <div class="container">
-      <nav aria-label="Primary navigation">
-        <a class="brand" href="#home" data-scroll="home" aria-label="Dream Property home">
-          <span class="brand-mark brand-logo">
-            <img src="dream-property-logo.svg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-            <span class="brand-fallback" aria-hidden="true">D</span>
-          </span>
-          <span class="brand-wordmark">
-            Dream Property
-            <small>Property Management</small>
-          </span>
-        </a>
-
-        <div class="nav-links" id="navLinks">
-          <a href="#home" data-scroll="home">Home</a>
-          <a href="#about" data-scroll="about">About</a>
-          <a href="#services" data-scroll="services">Services</a>
-          <a href="#team" data-scroll="team">Dream Team</a>
-          <a href="#properties" data-scroll="properties">Properties</a>
-          <a href="#contact" data-scroll="contact">Contact</a>
-        </div>
-
-        <a class="nav-cta" href="#contact" data-scroll="contact">Get Started</a>
-        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-      </nav>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <header class="hero" id="home">
-    <div class="stars"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">Auckland Property Management</div>
-        <h1>Dream Bigger.<br><span>Beyond the Expected.</span></h1>
-        <p>
-          Professional property management built around stronger communication,
-          smarter systems and genuine care for your investment.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button-gold" href="#contact" data-scroll="contact">Request a Free Appraisal</a>
-          <a class="button-dark" href="#services" data-scroll="services">Explore Our Services</a>
-        </div>
-
-        <div class="hero-meta">
-          <div class="hero-stat">
-            <strong>10+</strong>
-            <span>Years' Experience</span>
-          </div>
-          <div class="hero-stat">
-            <strong>Auckland</strong>
-            <span>Wide Coverage</span>
-          </div>
-          <div class="hero-stat">
-            <strong>24/7</strong>
-            <span>Maintenance Coordination</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dream-card" aria-label="Dream Property brand statement">
-        <div class="moon"></div>
-        <div class="dream-card-content">
-          <div class="mini-label">A different kind of property partner</div>
-          <h2>Beyond the expected.</h2>
-          <p>
-            We look after the details, protect the asset and keep owners informed,
-            so property ownership can feel simpler, smarter and more rewarding.
-          </p>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- INTRO -->
-  <section class="section intro" id="about">
-    <div class="container intro-grid">
-      <div class="intro-quote">
-        Property management should give you
-        <span>peace of mind,</span>
-        not another job.
-      </div>
-
-      <div class="intro-copy">
-        <div class="eyebrow">About Dream Property</div>
-        <p style="margin-top:16px;">
-          Dream Property is the repurposed identity of Auckland Property Rentals & Management,
-          bringing the same experience and commitment into a more distinctive, modern brand.
-        </p>
-        <p>
-          Locally owned and operated, our approach combines professional property management,
-          proactive care and clear communication to protect investments and support long-term
-          rental performance.
-        </p>
-        <p>
-          Whether you own one rental home or a growing portfolio, we take care of the moving
-          parts while keeping you informed and in control.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY DREAM -->
-  <section class="section" id="why">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Why Dream Property?</div>
-        <h2>More than management.</h2>
-        <p>
-          A premium service should feel personal, proactive, and straightforward.
-          These are the principles behind the Dream Property experience.
-        </p>
-      </div>
-
-      <div class="why-grid">
-        <article class="surface why-card">
-          <div class="icon">✦</div>
-          <h3>Protect the Asset</h3>
-          <p>Routine oversight, inspections, maintenance, and compliance support designed to preserve long-term property value.</p>
-        </article>
-
-        <article class="surface why-card">
-          <div class="icon">↗</div>
-          <h3>Maximise the Return</h3>
-          <p>Smart rental pricing, quality tenant placement and practical investment guidance to support stronger performance.</p>
-        </article>
-
-        <article class="surface why-card">
-          <div class="icon">◎</div>
-          <h3>Stay in the Know</h3>
-          <p>Responsive communication and transparent reporting, so you always understand what is happening with your property.</p>
-        </article>
-
-        <article class="surface why-card">
-          <div class="icon">✓</div>
-          <h3>Compliance Covered</h3>
-          <p>Support with Healthy Homes requirements, tenancy processes, documentation and ongoing compliance obligations.</p>
-        </article>
-
-        <article class="surface why-card">
-          <div class="icon">⌁</div>
-          <h3>Proactive Maintenance</h3>
-          <p>Vetted contractors, preventative planning and coordinated repairs to reduce disruption and avoid bigger problems.</p>
-        </article>
-
-        <article class="surface why-card">
-          <div class="icon">24</div>
-          <h3>Here When It Matters</h3>
-          <p>Fast communication and maintenance coordination give landlords and tenants confidence when something needs attention.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Our Services</div>
-        <h2>Everything your property needs. Nothing it doesn't.</h2>
-        <p>
-          A focused suite of services covering the complete rental lifecycle.
-          Select a service to see the fuller picture without cluttering the main experience.
-        </p>
-      </div>
-
-      <div class="services-grid">
-        <article class="surface service-card" data-modal="management">
-          <div class="service-number">01 / MANAGEMENT</div>
-          <h3>Property Management</h3>
-          <p>Complete day-to-day management, from rent collection and tenant communication to inspections, reporting and maintenance.</p>
-          <div class="service-link">View details →</div>
-        </article>
-
-        <article class="surface service-card" data-modal="letting">
-          <div class="service-number">02 / LETTING</div>
-          <h3>Tenant Find & Letting</h3>
-          <p>Professional marketing, viewings and tenant screening designed to minimise vacancy and secure quality tenants.</p>
-          <div class="service-link">View details →</div>
-        </article>
-
-        <article class="surface service-card" data-modal="compliance">
-          <div class="service-number">03 / COMPLIANCE</div>
-          <h3>Healthy Homes</h3>
-          <p>Assessment, coordination and ongoing support to help rental properties meet New Zealand's Healthy Homes requirements.</p>
-          <div class="service-link">View details →</div>
-        </article>
-
-        <article class="surface service-card" data-modal="inspections">
-          <div class="service-number">04 / OVERSIGHT</div>
-          <h3>Property Inspections</h3>
-          <p>Regular checks, detailed reporting and early identification of maintenance or tenancy issues.</p>
-          <div class="service-link">View details →</div>
-        </article>
-
-        <article class="surface service-card" data-modal="rent">
-          <div class="service-number">05 / INCOME</div>
-          <h3>Strict Rent Collection</h3>
-          <p>Daily monitoring and structured arrears management designed to protect cash flow and minimise outstanding rent.</p>
-          <div class="service-link">View details →</div>
-        </article>
-
-        <article class="surface service-card" data-modal="maintenance">
-          <div class="service-number">06 / CARE</div>
-          <h3>Maintenance & Repairs</h3>
-          <p>Proactive maintenance coordination with trusted local contractors and transparent tracking.</p>
-          <div class="service-link">View details →</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section class="section" id="packages">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Management Packages</div>
-        <h2>Choose the level of support that suits you.</h2>
-        <p>
-          Clear pricing, practical inclusions and a choice between essential management
-          and a more comprehensive hands-off experience.
-        </p>
-      </div>
-
-      <div class="packages">
-        <article class="surface package">
-          <div class="package-top">
-            <div>
-              <h3>Basic Management</h3>
-              <div class="price">4.99% <small>+ GST</small></div>
-            </div>
-          </div>
-          <ul>
-            <li>Rent collection</li>
-            <li>Arrears monitoring</li>
-            <li>Tenant communication</li>
-            <li>Financial reporting</li>
-            <li>Maintenance coordination</li>
-            <li>Water invoice processing</li>
-            <li>Tribunal representation</li>
-            <li>Insurance claim assistance</li>
-            <li>Lease administration</li>
-            <li>Routine management</li>
-            <li>Advertising charged separately</li>
-            <li>Letting fees charged separately</li>
-          </ul>
-        </article>
-
-        <article class="surface package featured">
-          <div class="package-top">
-            <div>
-              <h3>Premium Management</h3>
-              <div class="price">6.99% <small>+ GST</small></div>
-            </div>
-            <div class="badge">Recommended</div>
-          </div>
-          <ul>
-            <li>Everything in Basic</li>
-            <li>Advertising included</li>
-            <li>Tenant placement included</li>
-            <li>Property marketing included</li>
-            <li>Property viewings included</li>
-            <li>Credit checks</li>
-            <li>Reference verification</li>
-            <li>Tenancy documentation</li>
-            <li>Priority landlord support</li>
-            <li>Enhanced property reviews</li>
-            <li>Performance reporting</li>
-            <li>Preventative maintenance planning</li>
-            <li>Property improvement advice</li>
-            <li>Investment performance guidance</li>
-            <li>Dedicated account management</li>
-            <li>Strategic property advice</li>
-          </ul>
-          <div class="package-note">GST will be added to all management fees. No additional advertising or letting fees.</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="section" id="process">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">The Dream Process</div>
-        <h2>A better journey from day one.</h2>
-      </div>
-
-      <div class="process">
-        <article class="process-step">
-          <span>01</span>
-          <h3>Assess</h3>
-          <p>Understand the property, market position and owner's goals.</p>
-        </article>
-        <article class="process-step">
-          <span>02</span>
-          <h3>Prepare</h3>
-          <p>Prepare the property, pricing and marketing strategy.</p>
-        </article>
-        <article class="process-step">
-          <span>03</span>
-          <h3>Place</h3>
-          <p>Market the property and select a suitable tenant.</p>
-        </article>
-        <article class="process-step">
-          <span>04</span>
-          <h3>Settle</h3>
-          <p>Handle lease documentation, move-in and handover.</p>
-        </article>
-        <article class="process-step">
-          <span>05</span>
-          <h3>Manage</h3>
-          <p>Oversee rent, tenants, inspections, and maintenance.</p>
-        </article>
-        <article class="process-step">
-          <span>06</span>
-          <h3>Improve</h3>
-          <p>Review performance and identify opportunities to do better.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DREAM TEAM -->
-  <section class="section" id="team">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">The Dream Team</div>
-        <h2>People behind the properties.</h2>
-        <p>
-          Experienced property professionals who combine industry knowledge with
-          a more modern, growth-minded approach.
-        </p>
-      </div>
-
-      <div class="team-grid">
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">PJ</div>
-          <div class="team-info">
-            <div class="role">Director · Senior Property Manager</div>
-            <h3>Prashant Jeet</h3>
-            <p>
-              With 10 years of industry experience, including more than 7 years as a Senior Property Manager,
-              Prashant brings both professional expertise and first-hand investor perspective to property management.
-            </p>
-          </div>
-        </article>
-
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">AC</div>
-          <div class="team-info">
-            <div class="role">Business Administrator</div>
-            <h3>Aachal Chand</h3>
-            <p>
-              Bringing a background in education to property administration, Aachal contributes strong organisation,
-              attention to detail, and clear communication across the day-to-day operation.
-            </p>
-          </div>
-        </article>
-        
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">CM</div>
-          <div class="team-info">
-            <div class="role">Business Partner · Business Development & Growth</div>
-            <h3>Calix Mojica</h3>
-            <p>
-              Focused on business development, brand growth, and expanding Dream Property's presence,
-              while supporting clients through the property journey and helping build the next chapter of the business.
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="section" style="padding-top:20px;">
-    <div class="container">
-      <div class="stats">
-        <div class="stat"><strong>10+</strong><span>Years of Experience</span></div>
-        <div class="stat"><strong>100%</strong><span>Client Focused</span></div>
-        <div class="stat"><strong>5★</strong><span>Professional Service</span></div>
-        <div class="stat"><strong>24/7</strong><span>Maintenance Coordination</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROPERTIES -->
-  <section class="section" id="properties">
-    <div class="container">
-      <div class="property-toolbar">
-        <div class="section-heading" style="margin-bottom:0;">
-          <div class="eyebrow">Available Properties</div>
-          <h2>Find your next dream property.</h2>
-          <p>Available rental and sale opportunities will appear here as properties are listed.</p>
-        </div>
-
-        <div class="property-tabs" role="tablist" aria-label="Property type">
-          <button class="property-tab active" type="button" data-property-tab="rent">For Rent</button>
-          <button class="property-tab" type="button" data-property-tab="sale">For Sale</button>
-        </div>
-      </div>
-
-      <!-- Replace these demo cards with live listings when ready -->
-      <div class="properties-grid" id="rentProperties">
-        <article class="surface property-card">
-          <div class="property-image">
-            <div class="property-status">Available In 4 Days</div>
-          </div>
-          <div class="property-body">
-            <h3>1 Example Road, Auckland</h3>
-            <p>3 bedrooms · 2 bathrooms · Auckland</p>
-            <div class="property-price">$750 per week</div>
-          </div>
-        </article>
-
-        <article class="surface property-card">
-          <div class="property-image">
-            <div class="property-status">Available Now</div>
-          </div>
-          <div class="property-body">
-            <h3>2 Example Road, Auckland</h3>
-            <p>4 bedrooms · 2 bathrooms · Auckland</p>
-            <div class="property-price">$850 per week</div>
-          </div>
-        </article>
-
-        <article class="surface property-card">
-          <div class="property-image">
-            <div class="property-status">Available Now</div>
-          </div>
-          <div class="property-body">
-            <h3>3 Example Road, Auckland</h3>
-            <p>2 bedrooms · 1 bathroom · Auckland</p>
-            <div class="property-price">$500 per week</div>
-          </div>
-        </article>
-      </div>
-
-      <div class="property-empty" id="saleProperties">
-        <h3>Properties for sale</h3>
-        <p>
-          Sales listings can be displayed here when Dream Property expands into
-          sales and broader property services.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section" id="testimonials">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Client Experience</div>
-        <h2>Trusted by landlords.</h2>
-        <p>Real feedback from clients who value communication, professionalism and care.</p>
-      </div>
-
-      <div class="quote-grid">
-        <article class="surface quote-card">
-          <div class="quote-mark">“</div>
-          <blockquote>
-            I am very happy with the service provided. Dream Property kept us updated
-            and communicated clearly throughout. I would highly recommend them.
-          </blockquote>
-          <cite>N. Patel</cite>
-        </article>
-
-        <article class="surface quote-card">
-          <div class="quote-mark">“</div>
-          <blockquote>
-            I am impressed with the amazing service I received from them.
-            Professional in all aspects and care for their clients.
-          </blockquote>
-          <cite>E. Thompson</cite>
-        </article>
-
-        <article class="surface quote-card">
-          <div class="quote-mark">“</div>
-          <blockquote>
-            Prashant communicated and kept us in the loop at each step.
-            I highly recommend them to anyone looking for property management.
-          </blockquote>
-          <cite>O. Hartman</cite>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="surface contact-shell">
-        <div class="contact-copy">
-          <div class="eyebrow">Let's Talk</div>
-          <h2>Ready to dream bigger?</h2>
-          <p>
-            Tell us about your property, portfolio, or plans. We will help you
-            understand your options and find the right level of support.
-          </p>
-
-          <div class="contact-details">
-            <div class="contact-detail">
-              <span>Visit</span>
-              <a href="https://maps.app.goo.gl/GRHhPpEcNu1GoYTq6" target="_blank" rel="noopener noreferrer">
-                Victoria Street West, Auckland CBD, Auckland 1010
-              </a>
-            </div>
-            <div class="contact-detail">
-              <span>Call</span>
-              <a href="tel:0800838383">0800 83 83 83</a>
-            </div>
-            <div class="contact-detail">
-              <span>Email</span>
-              <a href="mailto:info@dreamproperty.co.nz">info@dreamproperty.co.nz</a>
-            </div>
-          </div>
-        </div>
-
-        <form class="contact-form" id="contactForm">
-          <div class="form-grid">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required>
-            </div>
-
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" placeholder="Your phone number">
-            </div>
-
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required>
-            </div>
-
-            <div class="field">
-              <label for="type">I need help with</label>
-              <input id="type" name="type" type="text" placeholder="Property management, appraisal...">
-            </div>
-
-            <div class="field full">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us a little about your property or enquiry." required></textarea>
-            </div>
-
-            <div class="field full">
-              <button class="button-gold" type="submit">Send Enquiry</button>
-              <div class="form-note" id="formNote">
-                Work in progress.
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-brand">Dream Property</div>
-        <div style="margin-top:4px;">Property Management</div>
-      </div>
-      <div class="footer-links">
-        <a href="#about" data-scroll="about">About</a>
-        <a href="#services" data-scroll="services">Services</a>
-        <a href="#properties" data-scroll="properties">Properties</a>
-        <a href="#contact" data-scroll="contact">Contact</a>
-      </div>
-      <div>© 2026 Dream Property</div>
-    </div>
-  </footer>
-
-  <!-- SERVICE MODALS -->
-  <div class="modal" id="modal-management" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">01 / Management</div>
-      <h2>Property Management</h2>
-      <p>End-to-end management designed to protect the property, support the tenant and keep the owner informed.</p>
-      <h3>What's included</h3>
-      <ul>
-        <li>Rent collection and arrears monitoring</li>
-        <li>Tenant communication and lease administration</li>
-        <li>Routine property management and inspections</li>
-        <li>Financial reporting and water invoice processing</li>
-        <li>Maintenance coordination</li>
-        <li>Tribunal representation and insurance claim assistance</li>
-        <li>Healthy Homes compliance support</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-letting" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">02 / Letting</div>
-      <h2>Tenant Find & Letting</h2>
-      <p>We manage the letting journey from pricing and marketing through to screening, documentation and move-in.</p>
-      <h3>What's included</h3>
-      <ul>
-        <li>Rental appraisal and market positioning</li>
-        <li>Professional property marketing</li>
-        <li>Property viewings</li>
-        <li>Credit and background checks</li>
-        <li>Employment and reference verification</li>
-        <li>Tribunal history checks</li>
-        <li>Tenancy documentation and lease preparation</li>
-        <li>Move-in inspection reporting</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-compliance" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">03 / Compliance</div>
-      <h2>Healthy Homes Compliance</h2>
-      <p>Support for landlords navigating New Zealand's Healthy Homes Standards, from assessment through to coordinated upgrades.</p>
-      <h3>Areas we support</h3>
-      <ul>
-        <li>Healthy Homes assessments</li>
-        <li>Heating and heat pump coordination</li>
-        <li>Insulation requirements</li>
-        <li>Ventilation requirements</li>
-        <li>Moisture ingress and drainage solutions</li>
-        <li>Compliance guidance and documentation</li>
-        <li>Ongoing support and advice</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-inspections" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">04 / Oversight</div>
-      <h2>Property Inspections</h2>
-      <p>Regular oversight helps identify problems early, protect property condition and maintain a strong owner-tenant relationship.</p>
-      <h3>Our approach</h3>
-      <ul>
-        <li>Routine property inspections</li>
-        <li>Detailed reports with photos</li>
-        <li>Early identification of leaks, dampness, damage and wear</li>
-        <li>Healthy Homes and safety checks</li>
-        <li>Maintenance recommendations</li>
-        <li>Clear owner communication and follow-up</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-rent" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">05 / Income</div>
-      <h2>Strict Rent Collection</h2>
-      <p>A proactive process focused on protecting rental income and addressing arrears before they become bigger problems.</p>
-      <h3>Our process</h3>
-      <ul>
-        <li>Daily rent monitoring</li>
-        <li>Immediate tenant follow-up</li>
-        <li>Arrears notifications and formal breach notices where required</li>
-        <li>MSD rent redirection assistance</li>
-        <li>Tenancy Tribunal applications where appropriate</li>
-        <li>Debt recovery referrals after tenancy</li>
-        <li>Regular landlord updates</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-maintenance" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
-      <div class="eyebrow">06 / Care</div>
-      <h2>Maintenance & Repairs</h2>
-      <p>Smart maintenance is about preventing problems, not simply reacting to them.</p>
-      <h3>What we coordinate</h3>
-      <ul>
-        <li>Tenant maintenance requests</li>
-        <li>Vetted Auckland contractors</li>
-        <li>Plumbing and electrical services</li>
-        <li>Appliance repairs and general building work</li>
-        <li>Urgent repairs and scheduled maintenance</li>
-        <li>Repair history and follow-up tracking</li>
-        <li>Preventative maintenance planning</li>
-        <li>Property improvement recommendations</li>
-      </ul>
-    </div>
-  </div>
 
   <script>
     // Navigation and smooth scrolling
+
     const navWrap = document.getElementById("navWrap");
     const navLinks = document.getElementById("navLinks");
     const navToggle = document.getElementById("navToggle");
@@ -1942,42 +2320,72 @@
 
     navToggle.addEventListener("click", () => {
       const open = navLinks.classList.toggle("open");
+
       navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
 
     document.querySelectorAll("[data-scroll]").forEach(link => {
       link.addEventListener("click", event => {
         event.preventDefault();
+
         const id = link.dataset.scroll;
         const target = document.getElementById(id);
-        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+
         navLinks.classList.remove("open");
         navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open menu");
       });
     });
 
     // Highlight active navigation item
-    const sections = [...document.querySelectorAll("header[id], section[id]")];
-    const navAnchors = [...document.querySelectorAll(".nav-links a")];
+
+    const sections = [
+      ...document.querySelectorAll("header[id], section[id]")
+    ];
+
+    const navAnchors = [
+      ...document.querySelectorAll(".nav-links a")
+    ];
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          navAnchors.forEach(a => a.classList.remove("active"));
-          const active = document.querySelector(`.nav-links a[data-scroll="${entry.target.id}"]`);
-          if (active) active.classList.add("active");
+          navAnchors.forEach(anchor => {
+            anchor.classList.remove("active");
+          });
+
+          const active = document.querySelector(
+            `.nav-links a[data-scroll="${entry.target.id}"]`
+          );
+
+          if (active) {
+            active.classList.add("active");
+          }
         }
       });
-    }, { rootMargin: "-35% 0px -55% 0px" });
+    }, {
+      rootMargin: "-35% 0px -55% 0px"
+    });
 
     sections.forEach(section => observer.observe(section));
 
     // Service modal system
+
     const modals = document.querySelectorAll(".modal");
 
     function openModal(name) {
       const modal = document.getElementById(`modal-${name}`);
+
       if (!modal) return;
+
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
@@ -1988,15 +2396,24 @@
         modal.classList.remove("open");
         modal.setAttribute("aria-hidden", "true");
       });
+
       document.body.classList.remove("modal-open");
     }
 
     document.querySelectorAll("[data-modal]").forEach(card => {
-      card.addEventListener("click", () => openModal(card.dataset.modal));
-      card.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") openModal(card.dataset.modal);
+      card.addEventListener("click", () => {
+        openModal(card.dataset.modal);
       });
+
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openModal(card.dataset.modal);
+        }
+      });
+
       card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
     });
 
     document.querySelectorAll(".modal-close").forEach(button => {
@@ -2005,25 +2422,34 @@
 
     modals.forEach(modal => {
       modal.addEventListener("click", event => {
-        if (event.target === modal) closeModals();
+        if (event.target === modal) {
+          closeModals();
+        }
       });
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeModals();
+      if (event.key === "Escape") {
+        closeModals();
+      }
     });
 
     // Property tabs
+
     const propertyTabs = document.querySelectorAll("[data-property-tab]");
     const rentProperties = document.getElementById("rentProperties");
     const saleProperties = document.getElementById("saleProperties");
 
     propertyTabs.forEach(tab => {
       tab.addEventListener("click", () => {
-        propertyTabs.forEach(t => t.classList.remove("active"));
+        propertyTabs.forEach(item => {
+          item.classList.remove("active");
+        });
+
         tab.classList.add("active");
 
         const type = tab.dataset.propertyTab;
+
         if (type === "rent") {
           rentProperties.style.display = "grid";
           saleProperties.classList.remove("show");
@@ -2035,10 +2461,15 @@
     });
 
     // Demo contact form
+
     document.getElementById("contactForm").addEventListener("submit", event => {
       event.preventDefault();
+
       const note = document.getElementById("formNote");
-      note.textContent = "Thank you. This demo form is ready to be connected to Dream Property's enquiry system.";
+
+      note.textContent =
+        "Thank you. This demo form is ready to be connected to Dream Property's enquiry system.";
+
       note.style.color = "#d8b56a";
     });
   </script>
