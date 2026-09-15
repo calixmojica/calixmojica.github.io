@@ -7,13 +7,21 @@
   <meta name="apple-mobile-web-app-title" content="Dream Property">
   <meta name="application-name" content="Dream Property">
 
-  <title>Dream Property | Property, reimagined.</title>
-  <meta name="description" content="Dream Property provides premium property management, tenant placement, compliance, inspections, and investment support throughout Auckland.">
+  <title>Dream Property</title>
+
+  <meta
+    name="description"
+    content="Dream Property provides premium property management, tenant placement, compliance, inspections, and investment support throughout Auckland."
+  >
+
   <meta name="author" content="Dream Property">
   <meta name="robots" content="index, follow">
 
   <meta property="og:title" content="Dream Property | Property, reimagined.">
-  <meta property="og:description" content="A modern property partner for Auckland owners, investors, landlords and tenants.">
+  <meta
+    property="og:description"
+    content="A modern property partner for Auckland owners, investors, landlords and tenants."
+  >
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://calixmojica.com/dreamproperty/">
 
@@ -23,15 +31,23 @@
       --navy-900: #071426;
       --navy-800: #0b1d33;
       --navy-700: #102844;
-      --navy-600: #173656;
       --gold: #d8b56a;
       --gold-light: #f1dca5;
       --white: #f7f8fb;
       --text: #dce3ec;
-      --muted: #8d9bad;
-      --line: rgba(255,255,255,.10);
-      --shadow: 0 30px 90px rgba(0,0,0,.34);
-      --radius: 24px;
+      --muted: #91a0b1;
+
+      --glass: rgba(18, 38, 61, .48);
+      --glass-strong: rgba(10, 27, 46, .72);
+      --glass-soft: rgba(255, 255, 255, .045);
+
+      --glass-border: rgba(255, 255, 255, .16);
+      --glass-border-soft: rgba(255, 255, 255, .09);
+      --glass-highlight: rgba(255, 255, 255, .28);
+
+      --line: rgba(255, 255, 255, .10);
+      --shadow: 0 30px 90px rgba(0, 0, 0, .34);
+      --radius: 26px;
       --max: 1180px;
     }
 
@@ -49,7 +65,14 @@
       min-height: 100vh;
       background: var(--navy-950);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       line-height: 1.5;
@@ -70,27 +93,18 @@
       font: inherit;
     }
 
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
     .container {
       width: min(calc(100% - 40px), var(--max));
       margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--gold-light);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
     }
 
     .section {
@@ -98,9 +112,28 @@
       scroll-margin-top: 100px;
     }
 
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold-light);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .8;
+    }
+
     .section-heading {
       max-width: 720px;
-      margin-bottom: 46px;
+      margin-bottom: 42px;
     }
 
     .section-heading h2 {
@@ -108,16 +141,73 @@
       color: var(--white);
       font-size: clamp(34px, 5vw, 58px);
       line-height: 1.02;
-      letter-spacing: -2.2px;
+      letter-spacing: -2.4px;
       font-weight: 650;
     }
 
     .section-heading p {
+      max-width: 640px;
       margin-top: 18px;
-      max-width: 650px;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LIQUID GLASS */
+
+    .glass {
+      position: relative;
+      isolation: isolate;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      backdrop-filter: blur(32px) saturate(180%);
+      -webkit-backdrop-filter: blur(32px) saturate(180%);
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, .20),
+        inset 0 1px 0 rgba(255, 255, 255, .20),
+        inset 0 -1px 0 rgba(0, 0, 0, .22),
+        inset 1px 0 0 rgba(255, 255, 255, .055),
+        inset -1px 0 0 rgba(255, 255, 255, .035);
+    }
+
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: -1;
+      border-radius: inherit;
+      pointer-events: none;
+      background: rgba(255, 255, 255, .018);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .10),
+        inset 0 0 0 1px rgba(255, 255, 255, .025);
+    }
+
+    .glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          125deg,
+          rgba(255, 255, 255, .12),
+          transparent 18%,
+          transparent 70%,
+          rgba(255, 255, 255, .035)
+        );
+      opacity: .45;
+      mix-blend-mode: screen;
     }
 
     /* NAVIGATION */
@@ -127,15 +217,16 @@
       inset: 0 0 auto;
       z-index: 1000;
       padding: 17px 0;
-      background: rgba(4,11,21,.88);
-      backdrop-filter: blur(24px) saturate(140%);
-      -webkit-backdrop-filter: blur(24px) saturate(140%);
-      transition: .25s ease;
+      background: rgba(4, 11, 21, .76);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      transition: background .25s ease, border-color .25s ease;
     }
 
     .nav-wrap.scrolled {
-      background: rgba(4,11,21,.92);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(4, 11, 21, .90);
+      border-bottom-color: rgba(255, 255, 255, .12);
     }
 
     nav {
@@ -155,46 +246,41 @@
       white-space: nowrap;
     }
 
-    .brand-logo {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-    }
-
-    .brand-fallback {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      letter-spacing: -.03em;
-    }
-
     .brand-mark {
       position: relative;
       width: 35px;
       height: 35px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(216,181,106,.6);
+      overflow: hidden;
+      border: 1px solid rgba(216, 181, 106, .6);
       border-radius: 50%;
       color: var(--gold-light);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 19px;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
     }
 
     .brand-mark::after {
       content: "";
       position: absolute;
       inset: 5px;
-      border: 1px solid rgba(216,181,106,.22);
+      border: 1px solid rgba(216, 181, 106, .22);
       border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .brand-fallback {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      font-weight: 700;
     }
 
     .brand small {
@@ -210,21 +296,21 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 5px;
     }
 
     .nav-links a {
       padding: 9px 12px;
-      color: #b9c4d1;
       border-radius: 10px;
+      color: #b9c4d1;
       font-size: 13px;
-      transition: .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
       color: var(--white);
-      background: rgba(255,255,255,.06);
+      background: rgba(255, 255, 255, .07);
     }
 
     .nav-cta,
@@ -235,33 +321,65 @@
       gap: 9px;
       min-height: 45px;
       padding: 0 18px;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 12px;
-      background: #d8b56a;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 13px;
+      background: var(--gold);
       color: #071426;
       font-size: 13px;
       font-weight: 750;
       box-shadow:
-        0 8px 24px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.35);
-      transition: .2s ease;
+        0 8px 25px rgba(0, 0, 0, .22),
+        inset 0 1px 0 rgba(255, 255, 255, .45);
+      transition:
+        transform .2s ease,
+        filter .2s ease,
+        box-shadow .2s ease;
     }
 
     .nav-cta:hover,
     .button-gold:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, .28),
+        inset 0 1px 0 rgba(255, 255, 255, .45);
+    }
+
+    .button-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .045);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 650;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+    }
+
+    .button-dark:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 255, 255, .22);
     }
 
     .nav-toggle {
       display: none;
       width: 42px;
       height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: rgba(255,255,255,.04);
-      color: white;
-      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .05);
+      color: var(--white);
+      font-size: 18px;
     }
 
     /* HERO */
@@ -273,16 +391,6 @@
       align-items: center;
       overflow: hidden;
       padding: 150px 0 90px;
-    }
-
-    .hero::before {
-      display: none;
-    }
-
-    .stars,
-    .stars::before,
-    .stars::after {
-      display: none;
     }
 
     .hero-grid {
@@ -306,7 +414,6 @@
 
     .hero-copy h1 span {
       color: var(--gold-light);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-style: italic;
       font-weight: 400;
     }
@@ -323,26 +430,6 @@
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 31px;
-    }
-
-    .button-dark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 45px;
-      padding: 0 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 650;
-      transition: .2s ease;
-    }
-
-    .button-dark:hover {
-      background: rgba(255,255,255,.08);
-      transform: translateY(-2px);
     }
 
     .hero-meta {
@@ -366,28 +453,13 @@
       text-transform: uppercase;
     }
 
-    .dream-card,
-    .surface,
-    .modal-box {
-      position: relative;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(14,34,57,.62);
-      background-image: none;
-      backdrop-filter: blur(28px) saturate(150%);
-      -webkit-backdrop-filter: blur(28px) saturate(150%);
-      box-shadow:
-        0 24px 70px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.10),
-        inset 0 -1px 0 rgba(0,0,0,.16);
-    }
-
     .dream-card {
       min-height: 470px;
       display: flex;
       align-items: flex-end;
-      padding: 30px;
+      padding: 32px;
       overflow: hidden;
-      border-radius: 30px;
+      border-radius: 32px;
     }
 
     .dream-card::before {
@@ -395,24 +467,12 @@
       position: absolute;
       right: -18px;
       top: -60px;
-      color: rgba(216,181,106,.075);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      color: rgba(216, 181, 106, .055);
       font-size: 420px;
       line-height: 1;
       font-style: italic;
-    }
-
-    .dream-card::after,
-    .surface::after,
-    .modal-box::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+      font-weight: 400;
       pointer-events: none;
-      border-radius: inherit;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.025),
-        inset 0 1px 18px rgba(255,255,255,.025);
     }
 
     .moon {
@@ -423,7 +483,11 @@
       top: 55px;
       border-radius: 50%;
       background: #d8b56a;
-      box-shadow: 0 0 45px rgba(216,181,106,.16);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, .18),
+        0 0 45px rgba(216, 181, 106, .15),
+        inset -12px -12px 20px rgba(102, 65, 18, .10),
+        inset 8px 8px 15px rgba(255, 255, 255, .20);
     }
 
     .dream-card-content {
@@ -432,7 +496,7 @@
       max-width: 330px;
     }
 
-    .dream-card-content .mini-label {
+    .mini-label {
       color: var(--gold-light);
       font-size: 10px;
       font-weight: 700;
@@ -443,10 +507,10 @@
     .dream-card-content h2 {
       margin: 10px 0;
       color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 44px;
       font-weight: 400;
       line-height: 1.03;
+      letter-spacing: -1.5px;
     }
 
     .dream-card-content p {
@@ -470,9 +534,9 @@
 
     .intro-quote {
       color: var(--white);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: clamp(30px, 4vw, 46px);
       line-height: 1.1;
+      letter-spacing: -1.5px;
     }
 
     .intro-quote span {
@@ -489,13 +553,31 @@
       margin-top: 15px;
     }
 
-    /* CARDS */
+    .view-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 20px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .view-more span {
+      transition: transform .2s ease;
+    }
+
+    .view-more:hover span {
+      transform: translateX(3px);
+    }
+
+    /* GENERAL CARDS */
 
     .surface {
       border-radius: var(--radius);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.08);
     }
 
     .why-grid {
@@ -515,11 +597,14 @@
       display: grid;
       place-items: center;
       margin-bottom: 25px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .045);
       color: var(--gold-light);
-      background: rgba(255,255,255,.045);
       font-size: 16px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .14),
+        0 8px 20px rgba(0, 0, 0, .12);
     }
 
     .why-card h3 {
@@ -544,28 +629,31 @@
     }
 
     .service-card {
-      position: relative;
-      min-height: 255px;
+      min-height: 225px;
       padding: 29px;
       overflow: hidden;
       cursor: pointer;
-      transition: .25s ease;
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
     }
 
     .service-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255,255,255,.20);
+      border-color: rgba(255, 255, 255, .27);
+      background: rgba(24, 48, 76, .58);
     }
 
     .service-number {
-      color: rgba(216,181,106,.6);
+      color: rgba(216, 181, 106, .65);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
     }
 
     .service-card h3 {
-      margin-top: 44px;
+      margin-top: 38px;
       color: var(--white);
       font-size: 24px;
       letter-spacing: -.6px;
@@ -602,9 +690,7 @@
     }
 
     .package.featured {
-      border-color: rgba(255,255,255,.12);
-      background: rgba(14,34,57,.68);
-      background-image: none;
+      background: rgba(20, 43, 68, .62);
     }
 
     .package-top {
@@ -636,10 +722,10 @@
 
     .badge {
       padding: 6px 9px;
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255, 255, 255, .14);
       border-radius: 20px;
+      background: rgba(255, 255, 255, .05);
       color: var(--gold-light);
-      background: rgba(255,255,255,.045);
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -681,15 +767,15 @@
       grid-template-columns: repeat(6, 1fr);
       gap: 1px;
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 1px solid var(--glass-border-soft);
       border-radius: var(--radius);
-      background: var(--line);
+      background: rgba(255, 255, 255, .08);
     }
 
     .process-step {
-      min-height: 210px;
+      min-height: 190px;
       padding: 24px 19px;
-      background: #09182a;
+      background: rgba(9, 24, 42, .82);
     }
 
     .process-step span {
@@ -699,7 +785,7 @@
     }
 
     .process-step h3 {
-      margin-top: 45px;
+      margin-top: 40px;
       color: var(--white);
       font-size: 15px;
     }
@@ -715,45 +801,57 @@
 
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
     }
 
     .team-card {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      min-height: 235px;
-      overflow: hidden;
+      padding: 25px;
+      text-align: center;
     }
 
     .team-photo {
-      min-height: 235px;
-      display: grid;
-      place-items: end center;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 23px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .20);
+      border-radius: 50%;
       background: #102844;
-      color: rgba(255,255,255,.14);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      font-size: 80px;
-      line-height: 1;
-      padding-bottom: 5px;
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, .22),
+        inset 0 1px 0 rgba(255, 255, 255, .25);
     }
 
-    .team-info {
-      padding: 28px 25px;
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .team-initials {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .35);
+      font-size: 35px;
+      font-weight: 500;
     }
 
     .team-info .role {
       color: var(--gold-light);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
     }
 
     .team-info h3 {
-      margin-top: 7px;
+      margin-top: 8px;
       color: var(--white);
-      font-size: 23px;
+      font-size: 21px;
     }
 
     .team-info p {
@@ -809,27 +907,29 @@
     .property-tabs {
       display: inline-flex;
       padding: 4px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      background: rgba(255,255,255,.045);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .045);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .property-tab {
+      padding: 10px 17px;
       border: 0;
       border-radius: 9px;
-      padding: 10px 17px;
       background: transparent;
       color: var(--muted);
-      cursor: pointer;
       font-size: 12px;
       font-weight: 650;
     }
 
     .property-tab.active {
-      background: rgba(216,181,106,.11);
+      background: rgba(216, 181, 106, .13);
       color: var(--gold-light);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .12),
+        0 4px 12px rgba(0, 0, 0, .12);
     }
 
     .properties-grid {
@@ -841,11 +941,12 @@
     .property-card {
       overflow: hidden;
       cursor: pointer;
-      transition: .25s ease;
+      transition: transform .25s ease, border-color .25s ease;
     }
 
     .property-card:hover {
       transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, .25);
     }
 
     .property-image {
@@ -853,20 +954,15 @@
       height: 205px;
       overflow: hidden;
       background: #102844;
-      background-image: none;
     }
 
     .property-image::before {
       content: "";
       position: absolute;
       inset: 20% 12% 0;
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(255, 255, 255, .10);
       border-bottom: 0;
       transform: perspective(300px) rotateX(8deg);
-    }
-
-    .property-image::after {
-      display: none;
     }
 
     .property-status {
@@ -875,14 +971,16 @@
       top: 15px;
       z-index: 2;
       padding: 6px 8px;
+      border: 1px solid rgba(255, 255, 255, .14);
       border-radius: 7px;
-      background: rgba(4,11,21,.72);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(4, 11, 21, .72);
       color: var(--gold-light);
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
     }
 
     .property-body {
@@ -910,9 +1008,10 @@
     .property-empty {
       display: none;
       padding: 65px 25px;
-      border: 1px dashed rgba(255,255,255,.12);
+      border: 1px dashed rgba(255, 255, 255, .14);
       border-radius: var(--radius);
       text-align: center;
+      background: rgba(255, 255, 255, .025);
     }
 
     .property-empty.show {
@@ -931,7 +1030,21 @@
       font-size: 13px;
     }
 
-    /* RESPONSIVE PART ONE */
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     @media (max-width: 900px) {
       .nav-links {
@@ -948,12 +1061,16 @@
         right: 20px;
         top: 68px;
         display: grid;
+        gap: 2px;
         padding: 9px;
-        border: 1px solid var(--line);
-        border-radius: 15px;
-        background: rgba(7,20,38,.96);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, .15);
+        border-radius: 17px;
+        background: rgba(7, 20, 38, .94);
+        backdrop-filter: blur(28px) saturate(180%);
+        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, .35),
+          inset 0 1px 0 rgba(255, 255, 255, .16);
       }
 
       .nav-links a {
@@ -961,13 +1078,8 @@
       }
 
       .hero-grid,
-      .intro-grid,
-      .contact-shell {
+      .intro-grid {
         grid-template-columns: 1fr;
-      }
-
-      .hero-grid {
-        gap: 45px;
       }
 
       .dream-card {
@@ -975,21 +1087,25 @@
       }
 
       .why-grid,
-      .quote-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .process {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
       .properties-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .team-grid,
       .packages {
         grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .stat:nth-child(4) {
+        border-top: 1px solid var(--line);
       }
     }
 
@@ -1038,7 +1154,6 @@
       .why-grid,
       .services-grid,
       .properties-grid,
-      .quote-grid,
       .team-grid {
         grid-template-columns: 1fr;
       }
@@ -1047,39 +1162,17 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stat:nth-child(3) {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .stat:nth-child(4) {
-        border-top: 1px solid var(--line);
-      }
-
       .property-toolbar {
         align-items: start;
         flex-direction: column;
       }
 
-      .team-card {
-        grid-template-columns: 105px 1fr;
-      }
-
-      .team-photo {
-        min-height: 220px;
-        font-size: 60px;
-      }
-
-      .team-info {
-        padding: 22px 17px;
-      }
-
       .package ul {
         grid-template-columns: 1fr;
+      }
+
+      .team-card {
+        padding: 25px 22px;
       }
     }
 
@@ -1100,16 +1193,27 @@
 <body>
 
   <!-- NAVIGATION -->
+
   <div class="nav-wrap" id="navWrap">
     <div class="container">
       <nav aria-label="Primary navigation">
-        <a class="brand" href="#home" data-scroll="home" aria-label="Dream Property home">
-          <span class="brand-mark brand-logo">
-            <img src="dream-property-logo.svg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+
+        <a
+          class="brand"
+          href="#home"
+          data-scroll="home"
+          aria-label="Dream Property home"
+        >
+          <span class="brand-mark">
+            <img
+              src="dream-property-logo.svg"
+              alt=""
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
             <span class="brand-fallback" aria-hidden="true">D</span>
           </span>
 
-          <span class="brand-wordmark">
+          <span>
             Dream Property
             <small>Property Management</small>
           </span>
@@ -1124,7 +1228,13 @@
           <a href="#contact" data-scroll="contact">Contact</a>
         </div>
 
-        <a class="nav-cta" href="#contact" data-scroll="contact">Get Started</a>
+        <a
+          class="nav-cta"
+          href="#contact"
+          data-scroll="contact"
+        >
+          Get Started
+        </a>
 
         <button
           class="nav-toggle"
@@ -1135,15 +1245,16 @@
         >
           ☰
         </button>
+
       </nav>
     </div>
   </div>
 
   <!-- HERO -->
-  <header class="hero" id="home">
-    <div class="stars"></div>
 
+  <header class="hero" id="home">
     <div class="container hero-grid">
+
       <div class="hero-copy">
         <div class="eyebrow">Auckland Property Management</div>
 
@@ -1158,11 +1269,19 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button-gold" href="#contact" data-scroll="contact">
+          <a
+            class="button-gold"
+            href="#contact"
+            data-scroll="contact"
+          >
             Request a Free Appraisal
           </a>
 
-          <a class="button-dark" href="#services" data-scroll="services">
+          <a
+            class="button-dark"
+            href="#services"
+            data-scroll="services"
+          >
             Explore Our Services
           </a>
         </div>
@@ -1185,11 +1304,16 @@
         </div>
       </div>
 
-      <div class="dream-card" aria-label="Dream Property brand statement">
+      <div
+        class="glass dream-card"
+        aria-label="Dream Property brand statement"
+      >
         <div class="moon"></div>
 
         <div class="dream-card-content">
-          <div class="mini-label">A different kind of property partner</div>
+          <div class="mini-label">
+            A different kind of property partner
+          </div>
 
           <h2>Beyond the expected.</h2>
 
@@ -1199,12 +1323,15 @@
           </p>
         </div>
       </div>
+
     </div>
   </header>
 
   <!-- INTRODUCTION -->
+
   <section class="section intro" id="about">
     <div class="container intro-grid">
+
       <div class="intro-quote">
         Property management should give you
         <span>peace of mind,</span>
@@ -1215,58 +1342,74 @@
         <div class="eyebrow">About Dream Property</div>
 
         <p style="margin-top:16px;">
-          Dream Property is the repurposed identity of Auckland Property Rentals & Management,
-          bringing the same experience and commitment into a more distinctive, modern brand.
+          Dream Property is the repurposed identity of Auckland Property Rentals
+          & Management, bringing the same experience and commitment into a more
+          distinctive, modern brand.
         </p>
 
-        <p>
-          Locally owned and operated, our approach combines professional property management,
-          proactive care and clear communication to protect investments and support long-term
-          rental performance.
-        </p>
+        <div id="aboutMore" class="hidden">
+          <p>
+            Locally owned and operated, our approach combines professional
+            property management, proactive care and clear communication to
+            protect investments and support long-term rental performance.
+          </p>
 
-        <p>
-          Whether you own one rental home or a growing portfolio, we take care of the moving
-          parts while keeping you informed and in control.
-        </p>
+          <p>
+            Whether you own one rental home or a growing portfolio, we take care
+            of the moving parts while keeping you informed and in control.
+          </p>
+        </div>
+
+        <button
+          class="view-more"
+          type="button"
+          data-toggle="aboutMore"
+          aria-expanded="false"
+        >
+          View more <span>→</span>
+        </button>
       </div>
+
     </div>
   </section>
 
   <!-- WHY DREAM -->
+
   <section class="section" id="why">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">Why Dream Property?</div>
 
         <h2>More than management.</h2>
 
         <p>
-          A premium service should feel personal, proactive, and straightforward.
+          A premium service should feel personal, proactive and straightforward.
           These are the principles behind the Dream Property experience.
         </p>
       </div>
 
       <div class="why-grid">
-        <article class="surface why-card">
+
+        <article class="glass surface why-card">
           <div class="icon">✦</div>
           <h3>Protect the Asset</h3>
           <p>
-            Routine oversight, inspections, maintenance, and compliance support
+            Routine oversight, inspections, maintenance and compliance support
             designed to preserve long-term property value.
           </p>
         </article>
 
-        <article class="surface why-card">
+        <article class="glass surface why-card">
           <div class="icon">↗</div>
           <h3>Maximise the Return</h3>
           <p>
-            Smart rental pricing, quality tenant placement and practical investment
-            guidance to support stronger performance.
+            Smart rental pricing, quality tenant placement and practical
+            investment guidance to support stronger performance.
           </p>
         </article>
 
-        <article class="surface why-card">
+        <article class="glass surface why-card">
           <div class="icon">◎</div>
           <h3>Stay in the Know</h3>
           <p>
@@ -1275,7 +1418,11 @@
           </p>
         </article>
 
-        <article class="surface why-card">
+      </div>
+
+      <div id="whyMore" class="why-grid hidden" style="margin-top:15px;">
+
+        <article class="glass surface why-card">
           <div class="icon">✓</div>
           <h3>Compliance Covered</h3>
           <p>
@@ -1284,7 +1431,7 @@
           </p>
         </article>
 
-        <article class="surface why-card">
+        <article class="glass surface why-card">
           <div class="icon">⌁</div>
           <h3>Proactive Maintenance</h3>
           <p>
@@ -1293,7 +1440,7 @@
           </p>
         </article>
 
-        <article class="surface why-card">
+        <article class="glass surface why-card">
           <div class="icon">24</div>
           <h3>Here When It Matters</h3>
           <p>
@@ -1301,76 +1448,108 @@
             tenants confidence when something needs attention.
           </p>
         </article>
+
       </div>
+
+      <button
+        class="view-more"
+        type="button"
+        data-toggle="whyMore"
+        aria-expanded="false"
+      >
+        View more services <span>→</span>
+      </button>
+
     </div>
   </section>
 
   <!-- SERVICES -->
+
   <section class="section" id="services">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">Our Services</div>
 
-        <h2>Everything your property needs. Nothing it doesn't.</h2>
+        <h2>Everything your property needs.</h2>
 
         <p>
           A focused suite of services covering the complete rental lifecycle.
-          Select a service to see the fuller picture without cluttering the main experience.
+          Select a service to view the details.
         </p>
       </div>
 
       <div class="services-grid">
-        <article class="surface service-card" data-modal="management">
+
+        <article
+          class="glass surface service-card"
+          data-modal="management"
+        >
           <div class="service-number">01 / MANAGEMENT</div>
           <h3>Property Management</h3>
           <p>
-            Complete day-to-day management, from rent collection and tenant communication
-            to inspections, reporting and maintenance.
+            Complete day-to-day management, from rent collection and tenant
+            communication to inspections, reporting and maintenance.
           </p>
           <div class="service-link">View details →</div>
         </article>
 
-        <article class="surface service-card" data-modal="letting">
+        <article
+          class="glass surface service-card"
+          data-modal="letting"
+        >
           <div class="service-number">02 / LETTING</div>
           <h3>Tenant Find & Letting</h3>
           <p>
-            Professional marketing, viewings and tenant screening designed to minimise
-            vacancy and secure quality tenants.
+            Professional marketing, viewings and tenant screening designed to
+            minimise vacancy and secure quality tenants.
           </p>
           <div class="service-link">View details →</div>
         </article>
 
-        <article class="surface service-card" data-modal="compliance">
+        <article
+          class="glass surface service-card"
+          data-modal="compliance"
+        >
           <div class="service-number">03 / COMPLIANCE</div>
           <h3>Healthy Homes</h3>
           <p>
-            Assessment, coordination and ongoing support to help rental properties
-            meet New Zealand's Healthy Homes requirements.
+            Assessment, coordination and ongoing support to help rental
+            properties meet New Zealand's Healthy Homes requirements.
           </p>
           <div class="service-link">View details →</div>
         </article>
 
-        <article class="surface service-card" data-modal="inspections">
+        <article
+          class="glass surface service-card"
+          data-modal="inspections"
+        >
           <div class="service-number">04 / OVERSIGHT</div>
           <h3>Property Inspections</h3>
           <p>
-            Regular checks, detailed reporting and early identification of maintenance
-            or tenancy issues.
+            Regular checks, detailed reporting and early identification of
+            maintenance or tenancy issues.
           </p>
           <div class="service-link">View details →</div>
         </article>
 
-        <article class="surface service-card" data-modal="rent">
+        <article
+          class="glass surface service-card"
+          data-modal="rent"
+        >
           <div class="service-number">05 / INCOME</div>
           <h3>Strict Rent Collection</h3>
           <p>
-            Daily monitoring and structured arrears management designed to protect
-            cash flow and minimise outstanding rent.
+            Daily monitoring and structured arrears management designed to
+            protect cash flow and minimise outstanding rent.
           </p>
           <div class="service-link">View details →</div>
         </article>
 
-        <article class="surface service-card" data-modal="maintenance">
+        <article
+          class="glass surface service-card"
+          data-modal="maintenance"
+        >
           <div class="service-number">06 / CARE</div>
           <h3>Maintenance & Repairs</h3>
           <p>
@@ -1379,30 +1558,36 @@
           </p>
           <div class="service-link">View details →</div>
         </article>
+
       </div>
     </div>
   </section>
 
   <!-- PACKAGES -->
+
   <section class="section" id="packages">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">Management Packages</div>
 
         <h2>Choose the level of support that suits you.</h2>
 
         <p>
-          Clear pricing, practical inclusions and a choice between essential management
-          and a more comprehensive hands-off experience.
+          Clear pricing and practical inclusions, with a choice between
+          essential management and a more comprehensive hands-off experience.
         </p>
       </div>
 
       <div class="packages">
-        <article class="surface package">
+
+        <article class="glass surface package">
           <div class="package-top">
             <div>
               <h3>Basic Management</h3>
-              <div class="price">4.99% <small>+ GST</small></div>
+              <div class="price">
+                4.99% <small>+ GST</small>
+              </div>
             </div>
           </div>
 
@@ -1422,11 +1607,13 @@
           </ul>
         </article>
 
-        <article class="surface package featured">
+        <article class="glass surface package featured">
           <div class="package-top">
             <div>
               <h3>Premium Management</h3>
-              <div class="price">6.99% <small>+ GST</small></div>
+              <div class="price">
+                6.99% <small>+ GST</small>
+              </div>
             </div>
 
             <div class="badge">Recommended</div>
@@ -1452,64 +1639,83 @@
           </ul>
 
           <div class="package-note">
-            GST will be added to all management fees. No additional advertising or letting fees.
+            GST will be added to all management fees. No additional advertising
+            or letting fees.
           </div>
         </article>
+
       </div>
     </div>
   </section>
-
   <!-- PROCESS -->
+
   <section class="section" id="process">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">The Dream Process</div>
         <h2>A better journey from day one.</h2>
       </div>
 
       <div class="process">
+
         <article class="process-step">
           <span>01</span>
           <h3>Assess</h3>
-          <p>Understand the property, market position and owner's goals.</p>
+          <p>
+            Understand the property, market position and owner's goals.
+          </p>
         </article>
 
         <article class="process-step">
           <span>02</span>
           <h3>Prepare</h3>
-          <p>Prepare the property, pricing and marketing strategy.</p>
+          <p>
+            Prepare the property, pricing and marketing strategy.
+          </p>
         </article>
 
         <article class="process-step">
           <span>03</span>
           <h3>Place</h3>
-          <p>Market the property and select a suitable tenant.</p>
+          <p>
+            Market the property and select a suitable tenant.
+          </p>
         </article>
 
         <article class="process-step">
           <span>04</span>
           <h3>Settle</h3>
-          <p>Handle lease documentation, move-in and handover.</p>
+          <p>
+            Handle lease documentation, move-in and handover.
+          </p>
         </article>
 
         <article class="process-step">
           <span>05</span>
           <h3>Manage</h3>
-          <p>Oversee rent, tenants, inspections, and maintenance.</p>
+          <p>
+            Oversee rent, tenants, inspections and maintenance.
+          </p>
         </article>
 
         <article class="process-step">
           <span>06</span>
           <h3>Improve</h3>
-          <p>Review performance and identify opportunities to do better.</p>
+          <p>
+            Review performance and identify opportunities to do better.
+          </p>
         </article>
+
       </div>
     </div>
   </section>
 
   <!-- DREAM TEAM -->
+
   <section class="section" id="team">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">The Dream Team</div>
 
@@ -1522,57 +1728,94 @@
       </div>
 
       <div class="team-grid">
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">PJ</div>
+
+        <article class="glass surface team-card">
+          <div class="team-photo">
+            <!-- Replace with Prashant's square headshot -->
+            <img
+              src="images/prashant-jeet.jpg"
+              alt="Prashant Jeet"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <span class="team-initials" aria-hidden="true">PJ</span>
+          </div>
 
           <div class="team-info">
-            <div class="role">Director · Senior Property Manager</div>
+            <div class="role">
+              Director · Senior Property Manager
+            </div>
+
             <h3>Prashant Jeet</h3>
 
             <p>
               With 10 years of industry experience, including more than 7 years
-              as a Senior Property Manager, Prashant brings both professional
+              as a Senior Property Manager, Prashant brings professional
               expertise and first-hand investor perspective to property management.
             </p>
           </div>
         </article>
 
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">AC</div>
+        <article class="glass surface team-card">
+          <div class="team-photo">
+            <!-- Replace with Aachal's square headshot -->
+            <img
+              src="images/aachal-chand.jpg"
+              alt="Aachal Chand"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <span class="team-initials" aria-hidden="true">AC</span>
+          </div>
 
           <div class="team-info">
-            <div class="role">Business Administrator</div>
+            <div class="role">
+              Business Administrator
+            </div>
+
             <h3>Aachal Chand</h3>
 
             <p>
               Bringing a background in education to property administration,
-              Aachal contributes strong organisation, attention to detail,
-              and clear communication across the day-to-day operation.
+              Aachal contributes strong organisation, attention to detail and
+              clear communication across the day-to-day operation.
             </p>
           </div>
         </article>
 
-        <article class="surface team-card">
-          <div class="team-photo" aria-hidden="true">CM</div>
+        <article class="glass surface team-card">
+          <div class="team-photo">
+            <!-- Replace with Calix's square headshot -->
+            <img
+              src="images/calix-mojica.jpg"
+              alt="Calix Mojica"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <span class="team-initials" aria-hidden="true">CM</span>
+          </div>
 
           <div class="team-info">
-            <div class="role">Business Partner · Business Development & Growth</div>
+            <div class="role">
+              Business Partner · Business Development & Growth
+            </div>
+
             <h3>Calix Mojica</h3>
 
             <p>
-              Focused on business development, brand growth, and expanding
+              Focused on business development, brand growth and expanding
               Dream Property's presence, while supporting clients through the
               property journey and helping build the next chapter of the business.
             </p>
           </div>
         </article>
+
       </div>
     </div>
   </section>
 
   <!-- STATS -->
+
   <section class="section" style="padding-top:20px;">
     <div class="container">
+
       <div class="stats">
         <div class="stat">
           <strong>10+</strong>
@@ -1594,24 +1837,33 @@
           <span>Maintenance Coordination</span>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- PROPERTIES -->
+
   <section class="section" id="properties">
     <div class="container">
+
       <div class="property-toolbar">
+
         <div class="section-heading" style="margin-bottom:0;">
           <div class="eyebrow">Available Properties</div>
 
           <h2>Find your next dream property.</h2>
 
           <p>
-            Available rental and sale opportunities will appear here as properties are listed.
+            Available rental and sale opportunities will appear here as
+            properties are listed.
           </p>
         </div>
 
-        <div class="property-tabs" role="tablist" aria-label="Property type">
+        <div
+          class="property-tabs"
+          role="tablist"
+          aria-label="Property type"
+        >
           <button
             class="property-tab active"
             type="button"
@@ -1628,13 +1880,18 @@
             For Sale
           </button>
         </div>
+
       </div>
 
       <!-- Replace these demo cards with live listings when ready -->
+
       <div class="properties-grid" id="rentProperties">
-        <article class="surface property-card">
+
+        <article class="glass surface property-card">
           <div class="property-image">
-            <div class="property-status">Available In 4 Days</div>
+            <div class="property-status">
+              Available In 4 Days
+            </div>
           </div>
 
           <div class="property-body">
@@ -1644,9 +1901,11 @@
           </div>
         </article>
 
-        <article class="surface property-card">
+        <article class="glass surface property-card">
           <div class="property-image">
-            <div class="property-status">Available Now</div>
+            <div class="property-status">
+              Available Now
+            </div>
           </div>
 
           <div class="property-body">
@@ -1656,9 +1915,11 @@
           </div>
         </article>
 
-        <article class="surface property-card">
+        <article class="glass surface property-card">
           <div class="property-image">
-            <div class="property-status">Available Now</div>
+            <div class="property-status">
+              Available Now
+            </div>
           </div>
 
           <div class="property-body">
@@ -1667,44 +1928,52 @@
             <div class="property-price">$500 per week</div>
           </div>
         </article>
+
       </div>
 
       <div class="property-empty" id="saleProperties">
         <h3>Properties for sale</h3>
 
         <p>
-          Sales listings can be displayed here when Dream Property expands into
-          sales and broader property services.
+          Sales listings can be displayed here when Dream Property expands
+          into sales and broader property services.
         </p>
       </div>
+
     </div>
   </section>
-    <!-- TESTIMONIALS -->
+
+  <!-- TESTIMONIALS -->
+
   <section class="section" id="testimonials">
     <div class="container">
+
       <div class="section-heading">
         <div class="eyebrow">Client Experience</div>
 
         <h2>Trusted by landlords.</h2>
 
         <p>
-          Real feedback from clients who value communication, professionalism and care.
+          Real feedback from clients who value communication, professionalism
+          and care.
         </p>
       </div>
 
       <div class="quote-grid">
-        <article class="surface quote-card">
+
+        <article class="glass surface quote-card">
           <div class="quote-mark">“</div>
 
           <blockquote>
-            I am very happy with the service provided. Dream Property kept us updated
-            and communicated clearly throughout. I would highly recommend them.
+            I am very happy with the service provided. Dream Property kept us
+            updated and communicated clearly throughout. I would highly
+            recommend them.
           </blockquote>
 
           <cite>N. Patel</cite>
         </article>
 
-        <article class="surface quote-card">
+        <article class="glass surface quote-card">
           <div class="quote-mark">“</div>
 
           <blockquote>
@@ -1715,7 +1984,7 @@
           <cite>E. Thompson</cite>
         </article>
 
-        <article class="surface quote-card">
+        <article class="glass surface quote-card">
           <div class="quote-mark">“</div>
 
           <blockquote>
@@ -1725,25 +1994,30 @@
 
           <cite>O. Hartman</cite>
         </article>
+
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
+
   <section class="section" id="contact">
     <div class="container">
-      <div class="surface contact-shell">
+
+      <div class="glass surface contact-shell">
+
         <div class="contact-copy">
           <div class="eyebrow">Let's Talk</div>
 
           <h2>Ready to dream bigger?</h2>
 
           <p>
-            Tell us about your property, portfolio, or plans. We will help you
+            Tell us about your property, portfolio or plans. We will help you
             understand your options and find the right level of support.
           </p>
 
           <div class="contact-details">
+
             <div class="contact-detail">
               <span>Visit</span>
 
@@ -1767,13 +2041,17 @@
                 info@dreamproperty.co.nz
               </a>
             </div>
+
           </div>
         </div>
 
         <form class="contact-form" id="contactForm">
+
           <div class="form-grid">
+
             <div class="field">
               <label for="name">Name</label>
+
               <input
                 id="name"
                 name="name"
@@ -1785,6 +2063,7 @@
 
             <div class="field">
               <label for="phone">Phone</label>
+
               <input
                 id="phone"
                 name="phone"
@@ -1795,6 +2074,7 @@
 
             <div class="field">
               <label for="email">Email</label>
+
               <input
                 id="email"
                 name="email"
@@ -1806,6 +2086,7 @@
 
             <div class="field">
               <label for="type">I need help with</label>
+
               <input
                 id="type"
                 name="type"
@@ -1826,7 +2107,10 @@
             </div>
 
             <div class="field full">
-              <button class="button-gold" type="submit">
+              <button
+                class="button-gold"
+                type="submit"
+              >
                 Send Enquiry
               </button>
 
@@ -1834,32 +2118,42 @@
                 Work in progress.
               </div>
             </div>
+
           </div>
         </form>
+
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
+
   <footer>
     <div class="container footer-inner">
-      <div>© 2026 Dream Property</div>
+      © 2026 Dream Property
     </div>
   </footer>
 
   <!-- SERVICE MODALS -->
 
   <div class="modal" id="modal-management" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">01 / Management</div>
 
       <h2>Property Management</h2>
 
       <p>
-        End-to-end management designed to protect the property, support the tenant
-        and keep the owner informed.
+        End-to-end management designed to protect the property, support the
+        tenant and keep the owner informed.
       </p>
 
       <h3>What's included</h3>
@@ -1873,12 +2167,20 @@
         <li>Tribunal representation and insurance claim assistance</li>
         <li>Healthy Homes compliance support</li>
       </ul>
+
     </div>
   </div>
 
   <div class="modal" id="modal-letting" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">02 / Letting</div>
 
@@ -1901,12 +2203,20 @@
         <li>Tenancy documentation and lease preparation</li>
         <li>Move-in inspection reporting</li>
       </ul>
+
     </div>
   </div>
 
   <div class="modal" id="modal-compliance" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">03 / Compliance</div>
 
@@ -1928,20 +2238,28 @@
         <li>Compliance guidance and documentation</li>
         <li>Ongoing support and advice</li>
       </ul>
+
     </div>
   </div>
 
   <div class="modal" id="modal-inspections" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">04 / Oversight</div>
 
       <h2>Property Inspections</h2>
 
       <p>
-        Regular oversight helps identify problems early, protect property condition
-        and maintain a strong owner-tenant relationship.
+        Regular oversight helps identify problems early, protect property
+        condition and maintain a strong owner-tenant relationship.
       </p>
 
       <h3>Our approach</h3>
@@ -1954,12 +2272,20 @@
         <li>Maintenance recommendations</li>
         <li>Clear owner communication and follow-up</li>
       </ul>
+
     </div>
   </div>
 
   <div class="modal" id="modal-rent" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">05 / Income</div>
 
@@ -1981,19 +2307,28 @@
         <li>Debt recovery referrals after tenancy</li>
         <li>Regular landlord updates</li>
       </ul>
+
     </div>
   </div>
 
   <div class="modal" id="modal-maintenance" aria-hidden="true">
-    <div class="modal-box">
-      <button class="modal-close" type="button" aria-label="Close">×</button>
+    <div class="modal-box glass">
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
 
       <div class="eyebrow">06 / Care</div>
 
       <h2>Maintenance & Repairs</h2>
 
       <p>
-        Smart maintenance is about preventing problems, not simply reacting to them.
+        Smart maintenance is about preventing problems, not simply reacting
+        to them.
       </p>
 
       <h3>What we coordinate</h3>
@@ -2008,11 +2343,12 @@
         <li>Preventative maintenance planning</li>
         <li>Property improvement recommendations</li>
       </ul>
+
     </div>
   </div>
 
   <style>
-    /* REMAINING COMPONENT STYLES */
+    /* TESTIMONIALS */
 
     .quote-grid {
       display: grid;
@@ -2026,7 +2362,6 @@
 
     .quote-mark {
       color: var(--gold);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 40px;
       line-height: .7;
     }
@@ -2034,7 +2369,6 @@
     .quote-card blockquote {
       margin-top: 17px;
       color: #c6cfda;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       line-height: 1.65;
     }
@@ -2049,6 +2383,8 @@
       letter-spacing: .5px;
     }
 
+    /* CONTACT */
+
     .contact-shell {
       display: grid;
       grid-template-columns: .85fr 1.15fr;
@@ -2057,8 +2393,7 @@
 
     .contact-copy {
       padding: 45px;
-      background: #0b1c30;
-      background-image: none;
+      background: rgba(7, 22, 39, .58);
     }
 
     .contact-copy h2 {
@@ -2091,8 +2426,7 @@
       text-transform: uppercase;
     }
 
-    .contact-detail a,
-    .contact-detail strong {
+    .contact-detail a {
       display: block;
       margin-top: 3px;
       color: var(--white);
@@ -2102,9 +2436,9 @@
 
     .contact-form {
       padding: 45px;
-      background: rgba(255,255,255,.035);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, .035);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
     }
 
     .form-grid {
@@ -2130,19 +2464,32 @@
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(255, 255, 255, .13);
       outline: 0;
-      border-radius: 10px;
-      background: rgba(4,11,21,.55);
+      border-radius: 12px;
+      background: rgba(4, 11, 21, .48);
       color: var(--white);
       padding: 12px 13px;
-      transition: .2s ease;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #647386;
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(216,181,106,.55);
-      box-shadow: 0 0 0 3px rgba(216,181,106,.06);
+      border-color: rgba(216, 181, 106, .58);
+      background: rgba(4, 11, 21, .64);
+      box-shadow:
+        0 0 0 3px rgba(216, 181, 106, .07),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
     }
 
     textarea {
@@ -2163,13 +2510,10 @@
       padding: 35px 0 50px;
       color: #536174;
       font-size: 11px;
+      text-align: center;
     }
 
     .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
       padding-top: 25px;
       border-top: 1px solid var(--line);
       text-align: center;
@@ -2184,12 +2528,12 @@
       display: grid;
       place-items: center;
       padding: 20px;
-      background: rgba(1,7,13,.72);
-      backdrop-filter: blur(24px) saturate(140%);
-      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      background: rgba(1, 7, 13, .68);
+      backdrop-filter: blur(28px) saturate(170%);
+      -webkit-backdrop-filter: blur(28px) saturate(170%);
       opacity: 0;
       visibility: hidden;
-      transition: .25s ease;
+      transition: opacity .25s ease, visibility .25s ease;
     }
 
     .modal.open {
@@ -2202,13 +2546,14 @@
       max-height: min(82vh, 760px);
       overflow: auto;
       padding: 35px;
-      border-radius: 24px;
-      background: rgba(9,26,45,.78);
+      border-radius: 28px;
+      background: var(--glass-strong);
       box-shadow:
-        0 40px 100px rgba(0,0,0,.5),
-        inset 0 1px 0 rgba(255,255,255,.12);
+        0 40px 110px rgba(0, 0, 0, .55),
+        inset 0 1px 0 rgba(255, 255, 255, .25),
+        inset 0 -1px 0 rgba(0, 0, 0, .28);
       transform: translateY(12px) scale(.98);
-      transition: .25s ease;
+      transition: transform .25s ease;
     }
 
     .modal.open .modal-box {
@@ -2221,14 +2566,21 @@
       top: 18px;
       width: 37px;
       height: 37px;
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 50%;
-      background: rgba(255,255,255,.06);
+      background: rgba(255, 255, 255, .075);
       color: #c9d1dc;
-      cursor: pointer;
       font-size: 18px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .20),
+        0 8px 20px rgba(0, 0, 0, .16);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, .13);
+      color: var(--white);
     }
 
     .modal-box h2 {
@@ -2265,8 +2617,6 @@
       color: var(--gold);
     }
 
-    /* RESPONSIVE */
-
     @media (max-width: 900px) {
       .contact-shell {
         grid-template-columns: 1fr;
@@ -2298,17 +2648,11 @@
       .modal-box {
         padding: 29px 23px;
       }
-
-      .footer-inner {
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-      }
     }
   </style>
 
   <script>
-    // Navigation and smooth scrolling
+    // Navigation
 
     const navWrap = document.getElementById("navWrap");
     const navLinks = document.getElementById("navLinks");
@@ -2322,7 +2666,10 @@
       const open = navLinks.classList.toggle("open");
 
       navToggle.setAttribute("aria-expanded", String(open));
-      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      navToggle.setAttribute(
+        "aria-label",
+        open ? "Close menu" : "Open menu"
+      );
     });
 
     document.querySelectorAll("[data-scroll]").forEach(link => {
@@ -2345,7 +2692,7 @@
       });
     });
 
-    // Highlight active navigation item
+    // Active navigation item
 
     const sections = [
       ...document.querySelectorAll("header[id], section[id]")
@@ -2357,18 +2704,18 @@
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navAnchors.forEach(anchor => {
-            anchor.classList.remove("active");
-          });
+        if (!entry.isIntersecting) return;
 
-          const active = document.querySelector(
-            `.nav-links a[data-scroll="${entry.target.id}"]`
-          );
+        navAnchors.forEach(anchor => {
+          anchor.classList.remove("active");
+        });
 
-          if (active) {
-            active.classList.add("active");
-          }
+        const active = document.querySelector(
+          `.nav-links a[data-scroll="${entry.target.id}"]`
+        );
+
+        if (active) {
+          active.classList.add("active");
         }
       });
     }, {
@@ -2377,7 +2724,26 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // Service modal system
+    // View more controls
+
+    document.querySelectorAll("[data-toggle]").forEach(button => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.toggle;
+        const target = document.getElementById(targetId);
+
+        if (!target) return;
+
+        const isHidden = target.classList.toggle("hidden");
+
+        button.setAttribute("aria-expanded", String(!isHidden));
+
+        button.innerHTML = isHidden
+          ? 'View more <span>→</span>'
+          : 'View less <span>↑</span>';
+      });
+    });
+
+    // Service modals
 
     const modals = document.querySelectorAll(".modal");
 
@@ -2462,16 +2828,19 @@
 
     // Demo contact form
 
-    document.getElementById("contactForm").addEventListener("submit", event => {
-      event.preventDefault();
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", event => {
+        event.preventDefault();
 
-      const note = document.getElementById("formNote");
+        const note = document.getElementById("formNote");
 
-      note.textContent =
-        "Thank you. This demo form is ready to be connected to Dream Property's enquiry system.";
+        note.textContent =
+          "Thank you. This demo form is ready to be connected to Dream Property's enquiry system.";
 
-      note.style.color = "#d8b56a";
-    });
+        note.style.color = "#d8b56a";
+      });
   </script>
+
 </body>
 </html>
