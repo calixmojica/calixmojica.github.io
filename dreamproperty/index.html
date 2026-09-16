@@ -86,7 +86,8 @@
 
     button,
     input,
-    textarea {
+    textarea,
+    select {
       font: inherit;
     }
 
@@ -156,6 +157,7 @@
       position: relative;
       isolation: isolate;
       border: 1px solid var(--glass-border);
+      border-radius: 28px;
       background: var(--glass-bg-strong);
       backdrop-filter: blur(34px) saturate(170%);
       -webkit-backdrop-filter: blur(34px) saturate(170%);
@@ -710,10 +712,16 @@
       font-weight: 700;
     }
 
+    .team-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
     /* CONTACT */
 
     .contact-sub-heading {
-      max-width: 560px;
+      max-width: 620px;
       margin: 70px 0 30px;
     }
 
@@ -786,7 +794,8 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
       border: 1px solid rgba(255, 255, 255, .13);
       outline: 0;
@@ -802,15 +811,36 @@
         background .2s ease;
     }
 
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #91A0B1 50%),
+        linear-gradient(135deg, #91A0B1 50%, transparent 50%);
+      background-position:
+        calc(100% - 17px) 50%,
+        calc(100% - 12px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 38px;
+    }
+
+    select option {
+      background: #071426;
+      color: var(--white);
+    }
+
     input::placeholder,
     textarea::placeholder {
       color: #647386;
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       border-color: rgba(214, 184, 120, .58);
-      background: rgba(4, 11, 21, .55);
+      background-color: rgba(4, 11, 21, .55);
       box-shadow:
         0 0 0 3px rgba(214, 184, 120, .07),
         inset 0 1px 0 rgba(255, 255, 255, .08);
@@ -1045,8 +1075,6 @@
       max-height: min(82vh, 760px);
       overflow: auto;
       padding: 35px;
-      border-radius: 28px;
-      background: var(--glass-bg-strong);
       transform: translateY(12px) scale(.98);
       transition: transform .25s ease;
     }
@@ -1120,7 +1148,9 @@
     .team-modal-photo {
       width: 150px;
       height: 180px;
-      flex: 0 0 auto;
+      min-width: 150px;
+      min-height: 180px;
+      flex: 0 0 150px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, .16);
       border-radius: 20px;
@@ -1135,10 +1165,17 @@
       height: 100%;
       display: block;
       object-fit: cover;
+      object-position: center;
     }
 
     .team-modal-photo .team-initials {
+      width: 100%;
+      height: 100%;
       font-size: 24px;
+    }
+
+    .team-modal-titles {
+      min-width: 0;
     }
 
     .team-modal-titles .role {
@@ -1346,8 +1383,11 @@
       }
 
       .team-modal-photo {
-        width: 145px;
-        height: 175px;
+        width: 150px;
+        height: 180px;
+        min-width: 150px;
+        min-height: 180px;
+        flex-basis: 150px;
       }
 
       .team-modal-socials {
@@ -1361,8 +1401,7 @@
       }
 
       *,
-      *::before,
-      *::after {
+      *::before {
         transition: none !important;
       }
     }
@@ -1783,13 +1822,13 @@
     </div>
   </section>
 
-  <!-- TEAM & CONTACT -->
+  <!-- DREAM TEAM & CONTACT -->
 
   <section class="section" id="contact">
     <div class="container">
 
       <div class="section-heading">
-        <h2>Meet our team</h2>
+        <h2>Dream Team</h2>
         <p>Get to know the people who look after your property.</p>
       </div>
 
@@ -1857,18 +1896,31 @@
           </div>
 
           <div class="team-info">
-            <div class="role">Business Development & Growth</div>
+            <div class="role">Business Development &amp; Growth</div>
             <h3>Calix Mojica</h3>
-            <p>The visionary behind Dream Property.</p>
+            <p>Helping shape the future of Dream Property.</p>
             <div class="team-open">View profile →</div>
           </div>
         </article>
 
       </div>
 
-      <div class="contact-sub-heading">
+      <div class="team-cta">
+        <a
+          class="button-gold"
+          href="#contact"
+          data-scroll="contact-form"
+        >
+          Join the Dream Team
+        </a>
+      </div>
+
+      <div class="contact-sub-heading" id="contact-form">
         <h3>Get in touch</h3>
-        <p>Tell us about your property, and we'll help you find the right plan.</p>
+        <p>
+          Whether you're looking to rent, manage a property, join the team,
+          or simply have a question, we'd love to hear from you.
+        </p>
       </div>
 
       <div class="glass surface contact-shell">
@@ -1943,14 +1995,22 @@
             </div>
 
             <div class="field">
-              <label for="type">I need help with</label>
+              <label for="type">Enquiry type</label>
 
-              <input
+              <select
                 id="type"
                 name="type"
-                type="text"
-                placeholder="Property management, appraisal..."
+                required
               >
+                <option value="" selected disabled>Select an option</option>
+                <option value="property-management">Property management</option>
+                <option value="rent-out-property">Rent out my property</option>
+                <option value="rental-property">Find a rental property</option>
+                <option value="maintenance">Maintenance &amp; repairs</option>
+                <option value="existing-tenant">Existing tenancy</option>
+                <option value="join-dream-team">Join the Dream Team</option>
+                <option value="general-enquiry">General enquiry</option>
+              </select>
             </div>
 
             <div class="field full">
@@ -1959,7 +2019,7 @@
               <textarea
                 id="message"
                 name="message"
-                placeholder="Tell us a little about your property or enquiry."
+                placeholder="Tell us a little about your enquiry."
                 required
               ></textarea>
             </div>
@@ -1984,6 +2044,7 @@
 
     </div>
   </section>
+
   <!-- SOCIAL -->
 
   <section class="social-section">
@@ -2188,7 +2249,7 @@
       <ul>
         <li>Routine property inspections</li>
         <li>Detailed reports with photos</li>
-        <li>Early sign of leaks, dampness, damage and wear</li>
+        <li>Early signs of leaks, dampness, damage, and wear</li>
         <li>Healthy Homes and safety checks</li>
         <li>Maintenance recommendations</li>
         <li>Clear owner updates and follow-up</li>
@@ -2380,25 +2441,30 @@
         </div>
 
         <div class="team-modal-titles">
-          <div class="role">Business Partner · Growth</div>
+          <div class="role">Business Development & Growth</div>
           <h2>Calix Mojica</h2>
         </div>
 
       </div>
 
-        <p>
-          With a background in residential property management and a Bachelor of Property from the University of Auckland, Calix brings a strong understanding of property, people, and branding to Dream Property.
-        </p>
+      <p>
+        With a background in residential property management and a Bachelor
+        of Property from the University of Auckland, Calix brings a strong
+        understanding of property, people, and branding to Dream Property.
+      </p>
 
-        <p>
-          Now focused on business growth, Calix works across strategy, brand development, marketing, and new opportunities, helping shape Dream Property into a modern, recognisable, and trustworth property brand built for long-term growth.
-        </p>
+      <p>
+        Now focused on business growth, Calix works across strategy, brand
+        development, marketing, and new opportunities, helping shape Dream
+        Property into a modern, recognisable, and trustworthy property brand
+        built for long-term growth.
+      </p>
 
       <div
         class="team-modal-socials"
-        data-instagram="https://instagram.com/DreamPropertyNZ"
-        data-tiktok="https://tiktok.com/@DreamPropertyNZ"
-        data-youtube="https://youtube.com/@DreamPropertyNZ"
+        data-instagram="https://instagram.com/CalixMojicaRealEstate"
+        data-tiktok="https://tiktok.com/@CalixMojicaRealEstate"
+        data-youtube="https://youtube.com/@CalixMojicaRealEstate"
       ></div>
 
     </div>
