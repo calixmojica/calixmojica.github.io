@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071426">
+  <meta name="theme-color" content="#040B15">
   <meta name="apple-mobile-web-app-title" content="Dream Property">
   <meta name="application-name" content="Dream Property">
 
@@ -27,15 +27,17 @@
 
   <style>
     :root {
-      --navy-950: #040b15;
+      --navy-950: #040B15;
       --navy-900: #071426;
-      --navy-800: #0b1d33;
+      --navy-800: #0B1D33;
       --navy-700: #102844;
-      --gold: #d8b56a;
-      --gold-light: #f1dca5;
-      --white: #f7f8fb;
-      --text: #dce3ec;
-      --muted: #91a0b1;
+
+      --gold: #D6B878;
+      --gold-light: #D6B878;
+
+      --white: #F7F8FB;
+      --text: #DCE3EC;
+      --muted: #91A0B1;
 
       --glass-bg: rgba(255, 255, 255, .05);
       --glass-bg-strong: rgba(10, 27, 46, .55);
@@ -136,11 +138,7 @@
       display: none !important;
     }
 
-    /* GLASS SURFACES
-       Cards use a plain, solid, translucent panel: a flat
-       colour with blur behind it, no gradient tricks. Modals
-       use .glass-modal below, which adds a thin refraction
-       ring, reserved for that fuller glass moment. */
+    /* GLASS */
 
     .glass {
       position: relative;
@@ -153,11 +151,6 @@
         0 20px 50px rgba(0, 0, 0, .25),
         inset 0 1px 0 rgba(255, 255, 255, .14);
     }
-
-    /* Modal glass: the same solid panel, plus a thin iridescent
-       ring at the edge, made by masking a conic-gradient so only
-       a hairline of colour shows around the border. It mimics the
-       way light catches the rim of real glass. */
 
     .glass-modal {
       position: relative;
@@ -178,24 +171,8 @@
       z-index: 1;
       border-radius: inherit;
       pointer-events: none;
-      padding: 1px;
-      background: conic-gradient(
-        from 220deg,
-        rgba(255, 130, 130, .5),
-        rgba(255, 214, 130, .5),
-        rgba(160, 255, 170, .45),
-        rgba(130, 200, 255, .5),
-        rgba(200, 150, 255, .5),
-        rgba(255, 130, 200, .45),
-        rgba(255, 130, 130, .5)
-      );
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: .3;
-      mix-blend-mode: screen;
+      border: 1px solid rgba(214, 184, 120, .16);
+      opacity: .7;
     }
 
     /* NAVIGATION */
@@ -236,15 +213,16 @@
 
     .brand-mark {
       position: relative;
-      width: 35px;
-      height: 35px;
+      width: 38px;
+      height: 38px;
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid rgba(216, 181, 106, .6);
-      border-radius: 50%;
-      color: var(--gold-light);
+      border: 0;
+      border-radius: 0;
+      color: var(--gold);
       font-size: 19px;
+      flex: 0 0 auto;
     }
 
     .brand-mark img {
@@ -281,7 +259,7 @@
     .nav-links a {
       padding: 9px 12px;
       border-radius: 10px;
-      color: #b9c4d1;
+      color: #B9C4D1;
       font-size: 13px;
       transition: background .2s ease, color .2s ease;
     }
@@ -393,7 +371,7 @@
 
     .hero-copy > p {
       max-width: 560px;
-      color: #aeb9c7;
+      color: #AEB9C7;
       font-size: 17px;
       line-height: 1.7;
     }
@@ -439,7 +417,7 @@
       right: -18px;
       top: -60px;
       z-index: -1;
-      color: rgba(216, 181, 106, .055);
+      color: rgba(214, 184, 120, .055);
       font-size: 400px;
       line-height: 1;
       font-style: italic;
@@ -454,10 +432,10 @@
       right: 58px;
       top: 55px;
       border-radius: 50%;
-      background: #d8b56a;
+      background: #D6B878;
       box-shadow:
         0 0 0 1px rgba(255, 255, 255, .18),
-        0 0 45px rgba(216, 181, 106, .15),
+        0 0 45px rgba(214, 184, 120, .15),
         inset -12px -12px 20px rgba(102, 65, 18, .10),
         inset 8px 8px 15px rgba(255, 255, 255, .20);
     }
@@ -478,7 +456,7 @@
     }
 
     .dream-card-content p {
-      color: #b3bfcd;
+      color: #B3BFCD;
       font-size: 14px;
       line-height: 1.65;
     }
@@ -542,7 +520,7 @@
       position: absolute;
       right: 27px;
       bottom: 22px;
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 12px;
       font-weight: 700;
     }
@@ -562,10 +540,10 @@
 
     .package.featured {
       background: rgba(45, 36, 15, .38);
-      border-color: rgba(216, 181, 106, .45);
+      border-color: rgba(214, 184, 120, .45);
       box-shadow:
         0 25px 80px rgba(0, 0, 0, .32),
-        0 0 60px rgba(216, 181, 106, .10),
+        0 0 60px rgba(214, 184, 120, .10),
         inset 0 1px 0 rgba(255, 255, 255, .18);
     }
 
@@ -583,14 +561,14 @@
 
     .package .tagline {
       margin-top: 6px;
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 13px;
       font-weight: 550;
     }
 
     .package .price {
       margin-top: 14px;
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 36px;
       font-weight: 650;
       letter-spacing: .3px;
@@ -605,10 +583,10 @@
 
     .badge {
       padding: 6px 10px;
-      border: 1px solid rgba(216, 181, 106, .5);
+      border: 1px solid rgba(214, 184, 120, .5);
       border-radius: 20px;
-      background: rgba(216, 181, 106, .14);
-      color: var(--gold-light);
+      background: rgba(214, 184, 120, .14);
+      color: var(--gold);
       font-size: 10px;
       font-weight: 700;
       letter-spacing: .5px;
@@ -625,7 +603,7 @@
     .package li {
       position: relative;
       padding-left: 17px;
-      color: #abb7c6;
+      color: #ABB7C6;
       font-size: 12px;
     }
 
@@ -643,13 +621,13 @@
       margin-top: 24px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
-      color: #93a1b3;
+      color: #93A1B3;
       font-size: 12px;
       line-height: 1.6;
     }
 
     .package-note b {
-      color: var(--gold-light);
+      color: var(--gold);
       font-weight: 700;
     }
 
@@ -704,7 +682,7 @@
     }
 
     .team-info .role {
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 11px;
       font-weight: 650;
     }
@@ -727,12 +705,12 @@
       align-items: center;
       gap: 6px;
       margin-top: 14px;
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 11px;
       font-weight: 700;
     }
 
-    /* CONTACT (within combined Team & Contact section) */
+    /* CONTACT */
 
     .contact-sub-heading {
       max-width: 560px;
@@ -770,7 +748,7 @@
 
     .contact-detail span {
       display: block;
-      color: #8a97a8;
+      color: #8A97A8;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: .6px;
@@ -802,7 +780,7 @@
     label {
       display: block;
       margin-bottom: 7px;
-      color: #91a0b1;
+      color: #91A0B1;
       font-size: 11px;
       font-weight: 650;
     }
@@ -831,10 +809,10 @@
 
     input:focus,
     textarea:focus {
-      border-color: rgba(216, 181, 106, .58);
+      border-color: rgba(214, 184, 120, .58);
       background: rgba(4, 11, 21, .55);
       box-shadow:
-        0 0 0 3px rgba(216, 181, 106, .07),
+        0 0 0 3px rgba(214, 184, 120, .07),
         inset 0 1px 0 rgba(255, 255, 255, .08);
     }
 
@@ -925,7 +903,7 @@
       border: 1px solid rgba(255, 255, 255, .14);
       border-radius: 7px;
       background: rgba(4, 11, 21, .70);
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 10px;
       font-weight: 700;
       backdrop-filter: blur(15px);
@@ -949,7 +927,7 @@
 
     .property-price {
       margin-top: 14px;
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 17px;
       font-weight: 700;
     }
@@ -974,7 +952,7 @@
 
     .quote-card blockquote {
       margin-top: 16px;
-      color: #c6cfda;
+      color: #C6CFDA;
       font-size: 15px;
       line-height: 1.65;
     }
@@ -988,7 +966,7 @@
       font-weight: 700;
     }
 
-    /* SOCIAL ROW */
+    /* SOCIAL */
 
     .social-section {
       padding: 55px 0 15px;
@@ -999,24 +977,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
     }
 
     .social-icon {
       display: grid;
       place-items: center;
+      width: 28px;
+      height: 28px;
       color: var(--muted);
+      border: 0;
+      background: transparent;
       transition: color .2s ease, transform .2s ease;
     }
 
     .social-icon:hover {
-      color: var(--gold-light);
+      color: var(--gold);
       transform: translateY(-2px);
     }
 
     .social-icon svg {
       width: 20px;
       height: 20px;
+      fill: currentColor;
+      stroke: none;
     }
 
     /* FOOTER */
@@ -1081,7 +1065,7 @@
       border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 50%;
       background: rgba(255, 255, 255, .075);
-      color: #c9d1dc;
+      color: #C9D1DC;
       font-size: 18px;
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
@@ -1117,7 +1101,7 @@
       gap: 8px;
       margin-top: 10px;
       padding-left: 17px;
-      color: #aeb9c7;
+      color: #AEB9C7;
       font-size: 13px;
     }
 
@@ -1125,29 +1109,32 @@
       color: var(--gold);
     }
 
-    /* Team modal specifics */
+    /* TEAM MODAL */
 
     .team-modal-head {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 24px;
     }
 
     .team-modal-photo {
-      width: 78px;
-      height: 78px;
-      flex: none;
+      width: 150px;
+      height: 180px;
+      flex: 0 0 auto;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 20px;
       background: #102844;
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, .28),
+        inset 0 1px 0 rgba(255, 255, 255, .22);
     }
 
     .team-modal-photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
     }
 
     .team-modal-photo .team-initials {
@@ -1155,7 +1142,7 @@
     }
 
     .team-modal-titles .role {
-      color: var(--gold-light);
+      color: var(--gold);
       font-size: 11px;
       font-weight: 650;
     }
@@ -1168,7 +1155,8 @@
 
     .team-modal-socials {
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 18px;
       margin-top: 28px;
       padding-top: 22px;
       border-top: 1px solid var(--line);
@@ -1178,24 +1166,28 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 14px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, .045);
-      color: var(--text);
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--muted);
       font-size: 12px;
       font-weight: 600;
-      transition: background .2s ease, border-color .2s ease;
+      transition: color .2s ease, transform .2s ease;
     }
 
     .team-modal-socials a:hover {
-      background: rgba(255, 255, 255, .09);
-      border-color: rgba(255, 255, 255, .24);
+      background: transparent;
+      border-color: transparent;
+      color: var(--gold);
+      transform: translateY(-2px);
     }
 
     .team-modal-socials svg {
-      width: 15px;
-      height: 15px;
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+      stroke: none;
     }
 
     /* RESPONSIVE */
@@ -1350,6 +1342,12 @@
       .team-modal-head {
         flex-direction: column;
         text-align: center;
+        gap: 18px;
+      }
+
+      .team-modal-photo {
+        width: 145px;
+        height: 175px;
       }
 
       .team-modal-socials {
@@ -1508,8 +1506,6 @@
         <h2>Rentals available now</h2>
         <p>Homes ready to rent across Auckland.</p>
       </div>
-
-      <!-- Live listings appear here as properties are added -->
 
       <div class="properties-grid" id="rentProperties">
 
@@ -1988,7 +1984,6 @@
 
     </div>
   </section>
-
   <!-- SOCIAL -->
 
   <section class="social-section">
@@ -2003,8 +1998,11 @@
           rel="noopener noreferrer"
           aria-label="Dream Property on Facebook"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M14.7 21v-7.3h2.4l.4-3H14.7V8.7c0-.87.25-1.46 1.5-1.46h1.6V4.15C17.5 4.1 16.5 4 15.3 4 12.8 4 11 5.5 11 8.1v2.6H8.6v3H11V21"/>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M14.7 21v-7.3h2.4l.4-3h-2.8V8.7c0-.9.25-1.46 1.5-1.46h1.6V4.15C17.5 4.1 16.5 4 15.3 4 12.8 4 11 5.5 11 8.1v2.6H8.6v3H11V21z"
+            />
           </svg>
         </a>
 
@@ -2015,10 +2013,11 @@
           rel="noopener noreferrer"
           aria-label="Dream Property on Instagram"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.1" cy="6.9" r=".9" fill="currentColor" stroke="none"/>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"
+            />
           </svg>
         </a>
 
@@ -2029,9 +2028,11 @@
           rel="noopener noreferrer"
           aria-label="Dream Property on TikTok"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M15 4v10a3.3 3.3 0 1 1-3.3-3.3"/>
-            <path d="M15 4a4.6 4.6 0 0 0 4.5 4.6"/>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.9c-1.4.1-2.7-.3-3.9-1.1v6.2c0 3.2-2.6 5.7-5.8 5.7A5.75 5.75 0 0 1 5.1 14.8c0-3.1 2.5-5.7 5.7-5.8v3c-1.5 0-2.7 1.2-2.7 2.7 0 1.5 1.2 2.7 2.7 2.7 1.5 0 2.8-1.1 2.8-2.7V3h3Z"
+            />
           </svg>
         </a>
 
@@ -2042,9 +2043,11 @@
           rel="noopener noreferrer"
           aria-label="Dream Property on YouTube"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2.6" y="6" width="18.8" height="12" rx="4"/>
-            <path d="M10.4 9.6l4.6 2.4-4.6 2.4z" fill="currentColor" stroke="none"/>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.8 4.8 12 4.8 12 4.8s-6.8 0-8.5.4A3 3 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.7.4 8.5.4 8.5.4s6.8 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12ZM9.8 15.7V8.3l6.4 3.7-6.4 3.7Z"
+            />
           </svg>
         </a>
 
@@ -2275,6 +2278,7 @@
       </button>
 
       <div class="team-modal-head">
+
         <div class="team-modal-photo">
           <img
             src="images/prashant-jeet.jpg"
@@ -2288,6 +2292,7 @@
           <div class="role">Director · Senior Property Manager</div>
           <h2>Prashant Jeet</h2>
         </div>
+
       </div>
 
       <p>
@@ -2319,6 +2324,7 @@
       </button>
 
       <div class="team-modal-head">
+
         <div class="team-modal-photo">
           <img
             src="images/aachal-chand.jpg"
@@ -2332,6 +2338,7 @@
           <div class="role">Business Administrator</div>
           <h2>Aachal Chand</h2>
         </div>
+
       </div>
 
       <p>
@@ -2362,6 +2369,7 @@
       </button>
 
       <div class="team-modal-head">
+
         <div class="team-modal-photo">
           <img
             src="images/calix-mojica.jpg"
@@ -2375,6 +2383,7 @@
           <div class="role">Business Partner · Growth</div>
           <h2>Calix Mojica</h2>
         </div>
+
       </div>
 
       <p>
@@ -2408,6 +2417,7 @@
       const open = navLinks.classList.toggle("open");
 
       navToggle.setAttribute("aria-expanded", String(open));
+
       navToggle.setAttribute(
         "aria-label",
         open ? "Close menu" : "Open menu"
@@ -2466,7 +2476,7 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // Modals (services + team)
+    // Modals
 
     const modals = document.querySelectorAll(".modal");
 
@@ -2506,7 +2516,8 @@
     });
 
     document.querySelectorAll("[data-team]").forEach(card => {
-      const open = () => openModal(`modal-team-${card.dataset.team}`);
+      const open = () =>
+        openModal(`modal-team-${card.dataset.team}`);
 
       card.addEventListener("click", open);
 
@@ -2536,15 +2547,26 @@
       }
     });
 
-    // Build social links inside each team modal from its data attributes,
-    // so a personal link can replace the default @DreamPropertyNZ handle
-    // later just by changing the data-instagram / data-tiktok / data-youtube
-    // value on that modal's .team-modal-socials element.
+    // Team modal social icons
 
     const socialIcons = {
-      instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.35" cy="6.65" r="1.05" fill="currentColor" stroke="none"/></svg>',
-      tiktok: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.9c-1.4.1-2.7-.3-3.9-1.1v6.2c0 3.2-2.6 5.7-5.8 5.7A5.75 5.75 0 0 1 5.1 14.8c0-3.1 2.5-5.7 5.7-5.8v3c-1.5 0-2.7 1.2-2.7 2.7 0 1.5 1.2 2.7 2.7 2.7 1.5 0 2.8-1.1 2.8-2.7V3h3Z"/></svg>',
-      youtube: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12s0-3.2-.4-4.7a2.8 2.8 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.8 2.8 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.8 2.8 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.8 2.8 0 0 0 2-2C22 15.2 22 12 22 12Z" opacity=".35"/><path d="M10 15.2V8.8L15.8 12 10 15.2Z"/></svg>'
+      instagram: `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/>
+        </svg>
+      `,
+
+      tiktok: `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.9c-1.4.1-2.7-.3-3.9-1.1v6.2c0 3.2-2.6 5.7-5.8 5.7A5.75 5.75 0 0 1 5.1 14.8c0-3.1 2.5-5.7 5.7-5.8v3c-1.5 0-2.7 1.2-2.7 2.7 0 1.5 1.2 2.7 2.7 2.7 1.5 0 2.8-1.1 2.8-2.7V3h3Z"/>
+        </svg>
+      `,
+
+      youtube: `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C18.8 4.8 12 4.8 12 4.8s-6.8 0-8.5.4A3 3 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.7.4 8.5.4 8.5.4s6.8 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.2 23 12 23 12ZM9.8 15.7V8.3l6.4 3.7-6.4 3.7Z"/>
+        </svg>
+      `
     };
 
     const socialLabels = {
@@ -2560,10 +2582,13 @@
         if (!url) return;
 
         const link = document.createElement("a");
+
         link.href = url;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        link.innerHTML = `${socialIcons[platform]}<span>${socialLabels[platform]}</span>`;
+
+        link.innerHTML =
+          `${socialIcons[platform]}<span>${socialLabels[platform]}</span>`;
 
         wrap.appendChild(link);
       });
@@ -2581,7 +2606,7 @@
         note.textContent =
           "Thank you. This demo form is ready to be connected to Dream Property's enquiry system.";
 
-        note.style.color = "#d8b56a";
+        note.style.color = "#D6B878";
       });
   </script>
 
