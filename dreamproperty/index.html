@@ -251,6 +251,19 @@
       color: var(--gold);
     }
 
+    .site-header .brand-name {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      font-size: 0.78rem;
+      line-height: 1.15;
+      white-space: normal;
+    }
+
+    .site-header .brand-name span {
+      display: block;
+    }
+
     .main-navigation {
       display: flex;
       align-items: center;
@@ -382,9 +395,14 @@
       min-height: 100%;
       transform: translate(-50%, -50%) scale(1.12);
       border: 0;
-      opacity: 0.65;
+      opacity: 0;
       filter: blur(2px);
       pointer-events: none;
+      transition: opacity 700ms ease;
+    }
+
+    .hero-video iframe.video-ready {
+      opacity: 0.65;
     }
 
     .hero-overlay {
@@ -950,7 +968,8 @@
 
       <div class="hero-video" aria-hidden="true">
         <iframe
-          src="https://www.youtube.com/embed/iEK7Gds1rDc?autoplay=1&mute=1&controls=0&loop=1&playlist=iEK7Gds1rDc&playsinline=1&rel=0&modestbranding=1"
+          id="heroVideoFrame"
+          src="https://www.youtube.com/embed/iEK7Gds1rDc?autoplay=1&mute=1&controls=0&loop=1&playlist=iEK7Gds1rDc&playsinline=1&rel=0&modestbranding=1&enablejsapi=1"
           title="Dream Property background video"
           allow="autoplay; encrypted-media"
           loading="eager"
@@ -1004,18 +1023,6 @@
           </div>
 
         </div>
-
-        <!--
-          PROPERTY LISTINGS
-
-          To replace these placeholders:
-
-          1. Change the address.
-          2. Change the weekly price.
-          3. Change the bedroom, bathroom, and parking numbers.
-          4. Replace the image path if you have a property image.
-          5. Replace the Trade Me URL in the JavaScript at the bottom.
-        -->
 
         <div class="property-track" id="propertyTrack">
 
@@ -1657,10 +1664,6 @@
                   loading="lazy"
                 >
 
-                <div class="team-image-overlay">
-                  <span>View Profile</span>
-                </div>
-
               </div>
 
             </button>
@@ -1712,10 +1715,6 @@
                   loading="lazy"
                 >
 
-                <div class="team-image-overlay">
-                  <span>View Profile</span>
-                </div>
-
               </div>
 
             </button>
@@ -1766,10 +1765,6 @@
                   alt="Calix Mojica"
                   loading="lazy"
                 >
-
-                <div class="team-image-overlay">
-                  <span>View Profile</span>
-                </div>
 
               </div>
 
@@ -1922,7 +1917,7 @@
               rel="noopener noreferrer"
               aria-label="Dream Property Facebook"
             >
-              <span>f</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M13.5 21v-7.6h2.55l.38-2.96h-2.93v-1.9c0-.86.24-1.44 1.47-1.44h1.57V4.14C16.24 4.06 15.3 4 14.2 4c-2.3 0-3.87 1.4-3.87 4v2.44H7.77v2.96h2.56V21h3.17Z"/></svg>
             </a>
 
 
@@ -1932,7 +1927,7 @@
               rel="noopener noreferrer"
               aria-label="Dream Property Instagram"
             >
-              <span>ig</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.15" cy="6.85" r="1"/></svg>
             </a>
 
 
@@ -1942,7 +1937,7 @@
               rel="noopener noreferrer"
               aria-label="Dream Property TikTok"
             >
-              <span>tk</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M16.6 3c.3 2 1.6 3.7 3.6 4.2v2.9c-1.4 0-2.7-.4-3.8-1.2v6.1c0 3.2-2.6 5.8-5.8 5.8S4.8 18.2 4.8 15s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.9-1.2 2.9-2.8V3h3.1Z"/></svg>
             </a>
 
 
@@ -1952,7 +1947,7 @@
               rel="noopener noreferrer"
               aria-label="Dream Property YouTube"
             >
-              <span>yt</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M21.6 7.6c-.2-1-1-1.8-2-2C17.9 5.2 12 5.2 12 5.2s-5.9 0-7.6.4c-1 .2-1.8 1-2 2C2 9.3 2 12 2 12s0 2.7.4 4.4c.2 1 1 1.8 2 2 1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4c1-.2 1.8-1 2-2 .4-1.7.4-4.4.4-4.4s0-2.7-.4-4.4ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
             </a>
 
           </div>
@@ -1998,11 +1993,6 @@
             </div>
 
           </a>
-
-
-          <p>
-            Dream Bigger
-          </p>
 
         </div>
 
@@ -2055,6 +2045,23 @@
           <div>
 
             <span class="footer-heading">
+              Legal
+            </span>
+
+            <button type="button" data-modal="privacy">
+              Privacy Policy
+            </button>
+
+            <button type="button" data-modal="terms">
+              Terms & Conditions
+            </button>
+
+          </div>
+
+
+          <div>
+
+            <span class="footer-heading">
               Contact
             </span>
 
@@ -2075,26 +2082,6 @@
 
 
       <div class="footer-bottom">
-
-
-        <div class="footer-legal">
-
-          <button
-            type="button"
-            data-modal="privacy"
-          >
-            Privacy Policy
-          </button>
-
-          <button
-            type="button"
-            data-modal="terms"
-          >
-            Terms & Conditions
-          </button>
-
-        </div>
-
 
         <p>
           © <span id="currentYear"></span>
@@ -2144,7 +2131,7 @@
 
 
       <div class="eyebrow">
-        01 / 06
+        
       </div>
 
 
@@ -2244,7 +2231,7 @@
 
 
       <div class="eyebrow">
-        02 / 06
+        
       </div>
 
 
@@ -2346,7 +2333,7 @@
 
 
       <div class="eyebrow">
-        03 / 06
+        
       </div>
 
 
@@ -2447,7 +2434,7 @@
 
 
       <div class="eyebrow">
-        04 / 06
+        
       </div>
 
 
@@ -2546,7 +2533,7 @@
 
 
       <div class="eyebrow">
-        05 / 06
+        
       </div>
 
 
@@ -2646,7 +2633,7 @@
 
 
       <div class="eyebrow">
-        06 / 06
+        
       </div>
 
 
@@ -2961,32 +2948,36 @@
           href="https://facebook.com/DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook"
         >
-          Facebook
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M13.5 21v-7.6h2.55l.38-2.96h-2.93v-1.9c0-.86.24-1.44 1.47-1.44h1.57V4.14C16.24 4.06 15.3 4 14.2 4c-2.3 0-3.87 1.4-3.87 4v2.44H7.77v2.96h2.56V21h3.17Z"/></svg>
         </a>
 
         <a
           href="https://instagram.com/DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Instagram"
         >
-          Instagram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.15" cy="6.85" r="1"/></svg>
         </a>
 
         <a
           href="https://tiktok.com/@DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="TikTok"
         >
-          TikTok
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M16.6 3c.3 2 1.6 3.7 3.6 4.2v2.9c-1.4 0-2.7-.4-3.8-1.2v6.1c0 3.2-2.6 5.8-5.8 5.8S4.8 18.2 4.8 15s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.9-1.2 2.9-2.8V3h3.1Z"/></svg>
         </a>
 
         <a
           href="https://youtube.com/@DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="YouTube"
         >
-          YouTube
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M21.6 7.6c-.2-1-1-1.8-2-2C17.9 5.2 12 5.2 12 5.2s-5.9 0-7.6.4c-1 .2-1.8 1-2 2C2 9.3 2 12 2 12s0 2.7.4 4.4c.2 1 1 1.8 2 2 1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4c1-.2 1.8-1 2-2 .4-1.7.4-4.4.4-4.4s0-2.7-.4-4.4ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
         </a>
 
       </div>
@@ -3067,32 +3058,36 @@
           href="https://facebook.com/DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook"
         >
-          Facebook
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M13.5 21v-7.6h2.55l.38-2.96h-2.93v-1.9c0-.86.24-1.44 1.47-1.44h1.57V4.14C16.24 4.06 15.3 4 14.2 4c-2.3 0-3.87 1.4-3.87 4v2.44H7.77v2.96h2.56V21h3.17Z"/></svg>
         </a>
 
         <a
           href="https://instagram.com/DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Instagram"
         >
-          Instagram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.15" cy="6.85" r="1"/></svg>
         </a>
 
         <a
           href="https://tiktok.com/@DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="TikTok"
         >
-          TikTok
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M16.6 3c.3 2 1.6 3.7 3.6 4.2v2.9c-1.4 0-2.7-.4-3.8-1.2v6.1c0 3.2-2.6 5.8-5.8 5.8S4.8 18.2 4.8 15s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.9-1.2 2.9-2.8V3h3.1Z"/></svg>
         </a>
 
         <a
           href="https://youtube.com/@DreamPropertyNZ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="YouTube"
         >
-          YouTube
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M21.6 7.6c-.2-1-1-1.8-2-2C17.9 5.2 12 5.2 12 5.2s-5.9 0-7.6.4c-1 .2-1.8 1-2 2C2 9.3 2 12 2 12s0 2.7.4 4.4c.2 1 1 1.8 2 2 1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4c1-.2 1.8-1 2-2 .4-1.7.4-4.4.4-4.4s0-2.7-.4-4.4ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
         </a>
 
       </div>
@@ -3173,24 +3168,27 @@
           href="https://instagram.com/CalixMojicaRealEstate"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Instagram"
         >
-          Instagram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.15" cy="6.85" r="1"/></svg>
         </a>
 
         <a
           href="https://tiktok.com/@CalixMojicaRealEstate"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="TikTok"
         >
-          TikTok
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M16.6 3c.3 2 1.6 3.7 3.6 4.2v2.9c-1.4 0-2.7-.4-3.8-1.2v6.1c0 3.2-2.6 5.8-5.8 5.8S4.8 18.2 4.8 15s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.2-.9-.2-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.9-1.2 2.9-2.8V3h3.1Z"/></svg>
         </a>
 
         <a
           href="https://youtube.com/@CalixMojicaRealEstate"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="YouTube"
         >
-          YouTube
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M21.6 7.6c-.2-1-1-1.8-2-2C17.9 5.2 12 5.2 12 5.2s-5.9 0-7.6.4c-1 .2-1.8 1-2 2C2 9.3 2 12 2 12s0 2.7.4 4.4c.2 1 1 1.8 2 2 1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4c1-.2 1.8-1 2-2 .4-1.7.4-4.4.4-4.4s0-2.7-.4-4.4ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
         </a>
 
       </div>
@@ -3657,68 +3655,6 @@
 
       transform:
         scale(1.035);
-
-    }
-
-
-    .team-image-overlay {
-
-      position: absolute;
-
-      inset: 0;
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: center;
-
-      padding: 25px;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(4, 11, 21, 0.82),
-          transparent 55%
-        );
-
-      opacity: 0;
-
-      transition:
-        opacity var(--transition);
-
-    }
-
-
-    .team-card:hover .team-image-overlay,
-    .team-card-button:focus-visible .team-image-overlay {
-
-      opacity: 1;
-
-    }
-
-
-    .team-image-overlay span {
-
-      padding: 8px 14px;
-
-      border:
-        1px solid var(--gold);
-
-      border-radius: 7px;
-
-      background:
-        rgba(4, 11, 21, 0.75);
-
-      color: var(--gold);
-
-      font-size: 0.65rem;
-
-      font-weight: 700;
-
-      letter-spacing: 0.1em;
-
-      text-transform: uppercase;
 
     }
 
@@ -4254,9 +4190,9 @@
       display: grid;
 
       grid-template-columns:
-        repeat(3, minmax(130px, 1fr));
+        repeat(4, minmax(110px, 1fr));
 
-      gap: 60px;
+      gap: 40px;
 
     }
 
@@ -4289,13 +4225,22 @@
     }
 
 
-    .footer-navigation a {
+    .footer-navigation a,
+    .footer-navigation button {
 
       width: fit-content;
+
+      padding: 0;
+
+      border: 0;
+
+      background: transparent;
 
       color: var(--muted);
 
       font-size: 0.76rem;
+
+      text-align: left;
 
       transition:
         color var(--transition);
@@ -4303,7 +4248,8 @@
     }
 
 
-    .footer-navigation a:hover {
+    .footer-navigation a:hover,
+    .footer-navigation button:hover {
 
       color: var(--white);
 
@@ -4764,23 +4710,24 @@
 
     .modal-socials a {
 
-      padding:
-        9px 14px;
+      width: 42px;
+
+      height: 42px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 0;
 
       border:
         1px solid var(--border);
 
-      border-radius: 7px;
+      border-radius: 50%;
 
       color: var(--gold);
-
-      font-size: 0.65rem;
-
-      font-weight: 700;
-
-      letter-spacing: 0.07em;
-
-      text-transform: uppercase;
 
       transition:
         background var(--transition),
@@ -5268,6 +5215,65 @@
 
       }
     );
+
+
+    /* =========================================================
+       HERO VIDEO (HIDE PLAY BUTTON FLASH)
+       ========================================================= */
+
+    (function () {
+
+      const heroFrame =
+        document.getElementById(
+          "heroVideoFrame"
+        );
+
+
+      if (!heroFrame) {
+        return;
+      }
+
+
+      window.onYouTubeIframeAPIReady =
+        function () {
+
+          new YT.Player(
+            "heroVideoFrame",
+            {
+              events: {
+                onStateChange: function (event) {
+
+                  if (
+                    event.data === YT.PlayerState.PLAYING
+                  ) {
+
+                    heroFrame.classList.add(
+                      "video-ready"
+                    );
+
+                  }
+
+                }
+              }
+            }
+          );
+
+        };
+
+
+      const apiScript =
+        document.createElement("script");
+
+
+      apiScript.src =
+        "https://www.youtube.com/iframe_api";
+
+
+      document.head.appendChild(
+        apiScript
+      );
+
+    })();
 
 
     /* =========================================================
