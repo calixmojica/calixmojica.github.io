@@ -241,7 +241,7 @@
     }
 
     .brand-name {
-      font-size: 1.15rem;
+      font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: -0.035em;
       white-space: nowrap;
@@ -249,19 +249,6 @@
 
     .brand-name span {
       color: var(--gold);
-    }
-
-    .site-header .brand-name {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      font-size: 0.78rem;
-      line-height: 1.15;
-      white-space: normal;
-    }
-
-    .site-header .brand-name span {
-      display: block;
     }
 
     .main-navigation {
@@ -758,6 +745,10 @@
       font-size: 0.9rem;
     }
 
+    .pricing-note {
+      margin-bottom: 24px;
+    }
+
     .pricing-list {
       display: grid;
       gap: 13px;
@@ -834,7 +825,7 @@
       }
 
       .brand-name {
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
 
       .brand-logo {
@@ -1327,7 +1318,7 @@
               <li>Routine inspections</li>
             </ul>
 
-            <p class="pricing-description">
+            <p class="pricing-description pricing-note">
               Advertising and letting fees are charged separately.
             </p>
 
@@ -1342,7 +1333,7 @@
 
           <article class="pricing-card featured">
             <div class="pricing-badge">
-              All Inclusive
+              Most Popular
             </div>
 
             <h3>Premium Management</h3>
@@ -1370,7 +1361,7 @@
               <li>Investment advice</li>
             </ul>
 
-            <p class="pricing-description">
+            <p class="pricing-description pricing-note">
               All fees included, with no advertising or letting costs on top.
             </p>
 
@@ -1432,7 +1423,7 @@
 
               <article class="testimonial-slide">
                 <div class="testimonial-quote" aria-hidden="true">
-                  “
+                  "
                 </div>
 
                 <blockquote>
@@ -1450,7 +1441,7 @@
 
               <article class="testimonial-slide">
                 <div class="testimonial-quote" aria-hidden="true">
-                  “
+                  "
                 </div>
 
                 <blockquote>
@@ -1467,7 +1458,7 @@
 
               <article class="testimonial-slide">
                 <div class="testimonial-quote" aria-hidden="true">
-                  “
+                  "
                 </div>
 
                 <blockquote>
@@ -1696,57 +1687,6 @@
           </article>
 
 
-          <!-- Aachal -->
-
-          <article class="team-card">
-
-            <button
-              class="team-card-button"
-              type="button"
-              data-modal="aachal"
-              aria-label="View Aachal Chand profile"
-            >
-
-              <div class="team-image">
-
-                <img
-                  src="images/aachal-chand.jpg"
-                  alt="Aachal Chand"
-                  loading="lazy"
-                >
-
-              </div>
-
-            </button>
-
-
-            <div class="team-body">
-
-              <div class="team-role">
-                Business Administrator
-              </div>
-
-              <h3>
-                Aachal Chand
-              </h3>
-
-              <p>
-                The Adminstrator for Dream Property.
-              </p>
-
-              <button
-                class="button button-outline button-small"
-                type="button"
-                data-modal="aachal"
-              >
-                View Profile
-              </button>
-
-            </div>
-
-          </article>
-
-
           <!-- Calix -->
 
           <article class="team-card">
@@ -1789,6 +1729,57 @@
                 class="button button-outline button-small"
                 type="button"
                 data-modal="calix"
+              >
+                View Profile
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- Aachal -->
+
+          <article class="team-card">
+
+            <button
+              class="team-card-button"
+              type="button"
+              data-modal="aachal"
+              aria-label="View Aachal Chand profile"
+            >
+
+              <div class="team-image">
+
+                <img
+                  src="images/aachal-chand.jpg"
+                  alt="Aachal Chand"
+                  loading="lazy"
+                >
+
+              </div>
+
+            </button>
+
+
+            <div class="team-body">
+
+              <div class="team-role">
+                Business Administrator
+              </div>
+
+              <h3>
+                Aachal Chand
+              </h3>
+
+              <p>
+                The adminstrator for Dream Property.
+              </p>
+
+              <button
+                class="button button-outline button-small"
+                type="button"
+                data-modal="aachal"
               >
                 View Profile
               </button>
@@ -3874,11 +3865,6 @@
 
       justify-content: center;
 
-      border:
-        1px solid var(--border);
-
-      border-radius: 50%;
-
       color: var(--gold);
 
       font-size: 0.68rem;
@@ -3886,8 +3872,6 @@
       font-weight: 700;
 
       transition:
-        background var(--transition),
-        border-color var(--transition),
         color var(--transition),
         transform var(--transition);
 
@@ -3896,11 +3880,7 @@
 
     .social-links a:hover {
 
-      border-color: var(--gold);
-
-      background: var(--gold);
-
-      color: var(--navy);
+      color: var(--gold-light);
 
       transform:
         translateY(-3px);
@@ -4722,26 +4702,17 @@
 
       padding: 0;
 
-      border:
-        1px solid var(--border);
-
-      border-radius: 50%;
-
       color: var(--gold);
 
       transition:
-        background var(--transition),
-        border-color var(--transition);
+        color var(--transition);
 
     }
 
 
     .modal-socials a:hover {
 
-      border-color: var(--gold);
-
-      background:
-        rgba(214, 184, 120, 0.08);
+      color: var(--gold-light);
 
     }
 
